@@ -171,4 +171,3 @@ See [LICENSE.md](https://github.com/eea/volto-marine-theme/blob/master/LICENSE.m
 ## Funding
 
 [European Environment Agency (EU)](http://eea.europa.eu)
-[European Environment Agency (EU)](http://eea.europa.eu)
