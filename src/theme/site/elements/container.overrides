@@ -1,0 +1,24 @@
+/*******************************
+         Theme Overrides
+*******************************/
+@maxWidth: 1525px;
+
+/* All Sizes */
+.ui.container {
+  display: block;
+  width: 100% !important;
+  max-width: @maxWidth !important;
+  padding-right: 40px !important;
+  padding-left: 40px !important;
+  // margin-right: auto !important;
+  // margin-left: auto !important;
+
+  > .ui.container {
+    padding: 0 !important;
+  }
+
+  @media only screen and (max-width: 600px) {
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+}

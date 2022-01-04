@@ -1,0 +1,101 @@
+.in_path {
+  font-weight: 500 !important;
+}
+
+.list .content .list {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.drag .context-navigation {
+  max-width: 380px;
+}
+
+.context-navigation {
+  overflow: hidden;
+  padding: 0;
+  border-left: 2px solid gray;
+  margin-bottom: 1.5rem;
+  margin-left: 0.3em;
+  list-style-type: none;
+
+  .item {
+    padding: 0 !important;
+
+    a:hover {
+      background: #ffe9e3;
+    }
+
+    .disabled,
+    .disabled:hover {
+      background: transparent;
+      color: rgba(40, 40, 40, 0.3) !important;
+      cursor: default !important;
+    }
+  }
+
+  .active.item > .content > a {
+    background-color: #f2f9fb;
+    font-weight: 500 !important;
+  }
+
+  .item a {
+    position: relative;
+    display: block;
+    padding: 0.7rem 1rem;
+    color: @textColor;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+
+    > img {
+      display: none !important;
+    }
+  }
+
+  > .list {
+    margin: 0;
+  }
+
+  .level-1 a {
+    padding-right: 0;
+    padding-left: 1.3rem;
+    font-weight: 400 !important;
+  }
+
+  .level-2 a {
+    padding: 0.6rem 0 0.6rem 2rem;
+    font-size: 15px !important;
+  }
+
+  .level-3 a {
+    padding-right: 0;
+    padding-left: 2rem;
+  }
+
+  .active-indicator {
+    display: none;
+  }
+}
+
+.context-navigation-header > a {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.context-navigation-header {
+  padding-left: 1.3rem;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+
+  a {
+    font-size: 1.3rem;
+    font-weight: 100;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .context-navigation .item a {
+    font-size: 0.9rem;
+  }
+}
