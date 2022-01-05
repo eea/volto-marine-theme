@@ -6,13 +6,13 @@
      Breadcrumb
 --------------------*/
 
-@dividerColor: @pink;
+@dividerColor: @grey;
 
 @verticalMargin: 0em;
 @display: inline-block;
 @verticalAlign: middle;
 
-@dividerSpacing: @3px;
+@dividerSpacing: @10px;
 @dividerOpacity: 0.7;
 
 @dividerSize: @relativeSmall;
@@ -31,4 +31,4 @@
        States
 --------------------*/
 
-@activeFontWeight: @bold;
+@activeFontWeight: @normal;

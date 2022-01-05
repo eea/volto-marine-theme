@@ -2,6 +2,8 @@ import React from 'react';
 import { HeroSectionView } from './components';
 import installAppExtras from './components/theme/AppExtras';
 
+import { breadcrumb } from './reducers';
+
 const applyConfig = (config) => {
   config.settings.navDepth = 3;
 
@@ -14,6 +16,11 @@ const applyConfig = (config) => {
     ...config.views.layoutViews,
     document_view: HeroSectionView,
     herosection_view: HeroSectionView,
+  };
+
+  config.addonReducers = {
+    ...(config.addonReducers || {}),
+    breadcrumb,
   };
 
   // config.blocks.groupBlocksOrder = [

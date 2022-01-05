@@ -1,3 +1,83 @@
 /*******************************
          Theme Overrides
 *******************************/
+
+.ui.vertical.segment.breadcrumbs {
+  border-bottom: 0;
+  background: none;
+}
+
+.ui.breadcrumb {
+  display: inline-block;
+  padding: 5px 0;
+  font-size: 15px;
+
+  a.section {
+    color: @grey;
+  }
+
+  .active {
+    color: #dfdede;
+  }
+
+  .divider {
+    margin: 0 10px;
+  }
+
+  .section.disabled {
+    cursor: default !important;
+  }
+}
+
+body.has-image {
+  .breadcrumbs {
+    padding: 0 !important;
+    border-bottom: 0;
+    background: none;
+  }
+
+  .ui.breadcrumb {
+    position: absolute;
+    top: 100px;
+    padding: 0.5em 1em;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    .divider {
+      color: @white;
+    }
+
+    a:hover,
+    .section {
+      color: @white !important;
+    }
+
+    .active:hover,
+    .active.section {
+      color: @white !important;
+    }
+
+    @media only screen and (max-width: @largeMobileBreakpoint) {
+      right: 0;
+      left: 0;
+    }
+
+    @media only screen and (max-width: @largestMobileScreen) {
+      visibility: hidden !important;
+    }
+  }
+}
+
+body.has-image.has-banner .breadcrumbs .breadcrumb {
+  top: 179px;
+
+  @media only screen and (max-width: @largestMobileScreen) {
+    top: 283px;
+  }
+}
+
+body.contenttype-plone-site.section-edit .breadcrumbs,
+body.homepage-view .breadcrumbs {
+  display: none !important;
+}
