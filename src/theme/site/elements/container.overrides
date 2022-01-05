@@ -10,8 +10,6 @@
   max-width: @maxWidth !important;
   padding-right: 40px !important;
   padding-left: 40px !important;
-  // margin-right: auto !important;
-  // margin-left: auto !important;
 
   > .ui.container {
     padding: 0 !important;
@@ -20,5 +18,57 @@
   @media only screen and (max-width: 600px) {
     padding-right: 20px !important;
     padding-left: 20px !important;
+  }
+}
+
+@media only screen and (max-width: @largestMobileScreen) {
+  .contentWidthMedia(@mobileWidth, @mobileGutter, -12px);
+
+  [class*='mobile hidden'],
+  [class*='tablet only']:not(.mobile),
+  [class*='computer only']:not(.mobile),
+  [class*='large screen only']:not(.mobile),
+  [class*='widescreen only']:not(.mobile),
+  [class*='or lower hidden'] {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+  .contentWidthMedia(@tabletWidth, @tabletGutter, -30px);
+
+  [class*='mobile only']:not(.tablet),
+  [class*='tablet hidden'],
+  [class*='computer only']:not(.tablet),
+  [class*='large screen only']:not(.tablet),
+  [class*='widescreen only']:not(.tablet),
+  [class*='or lower hidden']:not(.mobile) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @computerBreakpoint) and (max-width: @largestSmallMonitor) {
+  .contentWidthMedia(@computerWidth, @computerGutter, -30px);
+
+  [class*='mobile only']:not(.computer),
+  [class*='tablet only']:not(.computer),
+  [class*='computer hidden'],
+  [class*='large screen only']:not(.computer),
+  [class*='widescreen only']:not(.computer),
+  [class*='or lower hidden']:not(.tablet):not(.mobile) {
+    display: none !important;
+  }
+}
+
+@media only screen and (min-width: @largeMonitorBreakpoint) {
+  .contentWidthMedia(@largeMonitorWidth, @largeMonitorGutter, -30px);
+
+  [class*='mobile only']:not([class*='large screen']),
+  [class*='tablet only']:not([class*='large screen']),
+  [class*='computer only']:not([class*='large screen']),
+  [class*='large screen hidden'],
+  [class*='widescreen only']:not([class*='large screen']),
+  [class*='or lower hidden']:not(.computer):not(.tablet):not(.mobile) {
+    display: none !important;
   }
 }

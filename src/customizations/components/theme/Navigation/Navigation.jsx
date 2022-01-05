@@ -5,16 +5,19 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isMatch } from 'lodash';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Link } from 'react-router-dom';
 import { defineMessages, injectIntl } from 'react-intl';
-import { Menu } from 'semantic-ui-react';
+import { Menu, Dropdown, Button } from 'semantic-ui-react';
 import cx from 'classnames';
-import { BodyClass, getBaseUrl, hasApiExpander } from '@plone/volto/helpers';
-import config from '@plone/volto/registry';
+import { getBaseUrl, flattenToAppURL } from '@plone/volto/helpers';
+import { Icon } from '@plone/volto/components';
 import { getNavigation } from '@plone/volto/actions';
-import { CSSTransition } from 'react-transition-group';
-import NavItems from '@plone/volto/components/theme/Navigation/NavItems';
+import config from '@plone/volto/registry';
+
+import clearSVG from '@plone/volto/icons/clear.svg';
 
 const messages = defineMessages({
   closeMobileMenu: {
@@ -45,9 +48,10 @@ class Navigation extends Component {
       PropTypes.shape({
         title: PropTypes.string,
         url: PropTypes.string,
+        items: PropTypes.array,
+        review_state: PropTypes.string,
       }),
     ).isRequired,
-    lang: PropTypes.string.isRequired,
   };
 
   /**
@@ -63,17 +67,31 @@ class Navigation extends Component {
     this.state = {
       isMobileMenuOpen: false,
     };
+    this.container = React.createRef();
   }
 
+  /**
+   * Component will mount
+   * @method componentWillMount
+   * @returns {undefined}
+   */
   componentDidMount() {
-    const { settings } = config;
-    if (!hasApiExpander('navigation', getBaseUrl(this.props.pathname))) {
-      this.props.getNavigation(
-        getBaseUrl(this.props.pathname),
-        settings.navDepth,
-      );
-    }
+    this.props.getNavigation(
+      getBaseUrl(this.props.pathname),
+      config.settings?.navDepth || 3,
+    );
   }
+
+  handleClickOutsideNav = (event) => {
+    if (
+      this.container.current &&
+      !this.container.current.contains(event.target)
+    ) {
+      this.setState({
+        isMobileMenuOpen: false,
+      });
+    }
+  };
 
   /**
    * Component will receive props
@@ -81,19 +99,35 @@ class Navigation extends Component {
    * @param {Object} nextProps Next properties
    * @returns {undefined}
    */
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { settings } = config;
+  componentDidUpdate(nextProps) {
     if (
       nextProps.pathname !== this.props.pathname ||
-      nextProps.token !== this.props.token
+      nextProps.userToken !== this.props.userToken
     ) {
-      if (!hasApiExpander('navigation', getBaseUrl(this.props.pathname))) {
-        this.props.getNavigation(
-          getBaseUrl(nextProps.pathname),
-          settings.navDepth,
-        );
-      }
+      this.props.getNavigation(
+        getBaseUrl(nextProps.pathname),
+        config.settings?.navDepth || 3,
+      );
+      this.closeMobileMenu();
     }
+
+    // Hide submenu on route change
+    if (document.querySelector('body')) {
+      document.querySelector('body').click();
+    }
+  }
+
+  /**
+   * Check if menu is active
+   * @method isActive
+   * @param {string} url Url of the navigation item.
+   * @returns {bool} Is menu active?
+   */
+  isActive(url) {
+    return (
+      (url === '' && this.props.pathname === '/') ||
+      (url !== '' && isMatch(this.props.pathname.split('/'), url.split('/')))
+    );
   }
 
   /**
@@ -102,7 +136,11 @@ class Navigation extends Component {
    * @returns {undefined}
    */
   toggleMobileMenu() {
-    this.setState({ isMobileMenuOpen: !this.state.isMobileMenuOpen });
+    this.setState({ isMobileMenuOpen: !this.state.isMobileMenuOpen }, () => {
+      if (this.state.isMobileMenuOpen) {
+        document.addEventListener('mousedown', this.handleClickOutsideNav);
+      }
+    });
   }
 
   /**
@@ -114,7 +152,9 @@ class Navigation extends Component {
     if (!this.state.isMobileMenuOpen) {
       return;
     }
-    this.setState({ isMobileMenuOpen: false });
+    this.setState({ isMobileMenuOpen: false }, () => {
+      document.removeEventListener('mousedown', this.handleClickOutsideNav);
+    });
   }
 
   /**
@@ -124,62 +164,165 @@ class Navigation extends Component {
    */
   render() {
     return (
-      <nav className="navigation" id="navigation">
-        <div className="hamburger-wrapper mobile tablet only">
-          <button
-            className={cx('hamburger hamburger--spin', {
-              'is-active': this.state.isMobileMenuOpen,
-            })}
-            aria-label={
-              this.state.isMobileMenuOpen
-                ? this.props.intl.formatMessage(messages.closeMobileMenu, {
-                    type: this.props.type,
-                  })
-                : this.props.intl.formatMessage(messages.openMobileMenu, {
-                    type: this.props.type,
-                  })
-            }
-            title={
-              this.state.isMobileMenuOpen
-                ? this.props.intl.formatMessage(messages.closeMobileMenu, {
-                    type: this.props.type,
-                  })
-                : this.props.intl.formatMessage(messages.openMobileMenu, {
-                    type: this.props.type,
-                  })
-            }
-            type="button"
-            onClick={this.toggleMobileMenu}
-          >
-            <span className="hamburger-box">
-              <span className="hamburger-inner" />
-            </span>
-          </button>
-        </div>
+      <nav className="navigation" ref={this.container}>
+        {!this.state.isMobileMenuOpen && (
+          <div className="hamburger-wrapper mobile only">
+            <button
+              className={cx('hamburger hamburger--collapse', {
+                'is-active': this.state.isMobileMenuOpen,
+              })}
+              aria-label={
+                this.state.isMobileMenuOpen
+                  ? this.props.intl.formatMessage(messages.closeMobileMenu, {
+                      type: this.props.type,
+                    })
+                  : this.props.intl.formatMessage(messages.openMobileMenu, {
+                      type: this.props.type,
+                    })
+              }
+              title={
+                this.state.isMobileMenuOpen
+                  ? this.props.intl.formatMessage(messages.closeMobileMenu, {
+                      type: this.props.type,
+                    })
+                  : this.props.intl.formatMessage(messages.openMobileMenu, {
+                      type: this.props.type,
+                    })
+              }
+              type="button"
+              onClick={this.toggleMobileMenu}
+            >
+              <span className="hamburger-box">
+                <span className="hamburger-inner" />
+              </span>
+            </button>
+          </div>
+        )}
+
         <Menu
           stackable
           pointing
           secondary
-          className="computer large screen widescreen only"
-          onClick={this.closeMobileMenu}
+          className={
+            this.state.isMobileMenuOpen
+              ? 'open'
+              : 'tablet computer large screen widescreen only'
+          }
         >
-          <NavItems items={this.props.items} lang={this.props.lang} />
+          <Button
+            icon
+            basic
+            title="Close menu"
+            className="close-button"
+            onClick={this.closeMobileMenu}
+          >
+            <Icon name={clearSVG} size="37px" />
+          </Button>
+
+          {this.props.items.map((item) => {
+            const flatUrl = flattenToAppURL(item.url);
+            const draftItem = item.review_state === 'draft';
+            return item.items && item.items.length ? (
+              <Dropdown
+                item
+                simple
+                className={
+                  this.isActive(flatUrl)
+                    ? 'item firstLevel menuActive'
+                    : 'item firstLevel'
+                }
+                key={flatUrl}
+                closeOnBlur={this.state.isMobileMenuOpen ? false : true}
+                trigger={
+                  <Link
+                    className={draftItem ? 'disabled' : ''}
+                    to={flatUrl === '' ? '/' : flatUrl}
+                    key={flatUrl}
+                    onClick={(e) => {
+                      if (draftItem) e.preventDefault();
+                    }}
+                  >
+                    {item.title}
+                  </Link>
+                }
+              >
+                <Dropdown.Menu>
+                  {item.items.map((subitem) => {
+                    const flatSubUrl = flattenToAppURL(subitem.url);
+                    const subDraftItem = subitem.review_state === 'draft';
+                    return (
+                      <Dropdown.Item key={flatSubUrl}>
+                        <>
+                          <div className="secondLevel-wrapper">
+                            <Link
+                              to={flatSubUrl === '' ? '/' : flatSubUrl}
+                              key={flatSubUrl}
+                              className={cx('item secondLevel', {
+                                menuActive: this.isActive(flatSubUrl),
+                                disabled: subDraftItem,
+                              })}
+                              onClick={(e) => {
+                                if (subDraftItem) e.preventDefault();
+                              }}
+                            >
+                              {subitem.title}
+                            </Link>
+                          </div>
+
+                          {subitem.items && subitem.items.length > 0 && (
+                            <div className="submenu-wrapper">
+                              <div className="submenu">
+                                {subitem.items.map((subsubitem) => {
+                                  const flatSubSubUrl = flattenToAppURL(
+                                    subsubitem.url,
+                                  );
+                                  const subSubDraftItem =
+                                    subsubitem.review_state === 'draft';
+                                  return (
+                                    <Link
+                                      to={
+                                        flatSubSubUrl === ''
+                                          ? '/'
+                                          : flatSubSubUrl
+                                      }
+                                      title={subsubitem.title}
+                                      key={flatSubSubUrl}
+                                      className={cx('item thirdLevel', {
+                                        menuActive: this.isActive(flatSubUrl),
+                                        disabled: subSubDraftItem,
+                                      })}
+                                      onClick={(e) => {
+                                        if (subSubDraftItem) e.preventDefault();
+                                      }}
+                                    >
+                                      {subsubitem.title}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      </Dropdown.Item>
+                    );
+                  })}
+                </Dropdown.Menu>
+              </Dropdown>
+            ) : (
+              <Link
+                to={flatUrl === '' ? '/' : flatUrl}
+                key={flatUrl}
+                className={
+                  this.isActive(flatUrl)
+                    ? 'item menuActive firstLevel'
+                    : 'item firstLevel'
+                }
+              >
+                {item.title}
+              </Link>
+            );
+          })}
         </Menu>
-        <CSSTransition
-          in={this.state.isMobileMenuOpen}
-          timeout={500}
-          classNames="mobile-menu"
-          unmountOnExit
-        >
-          <div key="mobile-menu-key" className="mobile-menu">
-            <BodyClass className="has-mobile-menu-open" />
-            <div className="mobile-menu-nav">
-              <Menu stackable pointing secondary onClick={this.closeMobileMenu}>
-                <NavItems items={this.props.items} lang={this.props.lang} />
-              </Menu>
-            </div>
-          </div>
-        </CSSTransition>
       </nav>
     );
   }
@@ -188,11 +331,12 @@ class Navigation extends Component {
 export default compose(
   injectIntl,
   connect(
-    (state) => ({
-      token: state.userSession.token,
-      items: state.navigation.items,
-      lang: state.intl.locale,
-    }),
+    (state) => {
+      return {
+        items: state.localnavigation.items,
+        userToken: state?.userSession?.token,
+      };
+    },
     { getNavigation },
   ),
 )(Navigation);
