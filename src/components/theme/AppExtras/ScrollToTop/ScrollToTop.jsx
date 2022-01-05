@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Button, Icon } from 'semantic-ui-react';
 
-import './style.less';
+import './scrolltop.less';
 
 const messages = defineMessages({
   scrollToTop: {

@@ -1,8 +1,20 @@
 import React from 'react';
+import { HeroSectionView } from './components';
 import installAppExtras from './components/theme/AppExtras';
 
 const applyConfig = (config) => {
   config.settings.navDepth = 3;
+
+  config.views.contentTypesViews = {
+    ...config.views.contentTypesViews,
+    Document: HeroSectionView,
+  };
+
+  config.views.layoutViews = {
+    ...config.views.layoutViews,
+    document_view: HeroSectionView,
+    herosection_view: HeroSectionView,
+  };
 
   // config.blocks.groupBlocksOrder = [
   //   ...config.blocks.groupBlocksOrder,
