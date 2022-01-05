@@ -1,6 +1,7 @@
 /*******************************
          Site Settings
 *******************************/
+@import '../extras/mixins';
 
 /*-------------------
        Fonts
@@ -28,6 +29,16 @@
 
 /* The size of page text  */
 @fontSize : 14px;
+
+@fullSizeIcon                  : 36px;
+
+@toolbarWidth                  : 80px;
+@collapsedToolbarWidth         : 20px;
+@mobileToolbarHeight           : 100px;
+@mobileCollapsedToolbarHeight  : 20px;
+@sidebarWidth                  : 375px;
+
+@mobileMenuBreakpoint          : 1300px;
 
 
 /*-------------------
