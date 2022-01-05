@@ -10,6 +10,8 @@ import { Logo, Navigation, SearchWidget } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 import { Container, Segment } from 'semantic-ui-react';
 import { HeroSection } from '@eeacms/volto-marine-theme/components';
+import clearLogoSVG from '@eeacms/volto-marine-theme/static/marine_logo_white.svg';
+
 import cx from 'classnames';
 
 const Header = (props) => {
@@ -88,10 +90,9 @@ const Header = (props) => {
                 {homePageView ? (
                   <img
                     className="home-logo"
-                    src=""
-                    alt="Marine logo"
-                    width="234"
-                    height="56"
+                    src={clearLogoSVG}
+                    alt="WISE Marine Logo"
+                    height="60"
                   />
                 ) : (
                   <Logo />
