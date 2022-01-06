@@ -9,8 +9,8 @@ import { isMatch } from 'lodash';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
-import { defineMessages, injectIntl } from 'react-intl';
-import { Menu, Dropdown, Button } from 'semantic-ui-react';
+import { injectIntl } from 'react-intl';
+import { Dropdown, Button } from 'semantic-ui-react';
 import cx from 'classnames';
 import { getBaseUrl, flattenToAppURL } from '@plone/volto/helpers';
 import { Icon } from '@plone/volto/components';
@@ -18,17 +18,6 @@ import { getNavigation } from '@plone/volto/actions';
 import config from '@plone/volto/registry';
 
 import clearSVG from '@plone/volto/icons/clear.svg';
-
-const messages = defineMessages({
-  closeMobileMenu: {
-    id: 'Close menu',
-    defaultMessage: 'Close menu',
-  },
-  openMobileMenu: {
-    id: 'Open menu',
-    defaultMessage: 'Open menu',
-  },
-});
 
 /**
  * Navigation container class.
@@ -164,51 +153,30 @@ class Navigation extends Component {
    */
   render() {
     return (
-      <nav className="navigation" ref={this.container}>
-        {!this.state.isMobileMenuOpen && (
-          <div className="hamburger-wrapper mobile only">
-            <button
-              className={cx('hamburger hamburger--collapse', {
-                'is-active': this.state.isMobileMenuOpen,
-              })}
-              aria-label={
-                this.state.isMobileMenuOpen
-                  ? this.props.intl.formatMessage(messages.closeMobileMenu, {
-                      type: this.props.type,
-                    })
-                  : this.props.intl.formatMessage(messages.openMobileMenu, {
-                      type: this.props.type,
-                    })
-              }
-              title={
-                this.state.isMobileMenuOpen
-                  ? this.props.intl.formatMessage(messages.closeMobileMenu, {
-                      type: this.props.type,
-                    })
-                  : this.props.intl.formatMessage(messages.openMobileMenu, {
-                      type: this.props.type,
-                    })
-              }
-              type="button"
-              onClick={this.toggleMobileMenu}
-            >
-              <span className="hamburger-box">
-                <span className="hamburger-inner" />
-              </span>
-            </button>
-          </div>
-        )}
+      <nav
+        ref={this.container}
+        className={cx('navigation', {
+          'mobile-menu-open': this.state.isMobileMenuOpen,
+        })}
+      >
+        <>
+          {!this.state.isMobileMenuOpen && (
+            <div className="hamburger-wrapper">
+              <button
+                className={cx('hamburger hamburger--collapse', {
+                  'is-active': this.state.isMobileMenuOpen,
+                })}
+                onClick={this.toggleMobileMenu}
+              >
+                <span className="hamburger-box">
+                  <span className="hamburger-inner" />
+                </span>
+              </button>
+            </div>
+          )}
+        </>
 
-        <Menu
-          stackable
-          pointing
-          secondary
-          className={
-            this.state.isMobileMenuOpen
-              ? 'open'
-              : 'tablet computer large screen widescreen only'
-          }
-        >
+        <div className="nav-items">
           <Button
             icon
             basic
@@ -322,7 +290,7 @@ class Navigation extends Component {
               </Link>
             );
           })}
-        </Menu>
+        </div>
       </nav>
     );
   }

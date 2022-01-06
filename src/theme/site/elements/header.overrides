@@ -3,6 +3,5 @@
 *******************************/
 
 .ui.basic.segment.header-wrapper {
-  height: 100px;
   padding: 0;
 }

@@ -81,32 +81,45 @@ const Header = (props) => {
           })}
         >
           <Container>
-            <div
-              className={`logo-nav-wrapper ${
-                homePageView ? 'home-nav' : 'page-nav'
-              }`}
-            >
-              <div className="logo">
-                {homePageView ? (
-                  <img
-                    className="home-logo"
-                    src={clearLogoSVG}
-                    alt="WISE Marine Logo"
-                    height="60"
-                  />
-                ) : (
-                  <Logo />
-                )}
-              </div>
-              <div className="header-right-section">
-                <div className="right-section-wrapper">
-                  <div className="search">
-                    <SearchWidget pathname={pathname} />
+            {homePageView ? (
+              <div className="home-header">
+                <div className="logo-nav-wrapper home-nav">
+                  <div className="logo">
+                    <img
+                      className="home-logo"
+                      src={clearLogoSVG}
+                      alt="WISE Marine Logo"
+                      height="60"
+                    />
+                  </div>
+                  <div className="header-right-section">
+                    <div className="right-section-wrapper">
+                      <div className="search">
+                        <SearchWidget pathname={pathname} />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <Navigation pathname={pathname} navigation={navigationItems} />
               </div>
-            </div>
+            ) : (
+              <div className="logo-nav-wrapper page-nav">
+                <div className="logo">
+                  <Logo />
+                </div>
+                <div className="header-right-section">
+                  <div className="right-section-wrapper">
+                    <div className="search">
+                      <SearchWidget pathname={pathname} />
+                    </div>
+                  </div>
+                  <Navigation
+                    pathname={pathname}
+                    navigation={navigationItems}
+                  />
+                </div>
+              </div>
+            )}
           </Container>
         </div>
       </Segment>

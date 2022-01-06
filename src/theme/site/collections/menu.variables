@@ -10,15 +10,15 @@
 @verticalMargin: @medium;
 @horizontalMargin: 0em;
 @margin: @verticalMargin @horizontalMargin;
-@background: #FFFFFF;
-@fontFamily: @pageFont;
+@background: transparent;
+@fontFamily: @headerFont;
 @itemBackground: none;
 @fontWeight: @normal;
 @borderWidth: 1px;
-@border: @borderWidth solid @borderColor;
+@border: none;
 @boxShadow: @subtleShadow;
-@borderRadius: @defaultBorderRadius;
-@minHeight: (@itemVerticalPadding * 2) + 1em;
+@borderRadius: 0;
+@minHeight: auto;
 
 /* Menu Item */
 @itemVerticalPadding: @relativeSmall;

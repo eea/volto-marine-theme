@@ -58,7 +58,7 @@
 --------------------*/
 
 @primaryColor        : #002d54;
-@secondaryColor      : @black;
+@secondaryColor      : #59d3ff;
 
 @lightPrimaryColor   : @lightBlue;
 @lightSecondaryColor : @lightBlack;
