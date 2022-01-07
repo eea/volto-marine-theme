@@ -4,18 +4,22 @@
  */
 
 import React from 'react';
-import { Container, List, Segment } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { useSelector } from 'react-redux';
-import config from '@plone/volto/registry';
+import { FormattedMessage, injectIntl } from 'react-intl';
+import { Anontools } from '@plone/volto/components';
 
-const messages = defineMessages({
-  copyright: {
-    id: 'Copyright',
-    defaultMessage: 'Copyright',
-  },
-});
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import ecLogo from '@eeacms/volto-marine-theme/static/ec_logo.svg';
+import eeaLogo from '@eeacms/volto-marine-theme/static/eea_logo.svg';
+import fiseLogo from '@eeacms/volto-marine-theme/static/forest_logo.svg';
+import ccaLogo from '@eeacms/volto-marine-theme/static/cca_logo.svg';
+import biseLogo from '@eeacms/volto-marine-theme/static/bise_logo.svg';
+import freshwaterLogo from '@eeacms/volto-marine-theme/static/freshwater_logo.svg';
+
+import fishesImage from '@eeacms/volto-marine-theme/static/footer-fishes.svg';
 
 /**
  * Component to display the footer.
@@ -24,111 +28,122 @@ const messages = defineMessages({
  * @returns {string} Markup of the component
  */
 const Footer = ({ intl }) => {
-  const { settings } = config;
-  const lang = useSelector((state) => state.intl.locale);
+  const root = useSelector((state) => state.breadcrumbs.root);
+
   return (
-    <Segment
-      role="contentinfo"
-      vertical
-      padded
-      inverted
-      color="grey"
-      textAlign="center"
-      id="footer"
-    >
+    <div className="footer-wrapper">
+      <div className="footer-top-wave"></div>
       <Container>
-        <Segment basic inverted color="grey" className="discreet">
-          <FormattedMessage
-            id="The {plonecms} is {copyright} 2000-{current_year} by the {plonefoundation} and friends."
-            defaultMessage="The {plonecms} is {copyright} 2000-{current_year} by the {plonefoundation} and friends."
-            values={{
-              plonecms: (
-                <FormattedMessage
-                  id="Plone{reg} Open Source CMS/WCM"
-                  defaultMessage="Plone{reg} Open Source CMS/WCM"
-                  values={{ reg: <sup>®</sup> }}
-                />
-              ),
-              copyright: (
-                <abbr title={intl.formatMessage(messages.copyright)}>©</abbr>
-              ),
-              current_year: new Date().getFullYear(),
-              plonefoundation: (
-                <a className="item" href="http://plone.org/foundation">
-                  <FormattedMessage
-                    id="Plone Foundation"
-                    defaultMessage="Plone Foundation"
+        <Grid stackable>
+          <Grid.Row>
+            <Grid.Column mobile={16} tablet={16} computer={16}>
+              <ul className="footer-nav" id="footer_links">
+                <li>
+                  <Link className="item" to={root || '/'}>
+                    <FormattedMessage id="home" defaultMessage="Home" />
+                  </Link>
+                </li>
+                <li>
+                  <a className="item" href={`mailto:WISE@eea.europa.eu`}>
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <Link className="item" to="/sitemap">
+                    <FormattedMessage id="sitemap" defaultMessage="Sitemap" />
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    className="item"
+                    href="https://water.europa.eu/#legal-notice"
+                  >
+                    <FormattedMessage
+                      id="legal_notice"
+                      defaultMessage="Privacy and Legal Notice"
+                    />
+                  </a>
+                </li>
+                <Anontools />
+              </ul>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+
+        <Grid stackable className="footer-bottom-logos">
+          <Grid.Row>
+            <Grid.Column mobile={16} tablet={16} computer={7}>
+              <div className="site-info-logos">
+                <a href="https://www.eea.europa.eu/">
+                  <LazyLoadImage
+                    src={eeaLogo}
+                    title="European Environment Agency"
+                    alt="European Environment Agency"
+                    height="35"
                   />
                 </a>
-              ),
-            }}
-          />{' '}
-          <FormattedMessage
-            id="Distributed under the {license}."
-            defaultMessage="Distributed under the {license}."
-            values={{
-              license: (
-                <a
-                  className="item"
-                  href="http://creativecommons.org/licenses/GPL/2.0/"
-                >
-                  <FormattedMessage
-                    id="GNU GPL license"
-                    defaultMessage="GNU GPL license"
+                <a href="https://ec.europa.eu/">
+                  <LazyLoadImage
+                    src={ecLogo}
+                    title="European Commission"
+                    alt="European Commission"
+                    height="35"
                   />
                 </a>
-              ),
-            }}
-          />
-        </Segment>
-        <List horizontal inverted>
-          {/* wrap in div for a11y reasons: listitem role cannot be on the <a> element directly */}
-          <div role="listitem" className="item">
-            <Link
-              className="item"
-              to={settings.isMultilingual ? `/${lang}/sitemap` : '/sitemap'}
-            >
-              <FormattedMessage id="Site Map" defaultMessage="Site Map" />
-            </Link>
-          </div>
-          <div role="listitem" className="item">
-            <Link
-              className="item"
-              to={
-                settings.isMultilingual
-                  ? `/${lang}/accesibility-info`
-                  : '/accesibility-info'
-              }
-            >
-              <FormattedMessage
-                id="Accessibility"
-                defaultMessage="Accessibility"
-              />
-            </Link>
-          </div>
-          <div role="listitem" className="item">
-            <Link
-              className="item"
-              to={
-                settings.isMultilingual
-                  ? `/${lang}/contact-form`
-                  : '/contact-form'
-              }
-            >
-              <FormattedMessage id="Contact" defaultMessage="Contact" />
-            </Link>
-          </div>
-          <div role="listitem" className="item">
-            <a className="item" href="https://plone.org">
-              <FormattedMessage
-                id="Powered by Plone & Python"
-                defaultMessage="Powered by Plone & Python"
-              />
-            </a>
-          </div>
-        </List>
+              </div>
+            </Grid.Column>
+
+            <Grid.Column mobile={16} tablet={16} computer={9}>
+              <div>
+                <p>Other European Information Systems:</p>
+              </div>
+              <div className="footer-logos">
+                <a href="https://water.europa.eu/freshwater">
+                  <LazyLoadImage
+                    className="footerLogo"
+                    src={freshwaterLogo}
+                    title="Freshwater Information System for Europe"
+                    alt="Freshwater Information System for Europe"
+                    height="32"
+                  />
+                </a>
+                <a href="https://biodiversity.europa.eu/">
+                  <LazyLoadImage
+                    className="footerLogo"
+                    src={biseLogo}
+                    title="Biodiversity Information System for Europe"
+                    alt="Biodiversity Information System for Europe"
+                    height="35"
+                  />
+                </a>
+                <a href="https://climate-adapt.eea.europa.eu/">
+                  <LazyLoadImage
+                    className="footerLogo"
+                    src={ccaLogo}
+                    title="Sharing adaptation information across Europe"
+                    alt="Climate-Adapt"
+                    height="32"
+                  />
+                </a>
+                <a href="https://forest.eea.europa.eu/">
+                  <LazyLoadImage
+                    className="footerLogo"
+                    src={fiseLogo}
+                    title="Forest Information System for Europe"
+                    alt="Forest Information System for Europe"
+                    height="35"
+                  />
+                </a>
+              </div>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Container>
-    </Segment>
+
+      <div class="footer-backdrop">
+        <LazyLoadImage src={fishesImage} alt="Footer fishes image" />
+      </div>
+    </div>
   );
 };
 
