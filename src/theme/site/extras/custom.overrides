@@ -14,3 +14,8 @@
 @import 'sidebar.overrides';
 @import 'main.overrides';
 //}
+
+
+.stagingBanner .container {
+  padding: 18px 0;
+}

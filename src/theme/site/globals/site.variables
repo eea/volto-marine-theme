@@ -28,7 +28,7 @@
 @emSize   : 14px;
 
 /* The size of page text  */
-@fontSize : 14px;
+@fontSize : 18px;
 
 @fullSizeIcon                  : 36px;
 
@@ -59,6 +59,7 @@
 
 @primaryColor        : #002d54;
 @secondaryColor      : #59d3ff;
+@textColor:          : #003159;
 
 @lightPrimaryColor   : @lightBlue;
 @lightSecondaryColor : @lightBlack;
@@ -388,6 +389,7 @@
 /* For source only. Modified in gulp for dist */
 @imagePath : '../../themes/default/assets/images';
 @fontPath  : '../../themes/default/assets/fonts';
+@themeImagePath: '../assets/images';
 
 /*-------------------
        Em Sizes

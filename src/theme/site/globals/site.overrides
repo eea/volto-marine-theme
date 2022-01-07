@@ -1,3 +1,18 @@
 /*******************************
         Global Overrides
 *******************************/
+
+body {
+  color: @textColor;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
+
+.content-area {
+  font-size: @fontSize !important;
+  font-weight: 300;
+  line-height: 28px !important;
+}

@@ -10,7 +10,9 @@
 .ui.breadcrumb {
   display: inline-block;
   padding: 5px 0;
-  font-size: 15px;
+  font-family: @headerFont;
+  font-size: 14px;
+  font-weight: 300;
 
   a.section {
     color: @grey;
