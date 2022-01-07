@@ -24,8 +24,10 @@
     border: none;
   }
 
-  .searchbox input {
-    transition: none;
+  .searchbox {
+    input {
+      transition: none;
+    }
   }
 
   .home-nav {
@@ -72,6 +74,20 @@
 
   .search button {
     color: @primaryColor;
+
+    svg {
+      height: 22px !important;
+    }
+  }
+
+  .login-wrapper {
+    .item {
+      margin: 0 0.5rem;
+    }
+
+    svg.icon {
+      color: @primaryColor;
+    }
   }
 
   .page-nav {
@@ -85,6 +101,18 @@
   .hamburger-inner::before,
   .hamburger-inner::after {
     background-color: @white;
+  }
+
+  .searchbox {
+    input {
+      color: @white !important;
+    }
+  }
+
+  .login-wrapper {
+    svg.icon {
+      color: @white !important;
+    }
   }
 }
 

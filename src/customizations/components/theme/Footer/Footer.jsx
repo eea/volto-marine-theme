@@ -8,7 +8,6 @@ import { Container, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Anontools } from '@plone/volto/components';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -64,7 +63,6 @@ const Footer = ({ intl }) => {
                     />
                   </a>
                 </li>
-                <Anontools />
               </ul>
             </Grid.Column>
           </Grid.Row>
@@ -79,7 +77,7 @@ const Footer = ({ intl }) => {
                     src={eeaLogo}
                     title="European Environment Agency"
                     alt="European Environment Agency"
-                    height="35"
+                    height="38"
                   />
                 </a>
                 <a href="https://ec.europa.eu/">
@@ -87,7 +85,7 @@ const Footer = ({ intl }) => {
                     src={ecLogo}
                     title="European Commission"
                     alt="European Commission"
-                    height="35"
+                    height="38"
                   />
                 </a>
               </div>
@@ -104,7 +102,7 @@ const Footer = ({ intl }) => {
                     src={freshwaterLogo}
                     title="Freshwater Information System for Europe"
                     alt="Freshwater Information System for Europe"
-                    height="32"
+                    height="34"
                   />
                 </a>
                 <a href="https://biodiversity.europa.eu/">
@@ -113,7 +111,7 @@ const Footer = ({ intl }) => {
                     src={biseLogo}
                     title="Biodiversity Information System for Europe"
                     alt="Biodiversity Information System for Europe"
-                    height="35"
+                    height="38"
                   />
                 </a>
                 <a href="https://climate-adapt.eea.europa.eu/">
@@ -122,7 +120,7 @@ const Footer = ({ intl }) => {
                     src={ccaLogo}
                     title="Sharing adaptation information across Europe"
                     alt="Climate-Adapt"
-                    height="32"
+                    height="34"
                   />
                 </a>
                 <a href="https://forest.eea.europa.eu/">
@@ -131,7 +129,7 @@ const Footer = ({ intl }) => {
                     src={fiseLogo}
                     title="Forest Information System for Europe"
                     alt="Forest Information System for Europe"
-                    height="35"
+                    height="38"
                   />
                 </a>
               </div>

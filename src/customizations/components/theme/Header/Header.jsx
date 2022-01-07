@@ -6,7 +6,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Logo, Navigation, SearchWidget } from '@plone/volto/components';
+import {
+  Logo,
+  Navigation,
+  SearchWidget,
+  Anontools,
+} from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 import { Container, Segment } from 'semantic-ui-react';
 import { HeroSection } from '@eeacms/volto-marine-theme/components';
@@ -97,6 +102,7 @@ const Header = (props) => {
                       <div className="search">
                         <SearchWidget pathname={pathname} />
                       </div>
+                      <Anontools />
                     </div>
                   </div>
                 </div>
@@ -112,6 +118,7 @@ const Header = (props) => {
                     <div className="search">
                       <SearchWidget pathname={pathname} />
                     </div>
+                    <Anontools />
                   </div>
                   <Navigation
                     pathname={pathname}
