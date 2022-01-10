@@ -35,7 +35,7 @@ const Footer = ({ intl }) => {
       <Container>
         <Grid stackable>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={16} computer={16}>
+            <Grid.Column mobile={12} tablet={12} computer={12}>
               <ul className="footer-nav" id="footer_links">
                 <li>
                   <Link className="item" to={root || '/'}>
@@ -70,7 +70,7 @@ const Footer = ({ intl }) => {
 
         <Grid stackable className="footer-bottom-logos">
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={16} computer={7}>
+            <Grid.Column mobile={12} tablet={12} computer={6}>
               <div className="site-info-logos">
                 <a href="https://www.eea.europa.eu/">
                   <LazyLoadImage
@@ -91,7 +91,7 @@ const Footer = ({ intl }) => {
               </div>
             </Grid.Column>
 
-            <Grid.Column mobile={16} tablet={16} computer={9}>
+            <Grid.Column mobile={12} tablet={12} computer={6}>
               <div>
                 <p>Other European Information Systems:</p>
               </div>
