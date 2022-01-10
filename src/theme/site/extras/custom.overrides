@@ -8,6 +8,7 @@
 @import 'header';
 @import 'menu';
 @import 'fonts';
+@import 'blocks.overrides';
 @import 'contextnavigation';
 @import 'segment.overrides';
 @import 'slots.overrides';
