@@ -138,7 +138,7 @@ const Footer = ({ intl }) => {
         </Grid>
       </Container>
 
-      <div class="footer-backdrop">
+      <div className="footer-backdrop">
         <LazyLoadImage src={fishesImage} alt="Footer fishes image" />
       </div>
     </div>
