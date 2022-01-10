@@ -8,7 +8,6 @@ import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { asyncConnect } from '@plone/volto/helpers';
 import { Segment } from 'semantic-ui-react';
 import { renderRoutes } from 'react-router-config';
 import { Slide, ToastContainer, toast } from 'react-toastify';
@@ -30,7 +29,13 @@ import {
   AppExtras,
   SkipLinks,
 } from '@plone/volto/components';
-import { BodyClass, getBaseUrl, getView, isCmsUi } from '@plone/volto/helpers';
+import {
+  BodyClass,
+  getBaseUrl,
+  getView,
+  isCmsUi,
+  asyncConnect,
+} from '@plone/volto/helpers';
 import {
   getBreadcrumbs,
   getContent,
@@ -43,7 +48,6 @@ import {
 import clearSVG from '@plone/volto/icons/clear.svg';
 import MultilingualRedirector from '@plone/volto/components/theme/MultilingualRedirector/MultilingualRedirector';
 import WorkingCopyToastsFactory from '@plone/volto/components/manage/WorkingCopyToastsFactory/WorkingCopyToastsFactory';
-// import LockingToastsFactory from '@plone/volto/components/manage/LockingToastsFactory/LockingToastsFactory';
 
 import * as Sentry from '@sentry/browser';
 
