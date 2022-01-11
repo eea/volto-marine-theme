@@ -22,7 +22,7 @@
   "dependencies": {
     "@plone/scripts": "*",
     "react-lazy-load-image-component": "^1.4.0",
-    "volto-slate": "4.2.1"
+    "volto-slate": "5.3.3"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
