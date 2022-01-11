@@ -16,9 +16,13 @@
     "type": "git",
     "url": "git@github.com:eea/volto-marine-theme.git"
   },
+  "addons": [
+    "volto-slate"
+  ],
   "dependencies": {
     "@plone/scripts": "*",
-    "react-lazy-load-image-component": "^1.4.0"
+    "react-lazy-load-image-component": "^1.4.0",
+    "volto-slate": "4.2.1"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
