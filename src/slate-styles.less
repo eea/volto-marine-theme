@@ -1,3 +1,8 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
 .h1 {
   font-size: @h1;
 }
@@ -20,4 +25,19 @@
 
 .p-text {
   font-size: @fontSize;
+}
+
+.poppins-regular {
+  font-family: @headerFont;
+  font-weight: 400;
+}
+
+.poppins-light {
+  font-family: @headerFont;
+  font-weight: 100;
+}
+
+.poppins-bold {
+  font-family: @headerFont;
+  font-weight: 600;
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { HeroSectionView } from './components';
 import installAppExtras from './components/theme/AppExtras';
-
 import { breadcrumb, localnavigation } from './reducers';
+
+import './slate-styles.less';
 
 const applyConfig = (config) => {
   config.settings.navDepth = 3;
@@ -65,6 +66,9 @@ const applyConfig = (config) => {
     { cssClass: 'h4', label: 'H4 18px' },
     { cssClass: 'h5', label: 'H5 14px' },
     { cssClass: 'p-text', label: 'Paragraph 18px' },
+    { cssClass: 'poppins-regular', label: 'Poppins Regular' },
+    { cssClass: 'poppins-light', label: 'Poppins Light' },
+    { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
 
   // Custom block styles
