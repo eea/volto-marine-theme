@@ -1,0 +1,8 @@
+/*******************************
+         Theme Overrides
+*******************************/
+
+.ui.secondary.segment {
+  background: #edf1f2;
+  color: #517776;
+}

@@ -16,3 +16,16 @@ strong {
   font-weight: 300;
   line-height: 28px !important;
 }
+
+.content-body > #page-document.ui.container {
+  width: 100% !important;
+}
+
+.nine.wide.column.content-body > #page-document.ui.container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#page-document {
+  position: relative;
+}

@@ -41,7 +41,7 @@ body.has-image {
   .ui.breadcrumb {
     position: absolute;
     top: 100px;
-    padding: 0.5em 1em;
+    padding: 0.7em 1em;
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -57,7 +57,7 @@ body.has-image {
 
     .active:hover,
     .active.section {
-      color: @white !important;
+      color: #dfdede !important;
     }
 
     @media only screen and (max-width: @largeMobileBreakpoint) {
