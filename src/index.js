@@ -3,11 +3,30 @@ import { HeroSectionView } from './components';
 import installAppExtras from './components/theme/AppExtras';
 import { breadcrumb, localnavigation } from './reducers';
 
+import installImageCards from './components/Blocks/ImageCards';
+import installColoredTabs from './components/Blocks/ColoredTabs';
+
+import TextAlignWidget from './components/Widgets/TextAlign';
+
 import './slate-styles.less';
 
-const applyConfig = (config) => {
-  config.settings.navDepth = 3;
+const available_colors = [
+  '#ffffff',
+  '#f7f3ef',
+  '#002d54',
+  '#59d3ff',
+  '#2dd2b7',
+  '#1271e1',
+  '#826A6A',
+  '#FAD0C3',
+  '#F3E2AB',
+  '#C1E1C5',
+  '#BEDADC',
+  '#BED3F3',
+  '#000000',
+];
 
+const applyConfig = (config) => {
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
     Document: HeroSectionView,
@@ -25,10 +44,14 @@ const applyConfig = (config) => {
     localnavigation,
   };
 
-  // config.blocks.groupBlocksOrder = [
-  //   ...config.blocks.groupBlocksOrder,
-  //   { id: 'marine_addons', title: 'Marine' },
-  // ];
+  config.widgets.widget.text_align = TextAlignWidget;
+
+  config.blocks.groupBlocksOrder = [
+    ...config.blocks.groupBlocksOrder,
+    { id: 'marine_addons', title: 'Marine' },
+  ];
+
+  config.blocks.blocksConfig.columnsBlock.available_colors = available_colors;
 
   // on home contextNavigation should return false
   config.blocks.blocksConfig.contextNavigation = {
@@ -37,6 +60,10 @@ const applyConfig = (config) => {
       return data.pathname !== '/';
     },
   };
+
+  config.settings.navDepth = 3;
+
+  config.settings.available_colors = available_colors;
 
   config.settings.externalRoutes = [
     ...(config.settings.externalRoutes || []),
@@ -57,6 +84,17 @@ const applyConfig = (config) => {
       : []),
   ];
 
+  config.settings.pluggableStyles = [
+    ...(config.settings.pluggableStyles || []),
+    {
+      id: 'uiContainer',
+      title: 'Container',
+      viewComponent: (props) => {
+        return <div className="ui container">{props.children}</div>;
+      },
+    },
+  ];
+
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
@@ -71,19 +109,11 @@ const applyConfig = (config) => {
     { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
 
-  // Custom block styles
-  config.settings.pluggableStyles = [
-    ...(config.settings.pluggableStyles || []),
-    {
-      id: 'uiContainer',
-      title: 'Container',
-      viewComponent: (props) => {
-        return <div className="ui container">{props.children}</div>;
-      },
-    },
-  ];
-
-  const final = [installAppExtras].reduce((acc, apply) => apply(acc), config);
+  const final = [
+    installAppExtras,
+    installImageCards,
+    installColoredTabs,
+  ].reduce((acc, apply) => apply(acc), config);
 
   return final;
 };

@@ -1,0 +1,81 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
+.ui.cards.plain-cards {
+  .plain-card-image {
+    height: 65px;
+    margin-bottom: 1em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .plain-card {
+    border: none;
+    box-shadow: none;
+    text-align: left;
+
+    &:hover {
+      border: none;
+      box-shadow: none;
+    }
+  }
+
+  a.plain-card {
+    &:hover .header {
+      color: #bec9d3 !important;
+    }
+  }
+
+  .plain-card .content {
+    padding-right: 0;
+    padding-left: 0;
+    border-color: @primaryColor !important;
+  }
+
+  .plain-card .content > .header {
+    max-width: 90%;
+    min-height: 90px;
+    color: @primaryColor !important;
+    font-size: 18px !important;
+  }
+
+  .plain-card-description {
+    color: #666;
+    font-size: 15px;
+    font-weight: 400;
+  }
+
+  .memory-card {
+    padding-top: 1em;
+    border: none;
+    box-shadow: none !important;
+    text-align: left;
+
+    .content {
+      padding: 0;
+    }
+
+    .content-wrapper {
+      padding: 1.5em;
+      background-color: #fafaf9;
+      color: #666;
+      font-size: 15px !important;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    strong {
+      display: block;
+      font-size: 18px !important;
+      font-weight: 500;
+    }
+  }
+}
+
+.plain-cards-title {
+  margin-bottom: 2em;
+  font-size: 27px;
+}

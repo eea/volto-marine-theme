@@ -20,3 +20,7 @@
 .stagingBanner .container {
   padding: 18px 0;
 }
+
+.ui.divider {
+  margin: 2em 0;
+}
