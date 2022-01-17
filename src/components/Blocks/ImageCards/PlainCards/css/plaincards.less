@@ -5,7 +5,7 @@
 
 .ui.cards.plain-cards {
   .plain-card-image {
-    height: 65px;
+    height: auto;
     margin-bottom: 1em;
     background-position: center;
     background-repeat: no-repeat;
@@ -49,6 +49,7 @@
   }
 
   .memory-card {
+    display: none;
     padding-top: 1em;
     border: none;
     box-shadow: none !important;
@@ -75,7 +76,25 @@
   }
 }
 
+.homepage-view {
+  .memory-card {
+    display: block !important;
+  }
+}
+
 .plain-cards-title {
   margin-bottom: 2em;
   font-size: 27px;
+}
+
+@media only screen and (min-width: @tabletBreakpoint) and (max-width: @largestTabletScreen) {
+  .imagecards-block .ui.cards > .card {
+    width: calc(50% - 2em) !important;
+  }
+}
+
+@media only screen and (max-width: @tabletBreakpoint) {
+  .imagecards-block .ui.cards > .card {
+    width: 100% !important;
+  }
 }

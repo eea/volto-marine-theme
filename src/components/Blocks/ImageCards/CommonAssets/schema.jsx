@@ -4,7 +4,7 @@ export const CommonCardsSchemaExtender = ({ data, schema, intl }) => {
       {
         id: 'style',
         title: 'Cards settings',
-        fields: ['text_align', 'cards_per_row'],
+        fields: ['text_align', 'cards_per_row', 'image_height'],
       },
     ],
     properties: {
@@ -18,6 +18,11 @@ export const CommonCardsSchemaExtender = ({ data, schema, intl }) => {
         type: 'number',
         description:
           'A group of cards can set how many cards should exist in a row.',
+      },
+      image_height: {
+        title: 'Image height',
+        type: 'number',
+        description: 'Image height in pixels',
       },
     },
   };

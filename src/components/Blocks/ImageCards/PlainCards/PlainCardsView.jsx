@@ -1,14 +1,21 @@
-import cx from 'classnames';
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
+import cx from 'classnames';
 
 import './css/plaincards.less';
 
 const PlainCardsView = ({ data }) => {
-  const { title, cards, cards_per_row, image_scale, text_align } = data;
+  const {
+    title,
+    cards,
+    cards_per_row,
+    image_scale,
+    text_align,
+    image_height = '65',
+  } = data;
 
   return (
     <div
@@ -50,6 +57,7 @@ const PlainCardsView = ({ data }) => {
                             getPath(card.attachedimage),
                             image_scale || 'large',
                           )})`,
+                          minHeight: `${image_height}px`,
                         }
                       : {}
                   }

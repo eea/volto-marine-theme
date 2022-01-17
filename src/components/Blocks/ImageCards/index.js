@@ -1,8 +1,9 @@
 import PlainCardsView from './PlainCards/PlainCardsView';
 import PlainCardsSchemaExtender from './PlainCards/schema';
-
 import ColoredCardsView from './ColoredCards/ColoredCardsView';
 import ColoredCardsSchemaExtender from './ColoredCards/schema';
+import PublicationCardsView from './PublicationCards/PublicationCardsView';
+import PublicationCardsSchemaExtender from './PublicationCards/schema';
 
 export default (config) => {
   config.blocks.blocksConfig.imagecards = {
@@ -22,6 +23,11 @@ export default (config) => {
         title: 'Colored cards',
         view: ColoredCardsView,
         schemaExtender: ColoredCardsSchemaExtender,
+      },
+      presentation_cards: {
+        title: 'Publication cards',
+        view: PublicationCardsView,
+        schemaExtender: PublicationCardsSchemaExtender,
       },
     },
   };

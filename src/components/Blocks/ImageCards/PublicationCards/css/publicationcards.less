@@ -1,0 +1,70 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
+.ui.cards.publication-cards {
+  .publication-card {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .publication-card:hover,
+  .publication-card:focus {
+    box-shadow: none;
+  }
+
+  .publication-card .content {
+    padding: 0;
+    border: none;
+  }
+
+  .publication-card .content.extra {
+    border-top: none !important;
+    border-bottom: 1px solid @primaryColor;
+    border-radius: 0 !important;
+  }
+
+  .publication-card-link:hover .publication-card-title {
+    color: #b3c0cb;
+  }
+
+  .publication-card-title {
+    min-height: 50px;
+    margin-bottom: 1.3em;
+    color: @primaryColor;
+    font-size: 19px;
+  }
+
+  .ui.card .publication-card-image {
+    height: auto;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0 !important;
+  }
+
+  .publication-card-description {
+    color: #666;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .card-bottom {
+    padding: 1rem 0;
+  }
+
+  .card-bottom-link {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    color: @primaryColor !important;
+    font-family: @headerFont;
+    font-size: 16px;
+    font-weight: 500;
+
+    svg {
+      margin-right: 0.5rem;
+    }
+  }
+}

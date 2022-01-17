@@ -1,4 +1,3 @@
-import cx from 'classnames';
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
@@ -7,6 +6,7 @@ import {
   CarouselCardsView,
   GroupCardsView,
 } from '@eeacms/volto-marine-theme/components';
+import cx from 'classnames';
 
 import './css/coloredcards.less';
 
