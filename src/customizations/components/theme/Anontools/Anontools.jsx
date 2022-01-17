@@ -52,7 +52,7 @@ class Anontools extends Component {
                 : ''
             }`}
           >
-            <Icon name={userSVG} size="20px" />
+            <Icon name={userSVG} size="22px" />
           </Link>
         </span>
       )
