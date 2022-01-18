@@ -13,6 +13,7 @@ import './slate-styles.less';
 const available_colors = [
   '#ffffff',
   '#f7f3ef',
+  '#e3edf7',
   '#002d54',
   '#59d3ff',
   '#2dd2b7',
@@ -50,8 +51,6 @@ const applyConfig = (config) => {
     ...config.blocks.groupBlocksOrder,
     { id: 'marine_addons', title: 'Marine' },
   ];
-
-  config.blocks.blocksConfig.columnsBlock.available_colors = available_colors;
 
   // on home contextNavigation should return false
   config.blocks.blocksConfig.contextNavigation = {
