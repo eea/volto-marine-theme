@@ -17,9 +17,11 @@
     "url": "git@github.com:eea/volto-marine-theme.git"
   },
   "addons": [
+    "@eeacms/volto-tabs-block",
     "volto-slate"
   ],
   "dependencies": {
+    "@eeacms/volto-tabs-block": "1.2.11",
     "@plone/scripts": "*",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
