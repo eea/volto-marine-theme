@@ -1,0 +1,120 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { withRouter } from 'react-router';
+import config from '@plone/volto/registry';
+import qs from 'querystring';
+import { getLatestTableauVersion } from 'tableau-api-js';
+import Tableau from '@eeacms/volto-tableau/Tableau/View';
+import TableauFullscreen from './Fullscreen';
+import TableauShare from './Share';
+import './css/tableaublock.less';
+import '@eeacms/volto-tableau/less/tableau.less';
+
+const getDevice = (config, width) => {
+  const breakpoints = config.blocks.blocksConfig.tableau_block.breakpoints;
+  let device = 'default';
+  Object.keys(breakpoints).forEach((breakpoint) => {
+    if (
+      width <= breakpoints[breakpoint][0] &&
+      width >= breakpoints[breakpoint][1]
+    ) {
+      device = breakpoint;
+    }
+  });
+  return device;
+};
+
+const View = (props) => {
+  const [error, setError] = React.useState(null);
+  const [loaded, setLoaded] = React.useState(null);
+  const [mounted, setMounted] = React.useState(false);
+  const [extraFilters, setExtraFilters] = React.useState({});
+  const { data = {}, query = {}, screen = {} } = props;
+  const {
+    breakpointUrls = [],
+    urlParameters = [],
+    title = null,
+    description = null,
+    autoScale = false,
+  } = data;
+
+  const version =
+    props.data.version ||
+    config.settings.tableauVersion ||
+    getLatestTableauVersion();
+  const device = getDevice(config, screen.page?.width || Infinity);
+  const breakpointUrl = breakpointUrls.filter(
+    (breakpoint) => breakpoint.device === device,
+  )[0]?.url;
+  const url = breakpointUrl || data.url;
+
+  React.useEffect(() => {
+    setMounted(true);
+    /* eslint-disable-next-line */
+  }, []);
+
+  React.useEffect(() => {
+    const newExtraFilters = { ...extraFilters };
+    urlParameters.forEach((element) => {
+      if (element.field && typeof query[element.urlParam] !== 'undefined') {
+        newExtraFilters[element.field] = query[element.urlParam];
+      } else if (newExtraFilters[element.field]) {
+        delete newExtraFilters[element.field];
+      }
+    });
+    setExtraFilters(newExtraFilters);
+    /* eslint-disable-next-line */
+  }, [JSON.stringify(query), JSON.stringify(urlParameters)]);
+
+  return mounted ? (
+    <div className="tableau-block marine-tableau">
+      {props.mode === 'edit' ? (
+        <div className="tableau-info">
+          <h3 className="tableau-version">== Tableau {version} ==</h3>
+          {!props.data.url ? <p className="tableau-error">URL required</p> : ''}
+          {error ? <p className="tableau-error">{error}</p> : ''}
+        </div>
+      ) : (
+        ''
+      )}
+      {loaded && title ? <h3 className="tableau-title">{title}</h3> : ''}
+      {loaded && description ? (
+        <p className="tableau-description">{description}</p>
+      ) : (
+        ''
+      )}
+      <div className="tableau-toolbar">
+        <TableauFullscreen {...props} />
+        <TableauShare {...props} />
+      </div>
+      <Tableau
+        {...props}
+        canUpdateUrl={!breakpointUrl}
+        extraFilters={extraFilters}
+        extraOptions={{ device: autoScale ? 'desktop' : device }}
+        error={error}
+        loaded={loaded}
+        setError={setError}
+        setLoaded={setLoaded}
+        version={version}
+        url={url}
+        data={{
+          hideToolbar: true,
+        }}
+      />
+    </div>
+  ) : (
+    ''
+  );
+};
+
+export default compose(
+  connect((state, props) => ({
+    query: {
+      ...(qs.parse(state.router.location?.search?.replace('?', '')) || {}),
+      ...(state.discodata_query?.search || {}),
+    },
+    screen: state.screen,
+  })),
+)(withRouter(View));

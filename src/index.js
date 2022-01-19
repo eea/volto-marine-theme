@@ -5,6 +5,7 @@ import { breadcrumb, localnavigation } from './reducers';
 
 import installImageCards from './components/Blocks/ImageCards';
 import installColoredTabs from './components/Blocks/ColoredTabs';
+import installCustomTableau from './components/Blocks/TableauBlock';
 
 import TextAlignWidget from './components/Widgets/TextAlign';
 
@@ -112,6 +113,7 @@ const applyConfig = (config) => {
     installAppExtras,
     installImageCards,
     installColoredTabs,
+    installCustomTableau,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;

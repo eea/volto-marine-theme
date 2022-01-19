@@ -60,7 +60,7 @@
 @primaryColor        : #002d54;
 @secondaryColor      : #59d3ff;
 
-@lightPrimaryColor   : @lightBlue;
+@lightPrimaryColor   : #0077bc;
 @lightSecondaryColor : @lightBlack;
 
 /*--------------
