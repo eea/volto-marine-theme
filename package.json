@@ -28,7 +28,7 @@
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1",
     "volto-slate": "5.3.3",
-    "@plone/scripts": "*",
+    "@plone/scripts": "*"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
