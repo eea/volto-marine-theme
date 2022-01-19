@@ -18,15 +18,17 @@
   },
   "addons": [
     "@eeacms/volto-tabs-block",
+    "@eeacms/volto-tableau",
     "volto-slate"
   ],
   "dependencies": {
     "@eeacms/volto-tabs-block": "1.2.11",
-    "@plone/scripts": "*",
+    "@eeacms/volto-tableau": "1.2.4",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1",
-    "volto-slate": "5.3.3"
+    "volto-slate": "5.3.3",
+    "@plone/scripts": "*",
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
