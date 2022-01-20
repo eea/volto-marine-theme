@@ -8,6 +8,7 @@ import { getLatestTableauVersion } from 'tableau-api-js';
 import Tableau from '@eeacms/volto-tableau/Tableau/View';
 import TableauFullscreen from './Fullscreen';
 import TableauShare from './Share';
+import TableauPlaceholder from './Placeholder';
 import './css/tableaublock.less';
 import '@eeacms/volto-tableau/less/tableau.less';
 
@@ -103,6 +104,7 @@ const View = (props) => {
           hideToolbar: true,
         }}
       />
+      <TableauPlaceholder {...props} />
     </div>
   ) : (
     ''

@@ -29,3 +29,7 @@ strong {
 #page-document {
   position: relative;
 }
+
+a {
+  font-weight: 400;
+}

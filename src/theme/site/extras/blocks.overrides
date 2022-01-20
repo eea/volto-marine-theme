@@ -19,6 +19,7 @@
   border-left: 1em solid #ccc;
   background: #eee;
   border-radius: 0;
+  font-size: 20px;
 }
 
 .block.maps iframe {
