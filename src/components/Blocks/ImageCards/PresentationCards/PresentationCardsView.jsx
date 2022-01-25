@@ -36,7 +36,6 @@ const PresentationCardsView = ({ data }) => {
               ],
             },
           ];
-
           forceRefresh(refresh + 1);
         }
       });
@@ -94,7 +93,6 @@ const PresentationCardsView = ({ data }) => {
                         }
                   }
                 ></div>
-
                 <Card.Content>
                   {card.title && (
                     <Card.Header>

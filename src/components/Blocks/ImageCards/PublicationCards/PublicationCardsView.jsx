@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Message } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import { UniversalLink, Icon } from '@plone/volto/components';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
@@ -28,14 +28,23 @@ const PublicationCardsView = ({ data }) => {
         if (card.source?.length && !card.title) {
           card.title = card.source[0].title;
           card.link = card.source[0].getURL;
-          // card.description = card.source[0].Description;
+          card.text = [
+            {
+              type: 'p',
+              children: [
+                {
+                  text: card.source[0].Description,
+                },
+              ],
+            },
+          ];
           forceRefresh(refresh + 1);
         }
       });
     }
   }, [cards, refresh]);
 
-  return (
+  return cards ? (
     <div
       className={cx(
         'block align imagecards-block',
@@ -62,35 +71,28 @@ const PublicationCardsView = ({ data }) => {
           >
             {(cards || []).map((card, i) => (
               <Card className="publication-card">
-                {!card?.attachedimage ? (
-                  <div
-                    className="publication-card-image"
-                    style={{
-                      backgroundImage: `url(${card.source?.[0]['@id']
-                        .replace(config.settings.apiPath, '')
-                        .replace(
-                          config.settings.internalApiPath,
-                          '',
-                        )}/@@images/image/${image_scale || 'large'})`,
-                      minHeight: `${image_height}px`,
-                    }}
-                  ></div>
-                ) : (
-                  <div
-                    className="publication-card-image"
-                    style={
-                      card?.attachedimage
-                        ? {
-                            backgroundImage: `url(${getScaleUrl(
-                              getPath(card.attachedimage),
-                              image_scale || 'large',
-                            )})`,
-                            minHeight: `${image_height}px`,
-                          }
-                        : {}
-                    }
-                  ></div>
-                )}
+                <div
+                  className="publication-card-image"
+                  style={
+                    card?.attachedimage
+                      ? {
+                          backgroundImage: `url(${getScaleUrl(
+                            getPath(card.attachedimage),
+                            image_scale || 'large',
+                          )})`,
+                          minHeight: `${image_height}px`,
+                        }
+                      : {
+                          backgroundImage: `url(${card.source?.[0]['@id']
+                            .replace(config.settings.apiPath, '')
+                            .replace(
+                              config.settings.internalApiPath,
+                              '',
+                            )}/@@images/image/${image_scale || 'large'})`,
+                          minHeight: `${image_height}px`,
+                        }
+                  }
+                ></div>
                 <Card.Content>
                   {card.title && (
                     <UniversalLink
@@ -131,6 +133,8 @@ const PublicationCardsView = ({ data }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <Message>No image cards</Message>
   );
 };
 

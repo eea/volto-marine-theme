@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Message } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
@@ -17,7 +17,7 @@ const PlainCardsView = ({ data }) => {
     image_height = '65',
   } = data;
 
-  return (
+  return cards ? (
     <div
       className={cx(
         'block align imagecards-block',
@@ -91,6 +91,8 @@ const PlainCardsView = ({ data }) => {
         </div>
       </div>
     </div>
+  ) : (
+    <Message>No image cards</Message>
   );
 };
 
