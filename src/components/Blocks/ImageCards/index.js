@@ -4,6 +4,8 @@ import ColoredCardsView from './ColoredCards/ColoredCardsView';
 import ColoredCardsSchemaExtender from './ColoredCards/schema';
 import PublicationCardsView from './PublicationCards/PublicationCardsView';
 import PublicationCardsSchemaExtender from './PublicationCards/schema';
+import PresentationCardsView from './PresentationCards/PresentationCardsView';
+import PresentationCardsSchemaExtender from './PresentationCards/schema';
 
 export default (config) => {
   config.blocks.blocksConfig.imagecards = {
@@ -13,7 +15,6 @@ export default (config) => {
       ...config.blocks.blocksConfig.imagecards?.display_types,
     },
     blockRenderers: {
-      ...config.blocks.blocksConfig.imagecards?.blockRenderers,
       plain_cards: {
         title: 'Plain cards',
         view: PlainCardsView,
@@ -24,11 +25,17 @@ export default (config) => {
         view: ColoredCardsView,
         schemaExtender: ColoredCardsSchemaExtender,
       },
-      presentation_cards: {
+      publication_cards: {
         title: 'Publication cards',
         view: PublicationCardsView,
         schemaExtender: PublicationCardsSchemaExtender,
       },
+      presentation_cards: {
+        title: 'Pesentation cards',
+        view: PresentationCardsView,
+        schemaExtender: PresentationCardsSchemaExtender,
+      },
+      ...config.blocks.blocksConfig.imagecards?.blockRenderers,
     },
   };
 
