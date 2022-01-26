@@ -3,8 +3,13 @@ export const CommonCardsSchemaExtender = ({ data, schema, intl }) => {
     fieldsets: [
       {
         id: 'style',
-        title: 'Cards settings',
-        fields: ['text_align', 'cards_per_row', 'image_height'],
+        title: 'Style',
+        fields: ['text_align', 'image_height'],
+      },
+      {
+        id: 'options',
+        title: 'Options',
+        fields: ['cards_per_row'],
       },
     ],
     properties: {

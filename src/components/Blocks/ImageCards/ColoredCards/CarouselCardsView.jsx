@@ -43,7 +43,7 @@ const Arrows = (props) => {
 };
 
 const CarouselCardsView = (props) => {
-  const { cards, image_scale, slides_to_show } = props;
+  const { cards, image_scale, slides_to_show, bg_color } = props;
   const slider = React.useRef(null);
   const slidesNumber = parseInt(slides_to_show);
 
@@ -51,6 +51,7 @@ const CarouselCardsView = (props) => {
     autoplay: false,
     lazyLoad: 'ondemand',
     swipe: true,
+    dots: true,
     slidesToShow: slidesNumber,
     slidesToScroll: 1,
     touchMove: true,
@@ -77,7 +78,12 @@ const CarouselCardsView = (props) => {
       <LazyLoadComponent>
         <Slider {...settings} ref={slider} className="colored-cards">
           {(cards || []).map((card, index) => (
-            <Card key={index} card={card} image_scale={image_scale} />
+            <Card
+              key={index}
+              card={card}
+              image_scale={image_scale}
+              bg_color={bg_color}
+            />
           ))}
         </Slider>
         <Arrows slider={slider} />

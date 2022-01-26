@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react';
 import { Card as CardItem } from '@eeacms/volto-marine-theme/components';
 
 const GroupCardsView = (props) => {
-  const { cards, image_scale, cards_per_row } = props;
+  const { cards, image_scale, cards_per_row, bg_color } = props;
 
   return (
     <Card.Group
@@ -13,7 +13,12 @@ const GroupCardsView = (props) => {
         : {})}
     >
       {(cards || []).map((card, index) => (
-        <CardItem key={index} card={card} image_scale={image_scale} />
+        <CardItem
+          key={index}
+          card={card}
+          image_scale={image_scale}
+          bg_color={bg_color}
+        />
       ))}
     </Card.Group>
   );

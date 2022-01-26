@@ -1,6 +1,5 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
-import { BodyClass } from '@plone/volto/helpers';
 import { serializeNodes } from 'volto-slate/editor/render';
 import {
   CarouselCardsView,
@@ -10,61 +9,61 @@ import cx from 'classnames';
 
 import './css/coloredcards.less';
 
-const PlainCardsView = ({ data }) => {
+const ColoredCardsView = (props) => {
+  const { data, editable } = props;
   const {
+    align,
     cards,
     cards_per_row,
     image_scale,
-    text_align,
+    text_align = 'left',
     slider,
     slides_to_show,
+    bg_color,
     title,
     text,
   } = data;
 
   return (
-    <div
-      className={cx(
-        'block align imagecards-block',
-        {
-          center: !Boolean(data.align),
-        },
-        data.align,
-      )}
-    >
-      <BodyClass className="has-colored-cards" />
-      {title && <h2 className="colored-cards-title">{title}</h2>}
-      {text && (
-        <div className="colored-cards-description">{serializeNodes(text)}</div>
-      )}
-      <div
-        className={cx({
-          'full-width': data.align === 'full',
-        })}
-        style={{ textAlign: `${text_align}` }}
-      >
-        {cards ? (
-          <>
+    <>
+      {cards && cards.length ? (
+        <div className={('block align imagecards-block', align)}>
+          {title && <h2 className="colored-cards-title">{title}</h2>}
+          {text && (
+            <div className="colored-cards-description">
+              {serializeNodes(text)}
+            </div>
+          )}
+          <div
+            className={cx({
+              'full-width': align === 'full' || slider,
+            })}
+            style={{ textAlign: `${text_align}` }}
+          >
             {slider ? (
-              <CarouselCardsView
-                cards={cards}
-                slides_to_show={slides_to_show}
-                image_scale={image_scale}
-              />
+              <div className="ui container">
+                <CarouselCardsView
+                  cards={cards}
+                  slides_to_show={slides_to_show}
+                  image_scale={image_scale}
+                  bg_color={bg_color}
+                />
+              </div>
             ) : (
               <GroupCardsView
                 cards={cards}
                 cards_per_row={cards_per_row}
                 image_scale={image_scale}
+                bg_color={bg_color}
               />
             )}
-          </>
-        ) : (
-          <Message>No image cards</Message>
-        )}
-      </div>
-    </div>
+          </div>
+        </div>
+      ) : (
+        <>{editable ? <Message>No image cards</Message> : ''}</>
+      )}
+    </>
   );
 };
 
-export default PlainCardsView;
+export default ColoredCardsView;

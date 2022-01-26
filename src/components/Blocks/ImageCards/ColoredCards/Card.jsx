@@ -3,20 +3,16 @@ import { Card } from 'semantic-ui-react';
 import { UniversalLink } from '@plone/volto/components';
 import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
-
 import { Icon } from '@plone/volto/components';
-import arrowSVG from '@plone/volto/icons/ahead.svg';
+import arrowSVG from '@eeacms/volto-marine-theme/icons/arrow.svg';
 
 import './css/coloredcards.less';
 
 const CardItem = (props) => {
-  const { card, image_scale } = props;
+  const { card, image_scale, bg_color = '#59d3ff' } = props;
 
   return (
-    <Card
-      className="colored-card"
-      // {...(card.link ? { href: card.link } : {})}
-    >
+    <Card className="colored-card">
       <Card.Content>
         <div className="colored-card-image-wrapper">
           <div
@@ -33,8 +29,18 @@ const CardItem = (props) => {
             }
           ></div>
         </div>
-        <div className="colored-card-content-wrapper">
-          {card.title && <Card.Header>{card.title}</Card.Header>}
+        <div
+          className="colored-card-content-wrapper"
+          style={{ backgroundColor: bg_color }}
+        >
+          {card.title && (
+            <div className="colored-card-header">
+              <h3>{card.title}</h3>
+              {card.sub_title && (
+                <div className="colored-card-sub-title">{card.sub_title}</div>
+              )}
+            </div>
+          )}
           {card.text && (
             <div className="colored-card-content">
               <div className="colored-card-description">
@@ -48,7 +54,7 @@ const CardItem = (props) => {
               href={card.link}
               title="Read more"
             >
-              <Icon name={arrowSVG} size="26px" className="next-icon" />
+              <Icon name={arrowSVG} size="38px" className="next-icon" />
             </UniversalLink>
           )}
         </div>
