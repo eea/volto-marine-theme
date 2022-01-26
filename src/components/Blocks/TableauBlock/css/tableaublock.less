@@ -25,7 +25,9 @@
     border-radius: 0;
     color: @white;
 
-    &:hover {
+    &:hover,
+    &:active,
+    &:focus {
       background-color: #006bab;
       color: @white;
     }
@@ -34,6 +36,20 @@
   .toolbar-button .icon {
     margin: 0 !important;
     opacity: 1 !important;
+  }
+}
+
+.tableau-download-dialog {
+  max-width: 282px !important;
+
+  .header {
+    padding: 0.5em 0 !important;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin: 5px 0 !important;
   }
 }
 

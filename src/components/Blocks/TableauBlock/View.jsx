@@ -5,10 +5,8 @@ import { withRouter } from 'react-router';
 import config from '@plone/volto/registry';
 import qs from 'querystring';
 import { getLatestTableauVersion } from 'tableau-api-js';
-import Tableau from '@eeacms/volto-tableau/Tableau/View';
-import TableauFullscreen from './Fullscreen';
-import TableauShare from './Share';
-import TableauPlaceholder from './Placeholder';
+import Tableau from './Tableau/View';
+import { TableauPlaceholder } from '@eeacms/volto-marine-theme/components';
 import './css/tableaublock.less';
 import '@eeacms/volto-tableau/less/tableau.less';
 
@@ -85,10 +83,7 @@ const View = (props) => {
       ) : (
         ''
       )}
-      <div className="tableau-toolbar">
-        <TableauFullscreen {...props} />
-        <TableauShare {...props} />
-      </div>
+
       <Tableau
         {...props}
         canUpdateUrl={!breakpointUrl}
@@ -102,8 +97,10 @@ const View = (props) => {
         url={url}
         data={{
           hideToolbar: true,
+          ...props.data,
         }}
       />
+
       <TableauPlaceholder {...props} />
     </div>
   ) : (
