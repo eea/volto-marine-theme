@@ -3,7 +3,7 @@ import { Menu, Tab } from 'semantic-ui-react';
 import { RenderBlocks } from '@plone/volto/components';
 import cx from 'classnames';
 
-import './css/coloredtabs.less';
+import './less/coloredtabs.less';
 
 const MenuItem = (props) => {
   const {

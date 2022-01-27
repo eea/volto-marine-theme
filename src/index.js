@@ -1,14 +1,9 @@
 import React from 'react';
-import { HeroSectionView } from './components';
+import { HeroSectionView, FullwidthView } from './components';
 import installAppExtras from './components/theme/AppExtras';
 import { breadcrumb, localnavigation } from './reducers';
-
-import installImageCards from './components/Blocks/ImageCards';
-import installColoredTabs from './components/Blocks/ColoredTabs';
-import installCustomTableau from './components/Blocks/TableauBlock';
-
+import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
 import TextAlignWidget from './components/Widgets/TextAlign';
-
 import './slate-styles.less';
 
 const available_colors = [
@@ -29,15 +24,15 @@ const available_colors = [
 ];
 
 const applyConfig = (config) => {
-  config.views.contentTypesViews = {
-    ...config.views.contentTypesViews,
-    Document: HeroSectionView,
-  };
+  // config.views.contentTypesViews = {
+  //   ...config.views.contentTypesViews,
+  // };
 
   config.views.layoutViews = {
     ...config.views.layoutViews,
     document_view: HeroSectionView,
     herosection_view: HeroSectionView,
+    fullwidth_view: FullwidthView,
   };
 
   config.addonReducers = {
@@ -52,6 +47,11 @@ const applyConfig = (config) => {
     ...config.blocks.groupBlocksOrder,
     { id: 'marine_addons', title: 'Marine' },
   ];
+
+  config.blocks = {
+    ...config.blocks,
+    blocksConfig: { ...customBlockTemplates(config) },
+  };
 
   // on home contextNavigation should return false
   config.blocks.blocksConfig.contextNavigation = {
@@ -109,12 +109,7 @@ const applyConfig = (config) => {
     { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
 
-  const final = [
-    installAppExtras,
-    installImageCards,
-    installColoredTabs,
-    installCustomTableau,
-  ].reduce((acc, apply) => apply(acc), config);
+  const final = [installAppExtras].reduce((acc, apply) => apply(acc), config);
 
   return final;
 };

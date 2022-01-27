@@ -2,7 +2,7 @@ import React from 'react';
 import loadable from '@loadable/component';
 import { Icon } from '@plone/volto/components';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
-import { Card } from '@eeacms/volto-marine-theme/components';
+import { Card } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoBlockImageCards';
 import rightArrowSVG from '@plone/volto/icons/right-key.svg';
 import leftArrowSVG from '@plone/volto/icons/left-key.svg';
 

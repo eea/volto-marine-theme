@@ -4,7 +4,7 @@ import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import cx from 'classnames';
 
-import './css/plaincards.less';
+import './less/plaincards.less';
 
 const PlainCardsView = (props) => {
   const { data, editable } = props;

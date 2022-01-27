@@ -7,7 +7,7 @@ import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import newspaperSVG from '@eeacms/volto-marine-theme/icons/newspaper.svg';
 import cx from 'classnames';
 
-import './css/publicationcards.less';
+import './less/publicationcards.less';
 
 const PublicationCardsView = (props) => {
   const { data, editable } = props;

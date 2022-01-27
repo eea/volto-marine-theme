@@ -6,9 +6,9 @@ import config from '@plone/volto/registry';
 import qs from 'querystring';
 import { getLatestTableauVersion } from 'tableau-api-js';
 import Tableau from './Tableau/View';
-import { TableauPlaceholder } from '@eeacms/volto-marine-theme/components';
-import './css/tableaublock.less';
+import { TableauPlaceholder } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
 import '@eeacms/volto-tableau/less/tableau.less';
+import './less/tableaublock.less';
 
 const getDevice = (config, width) => {
   const breakpoints = config.blocks.blocksConfig.tableau_block.breakpoints;

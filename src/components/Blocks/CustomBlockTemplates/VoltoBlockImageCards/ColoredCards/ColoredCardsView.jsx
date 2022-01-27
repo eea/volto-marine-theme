@@ -4,10 +4,10 @@ import { serializeNodes } from 'volto-slate/editor/render';
 import {
   CarouselCardsView,
   GroupCardsView,
-} from '@eeacms/volto-marine-theme/components';
+} from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoBlockImageCards';
 import cx from 'classnames';
 
-import './css/coloredcards.less';
+import './less/coloredcards.less';
 
 const ColoredCardsView = (props) => {
   const { data, editable } = props;

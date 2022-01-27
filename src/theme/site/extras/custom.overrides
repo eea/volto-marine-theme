@@ -24,3 +24,13 @@
 .ui.divider {
   margin: 2em 0;
 }
+
+body.fullwidth-view {
+  .ui.container {
+    max-width: 100% !important;
+  }
+
+  iframe {
+    min-height: 900px !important;
+  }
+}

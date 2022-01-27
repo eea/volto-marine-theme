@@ -1,0 +1,1 @@
+export ColoredTabsView from './ColoredTabsView';

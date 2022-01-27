@@ -5,7 +5,7 @@ import { serializeNodes } from 'volto-slate/editor/render';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import cx from 'classnames';
 
-import './css/presentationcards.less';
+import './less/presentationcards.less';
 
 const PresentationCardsView = (props) => {
   const { data, editable } = props;

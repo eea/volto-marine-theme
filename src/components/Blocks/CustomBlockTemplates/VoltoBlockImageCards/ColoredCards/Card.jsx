@@ -6,8 +6,6 @@ import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import { Icon } from '@plone/volto/components';
 import arrowSVG from '@eeacms/volto-marine-theme/icons/arrow.svg';
 
-import './css/coloredcards.less';
-
 const CardItem = (props) => {
   const { card, image_scale, bg_color = '#59d3ff' } = props;
 

@@ -10,7 +10,7 @@ import {
   TableauDownload,
   TableauShare,
   TableauFullscreen,
-} from '@eeacms/volto-marine-theme/components';
+} from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
 
 const Tableau = (props) => {
   const ref = React.useRef(null);
