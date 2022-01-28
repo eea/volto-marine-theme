@@ -29,6 +29,7 @@
   }
 
   .firstLevel > .menu {
+    min-width: 20em;
     border: 1px solid #f1f1f1 !important;
     margin: 0 !important;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.05) !important;
@@ -181,22 +182,6 @@
     .item {
       padding-right: 0;
       padding-left: 0;
-    }
-  }
-}
-
-@media only screen and (min-width: @mobileMenuBreakpoint) {
-  .contentpage {
-    .navigation {
-      margin-top: 21px;
-    }
-  }
-
-  body.is-anonymous {
-    .contentpage {
-      .navigation {
-        margin-top: 18px;
-      }
     }
   }
 }

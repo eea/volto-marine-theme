@@ -8,9 +8,6 @@
     align-items: center;
 
     .logo {
-      display: flex;
-      margin: 10px 0;
-
       @media only screen and (max-width: @largeMobileBreakpoint) {
         img {
           width: auto;
@@ -25,14 +22,42 @@
   }
 
   .searchbox {
-    input {
+    .ui.input input {
+      width: 85px;
+      border-width: 0 0 1px;
+      border-color: transparent;
+      font-family: @headerFont;
+      font-size: 13px;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
       transition: none;
+      transition: all 0.5s ease;
+
+      &:focus {
+        width: 250px;
+      }
     }
   }
 
   .home-nav {
     position: relative;
     top: -6px;
+
+    .searchbox {
+      .ui.input input {
+        &:focus {
+          border-color: @white !important;
+        }
+
+        &::placeholder {
+          color: @white;
+        }
+
+        &::-ms-input-placeholder {
+          color: @white;
+        }
+      }
+    }
 
     .navigation {
       position: relative;
@@ -67,12 +92,15 @@
       flex-direction: row;
       flex-grow: 2;
       flex-wrap: nowrap;
+      align-items: center;
       justify-content: flex-end;
       margin: 0.7rem 0;
     }
   }
 
   .search button {
+    display: flex;
+    margin-left: 5px;
     color: @linkColor;
 
     svg {
@@ -82,6 +110,9 @@
 
   .login-wrapper {
     .item {
+      display: inline-block;
+      display: flex;
+      align-items: center;
       margin: 0 0.5rem;
     }
 
@@ -93,6 +124,41 @@
   .page-nav {
     display: flex;
     align-content: space-between;
+
+    .ui.form .searchbox.field {
+      padding: 3px 10px;
+      background-color: #f3f4f5;
+      border-radius: 4px;
+    }
+
+    .searchbox {
+      input {
+        width: 130px;
+
+        &::placeholder {
+          color: #888 !important;
+        }
+
+        &::-ms-input-placeholder {
+          color: #888 !important;
+        }
+      }
+    }
+
+    .navigation {
+      margin-top: auto;
+      margin-bottom: 1px;
+    }
+
+    .right-section-wrapper {
+      padding-top: 1rem !important;
+    }
+
+    .header-right-section {
+      @media only screen and (min-width: @mobileMenuBreakpoint) {
+        height: 100%;
+      }
+    }
   }
 }
 

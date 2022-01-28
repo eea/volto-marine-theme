@@ -34,3 +34,7 @@ body.fullwidth-view {
     min-height: 900px !important;
   }
 }
+
+.ui.basic.segment.content-area main {
+  min-height: 300px;
+}
