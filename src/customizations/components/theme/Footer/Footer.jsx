@@ -8,7 +8,6 @@ import { Container, Grid } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Anontools } from '@plone/volto/components';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -36,7 +35,7 @@ const Footer = ({ intl }) => {
       <Container>
         <Grid stackable>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={16} computer={16}>
+            <Grid.Column mobile={12} tablet={12} computer={12}>
               <ul className="footer-nav" id="footer_links">
                 <li>
                   <Link className="item" to={root || '/'}>
@@ -64,7 +63,6 @@ const Footer = ({ intl }) => {
                     />
                   </a>
                 </li>
-                <Anontools />
               </ul>
             </Grid.Column>
           </Grid.Row>
@@ -72,14 +70,14 @@ const Footer = ({ intl }) => {
 
         <Grid stackable className="footer-bottom-logos">
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={16} computer={7}>
+            <Grid.Column mobile={12} tablet={12} computer={6}>
               <div className="site-info-logos">
                 <a href="https://www.eea.europa.eu/">
                   <LazyLoadImage
                     src={eeaLogo}
                     title="European Environment Agency"
                     alt="European Environment Agency"
-                    height="35"
+                    height="38"
                   />
                 </a>
                 <a href="https://ec.europa.eu/">
@@ -87,13 +85,13 @@ const Footer = ({ intl }) => {
                     src={ecLogo}
                     title="European Commission"
                     alt="European Commission"
-                    height="35"
+                    height="38"
                   />
                 </a>
               </div>
             </Grid.Column>
 
-            <Grid.Column mobile={16} tablet={16} computer={9}>
+            <Grid.Column mobile={12} tablet={12} computer={6}>
               <div>
                 <p>Other European Information Systems:</p>
               </div>
@@ -104,7 +102,7 @@ const Footer = ({ intl }) => {
                     src={freshwaterLogo}
                     title="Freshwater Information System for Europe"
                     alt="Freshwater Information System for Europe"
-                    height="32"
+                    height="34"
                   />
                 </a>
                 <a href="https://biodiversity.europa.eu/">
@@ -113,7 +111,7 @@ const Footer = ({ intl }) => {
                     src={biseLogo}
                     title="Biodiversity Information System for Europe"
                     alt="Biodiversity Information System for Europe"
-                    height="35"
+                    height="38"
                   />
                 </a>
                 <a href="https://climate-adapt.eea.europa.eu/">
@@ -122,7 +120,7 @@ const Footer = ({ intl }) => {
                     src={ccaLogo}
                     title="Sharing adaptation information across Europe"
                     alt="Climate-Adapt"
-                    height="32"
+                    height="34"
                   />
                 </a>
                 <a href="https://forest.eea.europa.eu/">
@@ -131,7 +129,7 @@ const Footer = ({ intl }) => {
                     src={fiseLogo}
                     title="Forest Information System for Europe"
                     alt="Forest Information System for Europe"
-                    height="35"
+                    height="38"
                   />
                 </a>
               </div>
@@ -140,7 +138,7 @@ const Footer = ({ intl }) => {
         </Grid>
       </Container>
 
-      <div class="footer-backdrop">
+      <div className="footer-backdrop">
         <LazyLoadImage src={fishesImage} alt="Footer fishes image" />
       </div>
     </div>

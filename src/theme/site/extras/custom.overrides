@@ -8,6 +8,7 @@
 @import 'header';
 @import 'menu';
 @import 'fonts';
+@import 'blocks.overrides';
 @import 'contextnavigation';
 @import 'segment.overrides';
 @import 'slots.overrides';
@@ -18,4 +19,22 @@
 
 .stagingBanner .container {
   padding: 18px 0;
+}
+
+.ui.divider {
+  margin: 2em 0;
+}
+
+body.fullwidth-view {
+  .ui.container {
+    max-width: 100% !important;
+  }
+
+  iframe {
+    min-height: 900px !important;
+  }
+}
+
+.ui.basic.segment.content-area main {
+  min-height: 300px;
 }

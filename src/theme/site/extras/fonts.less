@@ -38,6 +38,14 @@
   font-display: swap;
   font-family: @headerFontName;
   font-style: normal;
+  font-weight: 100;
+  .setFontSrc(@headerFontName, @fontWeight: 'Light');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: @headerFontName;
+  font-style: normal;
   font-weight: 500;
   .setFontSrc(@headerFontName, @fontWeight: 'SemiBold');
 }

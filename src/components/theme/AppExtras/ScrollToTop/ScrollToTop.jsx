@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Button, Icon } from 'semantic-ui-react';
 
-import './scrolltop.less';
+import './css/scrolltop.less';
 
 const messages = defineMessages({
   scrollToTop: {
@@ -47,7 +47,6 @@ const ScrollToTop = () => {
         <div className="scroll-to-top">
           <Button
             icon
-            color="blue"
             title={intl.formatMessage(messages.scrollToTop)}
             onClick={scrollToTop}
           >

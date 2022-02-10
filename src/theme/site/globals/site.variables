@@ -59,16 +59,15 @@
 
 @primaryColor        : #002d54;
 @secondaryColor      : #59d3ff;
-@textColor:          : #003159;
 
-@lightPrimaryColor   : @lightBlue;
+@lightPrimaryColor   : #0077bc;
 @lightSecondaryColor : @lightBlack;
 
 /*--------------
   Page Heading
 ---------------*/
 
-@headerFontWeight : @bold;
+@headerFontWeight : 600;
 @headerLineHeight : unit((18 / 14), em);
 
 @h1 : unit((28 / 14), rem);
@@ -132,7 +131,7 @@
 @pageOverflowX       : hidden;
 
 @lineHeight          : 1.4285em;
-@textColor           : rgba(0, 0, 0, 0.87);
+@textColor           : #003159;
 
 /*-------------------
       Paragraph
@@ -145,7 +144,7 @@
        Links
 --------------------*/
 
-@linkColor           : #4183C4;
+@linkColor           : #0077bc;
 @linkUnderline       : none;
 @linkHoverColor      : darken(saturate(@linkColor, 20), 15, relative);
 @linkHoverUnderline  : @linkUnderline;
@@ -203,7 +202,7 @@
         Grid
 --------------------*/
 
-@columnCount: 16;
+@columnCount: 12;
 
 /*-------------------
      Transitions
@@ -228,19 +227,21 @@
 --------------------*/
 
 /*---  Colors  ---*/
-@red              : #DB2828;
-@orange           : #F2711C;
-@yellow           : #FBBD08;
+
+
+@orange           : #FA5C2A; // Palette: reddishOrange
+@yellow           : #F6A808; // Palette: goldenRod
+@green            : #18ad5f; // Palette: darkPastelGreen
+@teal             : #517776; // Palette: slate
+@blue             : #064c7f; // Palette: Plone (tealBlue/cerulean)
+@pink             : #E40166; // Palette: darkHotPink
+@red              : #c31f43;
+@brown            : #826A6A; // Palette: reddishGrey
+@grey             : #5d5e5e; // Palette: blueishGrey
+@black            : #252525; // Palette: darkishGrey
+@violet           : #595a93;
 @olive            : #B5CC18;
-@green            : #21BA45;
-@teal             : #00B5AD;
-@blue             : #2185D0;
-@violet           : #6435C9;
 @purple           : #A333C8;
-@pink             : #E03997;
-@brown            : #A5673F;
-@grey             : #767676;
-@black            : #1B1C1D;
 
 /*---  Light Colors  ---*/
 @lightRed         : #FF695E;

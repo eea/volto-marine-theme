@@ -11,8 +11,36 @@ strong {
   font-weight: 500;
 }
 
+a {
+  font-weight: 400;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+iframe {
+  width: 100% !important;
+  padding: 0.7em !important;
+  border: 1px solid #e2e2e2 !important;
+  border-radius: 4px;
+}
+
 .content-area {
   font-size: @fontSize !important;
   font-weight: 300;
   line-height: 28px !important;
+}
+
+.content-body > #page-document.ui.container {
+  width: 100% !important;
+}
+
+.nine.wide.column.content-body > #page-document.ui.container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+#page-document {
+  position: relative;
 }

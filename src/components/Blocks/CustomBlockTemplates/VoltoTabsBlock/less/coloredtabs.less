@@ -1,0 +1,69 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
+.tabs-block.colored_tabs {
+  padding: 2.5em 0;
+  background-color: #f7f3ef;
+}
+
+.colored-tabs-title {
+  margin-bottom: 2em;
+  font-size: 27px;
+}
+
+.colored-tabs {
+  .ui.menu {
+    margin-bottom: 2rem;
+  }
+
+  .ui.menu .item {
+    position: relative;
+    flex-direction: column;
+    align-items: end;
+    padding: 1rem;
+  }
+
+  .menu-item-text {
+    border-bottom: 2px solid transparent;
+    color: @primaryColor;
+    font-family: @headerFont;
+    font-size: 14px !important;
+    font-weight: 500;
+  }
+
+  .menu-item-dot {
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 5px auto;
+    background-color: #bbb;
+    border-radius: 50%;
+  }
+
+  .ui.menu .tab-menu-item-1 {
+    .menu-item-dot {
+      background-color: #59d3ff;
+    }
+  }
+
+  .ui.menu .tab-menu-item-2 {
+    .menu-item-dot {
+      background-color: #2dd2b7;
+    }
+  }
+
+  .ui.menu .tab-menu-item-3 {
+    .menu-item-dot {
+      background-color: #1271e1;
+    }
+  }
+
+  .ui.menu .active.item {
+    .menu-item-text {
+      border-bottom: 2px solid @primaryColor;
+      font-weight: 600;
+    }
+  }
+}

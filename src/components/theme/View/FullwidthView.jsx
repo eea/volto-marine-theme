@@ -1,12 +1,12 @@
 /**
  * Document view component.
- * @module components/theme/View/HeroSectionView
+ * @module components/theme/View/FullwidthView
  */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-
+import { BodyClass } from '@plone/volto/helpers';
 import { Container } from 'semantic-ui-react';
 import { map } from 'lodash';
 
@@ -28,17 +28,19 @@ const messages = defineMessages({
 
 /**
  * Component to display the default view.
- * @function HeroSectionView
+ * @function FullwidthView
  * @param {Object} content Content object.
  * @returns {string} Markup of the component.
  */
-const HeroSectionView = ({ content, intl, location }) => {
+const FullwidthView = ({ content, intl, location }) => {
   const blocksFieldName = getBlocksFieldname(content);
   const hasContentImage = content.image;
   const blocksLayoutFieldName = getBlocksLayoutFieldname(content);
 
   return hasBlocksData(content) ? (
     <div id="page-document" className="ui container">
+      <BodyClass className="fullwidth-view" />
+
       {map(content[blocksLayoutFieldName].items, (block) => {
         const block_data = content[blocksFieldName]?.[block];
         const block_type = block_data?.['@type'];
@@ -74,7 +76,7 @@ const HeroSectionView = ({ content, intl, location }) => {
  * @property {Object} propTypes Property types.
  * @static
  */
-HeroSectionView.propTypes = {
+FullwidthView.propTypes = {
   /**
    * Content of the object
    */
@@ -99,4 +101,4 @@ HeroSectionView.propTypes = {
   }).isRequired,
 };
 
-export default injectIntl(HeroSectionView);
+export default injectIntl(FullwidthView);

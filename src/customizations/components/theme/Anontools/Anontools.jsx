@@ -7,9 +7,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 import { Icon } from '@plone/volto/components';
-import user from '@plone/volto/icons/user.svg';
+import userSVG from '@eeacms/volto-marine-theme/icons/user.svg';
 
 /**
  * Anontools container class.
@@ -44,22 +43,18 @@ class Anontools extends Component {
   render() {
     return (
       !this.props.token && (
-        <li className="footer-login">
-          <span className="login-wrapper">
-            <span className="divider"> | </span>
-            <Icon name={user} size="15px" />
-            <Link
-              className="item"
-              to={`${this.props.root}/login${
-                __CLIENT__ && this.props.content
-                  ? `?return_url=${window.location.pathname}`
-                  : ''
-              }`}
-            >
-              <FormattedMessage id="Log in" defaultMessage="Log in" />
-            </Link>
-          </span>
-        </li>
+        <span className="login-wrapper">
+          <Link
+            className="item"
+            to={`${this.props.root}/login${
+              __CLIENT__ && this.props.content
+                ? `?return_url=${window.location.pathname}`
+                : ''
+            }`}
+          >
+            <Icon name={userSVG} size="22px" />
+          </Link>
+        </span>
       )
     );
   }
