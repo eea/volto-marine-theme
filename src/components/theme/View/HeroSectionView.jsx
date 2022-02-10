@@ -65,7 +65,18 @@ const HeroSectionView = ({ content, intl, location }) => {
       })}
     </div>
   ) : (
-    <Container id="page-document" />
+    <Container id="page-document">
+      {content.description && (
+        <p className="documentDescription">{content.description}</p>
+      )}
+      {content.text && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: content.text.data,
+          }}
+        />
+      )}
+    </Container>
   );
 };
 
