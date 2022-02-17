@@ -33,7 +33,7 @@ const Header = (props) => {
   const contentImageCaption = content?.image_caption;
   const contentDescription = content?.description;
   const componentsObjectProvides =
-    content?.['@components']?.['object_provides'] || [];
+    content?.['@components']?.['object_provides'] === Array || [];
   const isNavRoot =
     componentsObjectProvides.indexOf(
       'plone.app.layout.navigation.interfaces.INavigationRoot',
