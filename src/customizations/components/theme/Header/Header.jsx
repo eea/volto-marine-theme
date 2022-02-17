@@ -32,7 +32,11 @@ const Header = (props) => {
   const contentTitle = content?.title;
   const contentImageCaption = content?.image_caption;
   const contentDescription = content?.description;
-  const isHomePage = content?.['@type'] === 'Plone Site';
+  const isNavRoot =
+    content?.['@components']?.['object_provides'].indexOf(
+      'plone.app.layout.navigation.interfaces.INavigationRoot',
+    ) > -1;
+  const isHomePage = content?.['@type'] === 'Plone Site' || isNavRoot;
   const cmsView = isCmsUi(actualPathName);
   const homePageView = isHomePage && !cmsView;
 

@@ -4,6 +4,7 @@ import installAppExtras from './components/theme/AppExtras';
 import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
+import { GET_CONTENT } from '@plone/volto/constants/ActionTypes';
 import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
 
@@ -61,6 +62,14 @@ const applyConfig = (config) => {
       return data.pathname !== '/';
     },
   };
+
+  config.settings.apiExpanders = [
+    ...config.settings.apiExpanders,
+    {
+      match: '/marine',
+      GET_CONTENT: ['object_provides'],
+    }
+  ];
 
   config.settings.navDepth = 3;
 
