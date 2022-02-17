@@ -67,7 +67,7 @@ const applyConfig = (config) => {
     {
       match: '/marine',
       GET_CONTENT: ['object_provides'],
-    }
+    },
   ];
 
   config.settings.navDepth = 3;
