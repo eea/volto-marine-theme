@@ -32,8 +32,10 @@ const Header = (props) => {
   const contentTitle = content?.title;
   const contentImageCaption = content?.image_caption;
   const contentDescription = content?.description;
+  const componentsObjectProvides =
+    content?.['@components']?.['object_provides'] || [];
   const isNavRoot =
-    content?.['@components']?.['object_provides'].indexOf(
+    componentsObjectProvides.indexOf(
       'plone.app.layout.navigation.interfaces.INavigationRoot',
     ) > -1;
   const isHomePage = content?.['@type'] === 'Plone Site' || isNavRoot;
