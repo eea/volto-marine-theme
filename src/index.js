@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeroSectionView, FullwidthView } from './components';
 import installAppExtras from './components/theme/AppExtras';
+import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
 import TextAlignWidget from './components/Widgets/TextAlign';
@@ -61,6 +62,14 @@ const applyConfig = (config) => {
     },
   };
 
+  config.settings.apiExpanders = [
+    ...config.settings.apiExpanders,
+    {
+      match: '/marine',
+      GET_CONTENT: ['object_provides'],
+    },
+  ];
+
   config.settings.navDepth = 3;
 
   config.settings.available_colors = available_colors;
@@ -109,7 +118,10 @@ const applyConfig = (config) => {
     { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
 
-  const final = [installAppExtras].reduce((acc, apply) => apply(acc), config);
+  const final = [installAppExtras, installMsfdDataExplorerBlock].reduce(
+    (acc, apply) => apply(acc),
+    config,
+  );
 
   return final;
 };
