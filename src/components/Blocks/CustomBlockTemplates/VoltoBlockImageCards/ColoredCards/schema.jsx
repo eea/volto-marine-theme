@@ -30,7 +30,14 @@ const ColoredCardsSchemaExtender = (schema, data, intl) => {
     available_colors: config.settings.available_colors,
   };
 
-  Common.fieldsets[0].fields.push('bg_color');
+  Common.properties.text_color = {
+    widget: 'style_simple_color',
+    title: 'Cards text color',
+    type: 'color',
+    available_colors: config.settings.available_colors,
+  };
+
+  Common.fieldsets[0].fields.push('text_color', 'bg_color');
   Common.fieldsets[1].fields.push('slider', 'slides_to_show');
   imageCardFields.splice(imageCardFields.indexOf('copyright'), 1);
   imageCardFields.push('sub_title');

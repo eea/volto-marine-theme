@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react';
 import { Card as CardItem } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoBlockImageCards';
 
 const GroupCardsView = (props) => {
-  const { cards, image_scale, cards_per_row, bg_color } = props;
+  const { cards, image_scale, cards_per_row, bg_color, text_color } = props;
 
   return (
     <Card.Group
@@ -18,6 +18,7 @@ const GroupCardsView = (props) => {
           card={card}
           image_scale={image_scale}
           bg_color={bg_color}
+          text_color={text_color}
         />
       ))}
     </Card.Group>

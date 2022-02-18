@@ -43,7 +43,7 @@ const Arrows = (props) => {
 };
 
 const CarouselCardsView = (props) => {
-  const { cards, image_scale, slides_to_show, bg_color } = props;
+  const { cards, image_scale, slides_to_show, bg_color, text_color } = props;
   const slider = React.useRef(null);
   const slidesNumber = parseInt(slides_to_show);
 
@@ -83,6 +83,7 @@ const CarouselCardsView = (props) => {
               card={card}
               image_scale={image_scale}
               bg_color={bg_color}
+              text_color={text_color}
             />
           ))}
         </Slider>
