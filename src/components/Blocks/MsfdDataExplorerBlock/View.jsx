@@ -1,29 +1,38 @@
 import React, { useState, useEffect } from 'react';
-import { Dimmer, Loader, Segment, Placeholder } from 'semantic-ui-react';
+import {
+  Dimmer,
+  Loader,
+  Segment,
+  Placeholder,
+  Message,
+} from 'semantic-ui-react';
 import axios from 'axios';
 import $ from 'jquery';
 
 const MsfdDataExplorerBlockView = (props) => {
   const [content, setContent] = React.useState('');
   const [loading, setloading] = useState(true);
-  const { data } = props;
+  const { editable } = props;
+  const { article_select } = props.data;
 
   useEffect(() => {
-    axios
-      .get(`/api/++api++/${data.article_select}`)
-      .then((res) => {
-        const el = document.createElement('div');
-        el.innerHTML = res.data;
-        const content = el.querySelector('.msfd-search-wrapper');
-        setContent(content);
-      })
-      .catch((err) => {
-        setContent({ data: <div>Something went wrong.</div> });
-      })
-      .finally(() => {
-        setloading(false);
-      });
-  }, [data.article_select]);
+    if (article_select) {
+      axios
+        .get(`/api/++api++/${article_select}`)
+        .then((res) => {
+          const el = document.createElement('div');
+          el.innerHTML = res.data;
+          const content = el.querySelector('.msfd-search-wrapper');
+          setContent(content);
+        })
+        .catch((err) => {
+          setContent({ data: <div>Something went wrong.</div> });
+        })
+        .finally(() => {
+          setloading(false);
+        });
+    }
+  }, [article_select]);
 
   useEffect(() => {
     if (window !== undefined) {
@@ -52,27 +61,33 @@ const MsfdDataExplorerBlockView = (props) => {
   }, [loading]);
 
   return (
-    <div>
-      {loading ? (
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-
-          <Placeholder>
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-            <Placeholder.Line />
-          </Placeholder>
-        </Segment>
-      ) : (
+    <>
+      {article_select ? (
         <div>
-          <div dangerouslySetInnerHTML={{ __html: content.outerHTML }} />
+          {loading ? (
+            <Segment>
+              <Dimmer active inverted>
+                <Loader inverted>Loading</Loader>
+              </Dimmer>
+
+              <Placeholder>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+              </Placeholder>
+            </Segment>
+          ) : (
+            <div>
+              <div dangerouslySetInnerHTML={{ __html: content.outerHTML }} />
+            </div>
+          )}
         </div>
+      ) : (
+        <>{editable ? <Message>Select article</Message> : ''}</>
       )}
-    </div>
+    </>
   );
 };
 

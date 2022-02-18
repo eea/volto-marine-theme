@@ -1,4 +1,5 @@
 .documentFirstHeading {
+  display: block !important;
   border-bottom: none;
 
   &:before {
