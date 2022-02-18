@@ -62,6 +62,14 @@ const applyConfig = (config) => {
     },
   };
 
+  config.settings.apiExpanders = [
+    ...config.settings.apiExpanders,
+    {
+      match: '/marine',
+      GET_CONTENT: ['object_provides'],
+    },
+  ];
+
   config.settings.navDepth = 3;
 
   config.settings.available_colors = available_colors;
