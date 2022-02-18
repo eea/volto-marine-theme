@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Message } from 'semantic-ui-react';
 import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
+import { flattenToAppURL } from '@plone/volto/helpers';
 import cx from 'classnames';
 
 import './less/plaincards.less';
@@ -41,7 +42,7 @@ const PlainCardsView = (props) => {
                   <Card
                     className="plain-card"
                     {...(card.link && !props.editable
-                      ? { href: card.link }
+                      ? { href: flattenToAppURL(card.link) }
                       : {})}
                   >
                     <div

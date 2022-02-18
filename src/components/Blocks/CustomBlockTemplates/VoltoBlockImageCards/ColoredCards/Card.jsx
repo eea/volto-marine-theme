@@ -7,7 +7,7 @@ import { Icon } from '@plone/volto/components';
 import arrowSVG from '@eeacms/volto-marine-theme/icons/arrow.svg';
 
 const CardItem = (props) => {
-  const { card, image_scale, bg_color = '#59d3ff' } = props;
+  const { card, image_scale, bg_color = '#59d3ff', text_color } = props;
 
   return (
     <Card className="colored-card">
@@ -29,7 +29,7 @@ const CardItem = (props) => {
         </div>
         <div
           className="colored-card-content-wrapper"
-          style={{ backgroundColor: bg_color }}
+          style={{ backgroundColor: bg_color, color: text_color }}
         >
           {card.title && (
             <div className="colored-card-header">

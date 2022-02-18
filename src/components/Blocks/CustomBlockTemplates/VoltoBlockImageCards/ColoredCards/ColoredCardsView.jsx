@@ -20,6 +20,7 @@ const ColoredCardsView = (props) => {
     slider,
     slides_to_show,
     bg_color,
+    text_color,
     title,
     text,
   } = data;
@@ -47,6 +48,7 @@ const ColoredCardsView = (props) => {
                   slides_to_show={slides_to_show}
                   image_scale={image_scale}
                   bg_color={bg_color}
+                  text_color={text_color}
                 />
               </div>
             ) : (
@@ -55,6 +57,7 @@ const ColoredCardsView = (props) => {
                 cards_per_row={cards_per_row}
                 image_scale={image_scale}
                 bg_color={bg_color}
+                text_color={text_color}
               />
             )}
           </div>
