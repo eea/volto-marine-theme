@@ -59,7 +59,7 @@ const PresentationCardsView = (props) => {
                 {(cards || []).map((card, i) => (
                   <Card
                     className="presentation-card"
-                    {...(card.link ? { href: card.link } : {})}
+                    {...(card.link ? { href: flattenToAppURL(card.link) } : {})}
                   >
                     <div
                       className="presentation-card-image"
