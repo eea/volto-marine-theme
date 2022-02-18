@@ -24,7 +24,7 @@ const MsfdDataExplorerBlockSchema = {
       ],
     },
   },
-  required: [],
+  required: ['article_select'],
 };
 
 export default MsfdDataExplorerBlockSchema;
