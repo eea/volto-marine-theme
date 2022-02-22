@@ -11,26 +11,31 @@ import cx from 'classnames';
 
 const TableauShare = (props) => {
   const { url } = props.data;
-  const tableauUrlPath = url.split('/');
-  const tableauSiteRoot = '/' + tableauUrlPath[3] + '/' + tableauUrlPath[4];
-  const tableauName = tableauUrlPath[6] + '/' + tableauUrlPath[7].split('?')[0];
-  const tableauEmbedCode =
-    "<script type='text/javascript'" +
-    "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'>" +
-    '</script>' +
-    "<div class='tableauPlaceholder' style='width: 1024px; height: 827px;'>" +
-    "<object class='tableauViz' width='1024' height='827' style='display:none;'>" +
-    "<param name='host_url' value='https%3A%2F%2Ftableau.discomap.eea.europa.eu%2F' />" +
-    "<param name='site_root' value='" +
-    tableauSiteRoot +
-    "' />" +
-    "<param name='name' value='" +
-    tableauName +
-    "' />" +
-    "<param name='tabs' value='yes' />" +
-    "<param name='toolbar' value='no' />" +
-    '</object>' +
-    '</div>';
+
+  const embedCode = (url) => {
+    const tableauUrlPath = url.split('/');
+    const tableauSiteRoot = '/' + tableauUrlPath[3] + '/' + tableauUrlPath[4];
+    const tableauName =
+      tableauUrlPath[6] + '/' + tableauUrlPath[7].split('?')[0];
+    const tableauEmbedCode =
+      "<script type='text/javascript'" +
+      "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'>" +
+      '</script>' +
+      "<div class='tableauPlaceholder' style='width: 1024px; height: 827px;'>" +
+      "<object class='tableauViz' width='1024' height='827' style='display:none;'>" +
+      "<param name='host_url' value='https%3A%2F%2Ftableau.discomap.eea.europa.eu%2F' />" +
+      "<param name='site_root' value='" +
+      tableauSiteRoot +
+      "' />" +
+      "<param name='name' value='" +
+      tableauName +
+      "' />" +
+      "<param name='tabs' value='yes' />" +
+      "<param name='toolbar' value='no' />" +
+      '</object>' +
+      '</div>';
+    return tableauEmbedCode;
+  };
 
   const CopyUrlButton = ({ content, buttonText }) => {
     const [copyUrlStatus, copyUrl] = useCopyToClipboard(content);
@@ -82,9 +87,9 @@ const TableauShare = (props) => {
       ),
       render: () => (
         <Tab.Pane>
-          <textarea defaultValue={tableauEmbedCode} />
+          <textarea defaultValue={embedCode(url)} />
           <CopyUrlButton
-            content={tableauEmbedCode}
+            content={embedCode(url)}
             buttonText="Copy embed code"
           />
         </Tab.Pane>

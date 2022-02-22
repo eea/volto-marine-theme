@@ -86,7 +86,7 @@ const View = (props) => {
 
       <Tableau
         {...props}
-        canUpdateUrl={!breakpointUrl}
+        // canUpdateUrl={!breakpointUrl}
         extraFilters={extraFilters}
         extraOptions={{ device: autoScale ? 'desktop' : device }}
         error={error}

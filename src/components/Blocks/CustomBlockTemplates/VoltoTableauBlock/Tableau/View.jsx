@@ -17,7 +17,7 @@ const Tableau = (props) => {
   const mounted = React.useRef(false);
   const [viz, setViz] = React.useState(null);
   const {
-    canUpdateUrl = true,
+    // canUpdateUrl = true,
     data = {},
     error = null,
     extraFilters = {},
@@ -91,7 +91,7 @@ const Tableau = (props) => {
           if (newViz && mode === 'edit') {
             const workbook = newViz.getWorkbook();
             const newData = {
-              url: canUpdateUrl ? newViz.getUrl() : defaultUrl,
+              url: url,
               sheetname: workbook.getActiveSheet().getName(),
             };
             if (newData.url !== url || newData.sheetname !== sheetname) {
