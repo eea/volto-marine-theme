@@ -6,3 +6,13 @@
     border: none;
   }
 }
+
+#toolbar .pastanaga-menu {
+  .pastanaga-menu-list {
+    height: calc(
+      100vh - 60px
+    ); // 60px is the height of the pastanaga-menu header
+    background-color: @white;
+    overflow-y: scroll;
+  }
+}
