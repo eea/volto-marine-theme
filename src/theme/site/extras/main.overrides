@@ -7,12 +7,16 @@
   }
 }
 
+#toolbar .toolbar-content.show {
+  max-height: 100%;
+}
+
 #toolbar .pastanaga-menu {
   .pastanaga-menu-list {
     height: calc(
       100vh - 60px
     ); // 60px is the height of the pastanaga-menu header
     background-color: @white;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
