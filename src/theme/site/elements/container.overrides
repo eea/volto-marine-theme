@@ -9,16 +9,18 @@
   display: block;
   width: 100% !important;
   max-width: @maxWidth !important;
-  padding-right: 40px !important;
-  padding-left: 40px !important;
+  padding: 0 40px !important;
 
   > .ui.container {
     padding: 0 !important;
   }
 
   @media only screen and (max-width: 600px) {
-    padding-right: 20px !important;
-    padding-left: 20px !important;
+    padding: 0 20px !important;
+  }
+
+  @media only screen and (max-width: @largestMobileScreen) {
+    margin: 0 !important;
   }
 }
 

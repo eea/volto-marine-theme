@@ -3,7 +3,7 @@
  * @module components/theme/Header/Header
  */
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -14,10 +14,13 @@ import {
 } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 import { Container, Segment } from 'semantic-ui-react';
-import { HeroSection } from '@eeacms/volto-marine-theme/components';
+import {
+  HeroSection,
+  StickyHeader,
+} from '@eeacms/volto-marine-theme/components';
 import clearLogoSVG from '@eeacms/volto-marine-theme/static/marine_logo_white.svg';
-
-import cx from 'classnames';
+import zoomSVG from '@eeacms/volto-marine-theme/icons/search.svg';
+import { Icon } from '@plone/volto/components';
 
 const Header = (props) => {
   const {
@@ -44,38 +47,28 @@ const Header = (props) => {
   const cmsView = isCmsUi(actualPathName);
   const homePageView = isHomePage && !cmsView;
 
-  const innerWidth = __CLIENT__ && window && window.innerWidth;
-  const scrollY = __CLIENT__ && window && window.scrollY;
-  const [width, setWidth] = useState(innerWidth);
-  const [y, setY] = useState(scrollY);
-  const [scrollingUp, setScrollingUp] = useState(false);
+  const searchRef = React.useRef(null);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
-  const handleScroll = useCallback(
-    (e) => {
-      const window = e.currentTarget;
-      if (y > window.scrollY && window.pageYOffset > 100) {
-        setScrollingUp(true);
-      } else {
-        setScrollingUp(false);
-      }
-      setY(window.scrollY);
-    },
-    [y],
-  );
-
-  const handleWindowResize = () => {
-    setWidth(window.innerWidth);
+  const toggleMobileSearch = () => {
+    setShowMobileSearch(!showMobileSearch);
   };
 
   useEffect(() => {
-    setY(window.scrollY);
-    window.addEventListener('resize', handleWindowResize);
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-      window.removeEventListener('scroll', handleScroll);
+    const handleClickOutsideSearch = (event) => {
+      if (
+        searchRef?.current &&
+        showMobileSearch &&
+        !searchRef.current?.contains(event.target)
+      ) {
+        setShowMobileSearch(false);
+      }
     };
-  }, [handleScroll]);
+    document.addEventListener('mousedown', handleClickOutsideSearch);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideSearch);
+    };
+  }, [showMobileSearch, searchRef]);
 
   return (
     <div className="portal-top">
@@ -88,74 +81,98 @@ const Header = (props) => {
         }`}
         role="banner"
       >
-        <div
-          className={cx('header', {
-            'sticky-header': scrollingUp && width < 1024,
-          })}
-        >
-          <Container>
-            {homePageView ? (
-              <div className="home-header">
-                <div className="logo-nav-wrapper home-nav">
-                  <div className="logo">
-                    <img
-                      className="home-logo"
-                      src={clearLogoSVG}
-                      alt="WISE Marine Logo"
-                      height="60"
-                    />
-                  </div>
-                  <div className="header-right-section">
-                    <div className="right-section-wrapper">
-                      <div className="search">
-                        <SearchWidget pathname={pathname} />
+        <div className="header">
+          <StickyHeader stickyBreakpoint={1024}>
+            <Container>
+              {homePageView ? (
+                <div className="home-header">
+                  <div className="logo-nav-wrapper home-nav">
+                    <div className="logo">
+                      <img
+                        className="home-logo"
+                        src={clearLogoSVG}
+                        alt="WISE Marine Logo"
+                        height="60"
+                      />
+                    </div>
+                    <div className="header-right-section">
+                      <div className="right-section-wrapper">
+                        <div className="search">
+                          <SearchWidget pathname={pathname} />
+                        </div>
+                        <Anontools />
                       </div>
-                      <Anontools />
                     </div>
                   </div>
-                </div>
-                <Navigation pathname={pathname} navigation={navigationItems} />
-              </div>
-            ) : (
-              <div className="logo-nav-wrapper page-nav">
-                <div className="logo">
-                  <Logo />
-                </div>
-                <div className="header-right-section">
-                  <div className="right-section-wrapper">
-                    <div className="search">
-                      <SearchWidget pathname={pathname} />
+                  <div className="mobile-search">
+                    <div className="search-icon">
+                      <Icon
+                        onClick={toggleMobileSearch}
+                        name={zoomSVG}
+                        size="39px"
+                      />
                     </div>
-                    <Anontools />
                   </div>
                   <Navigation
                     pathname={pathname}
                     navigation={navigationItems}
                   />
                 </div>
+              ) : (
+                <div className="contentpage-header">
+                  <div className="logo-nav-wrapper page-nav">
+                    <div className="logo">
+                      <Logo />
+                    </div>
+                    <div className="header-right-section">
+                      <div className="right-section-wrapper">
+                        <div className="search">
+                          <SearchWidget pathname={pathname} />
+                        </div>
+                        <Anontools />
+                      </div>
+                      <div className="mobile-search">
+                        <div className="search-icon">
+                          <Icon
+                            onClick={toggleMobileSearch}
+                            name={zoomSVG}
+                            size="39px"
+                          />
+                        </div>
+                      </div>
+                      <Navigation
+                        pathname={pathname}
+                        navigation={navigationItems}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Container>
+
+            {showMobileSearch ? (
+              <div ref={searchRef} className="mobile-search-popup">
+                <div>
+                  <SearchWidget pathname={pathname} />
+                </div>
               </div>
+            ) : (
+              ''
             )}
-          </Container>
+          </StickyHeader>
         </div>
       </Segment>
 
-      <React.Fragment>
-        {!cmsView && !isHomePage && (
-          <div className="header-bg">
-            <div
-              className={'header-container'}
-              style={{ position: 'relative' }}
-            >
-              <HeroSection
-                image_url={leadImageUrl}
-                image_caption={contentImageCaption}
-                content_title={contentTitle}
-                content_description={contentDescription}
-              />
-            </div>
-          </div>
-        )}
-      </React.Fragment>
+      {!cmsView && !isHomePage && (
+        <div className="header-container">
+          <HeroSection
+            image_url={leadImageUrl}
+            image_caption={contentImageCaption}
+            content_title={contentTitle}
+            content_description={contentDescription}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -166,20 +183,13 @@ const Header = (props) => {
  * @static
  */
 Header.propTypes = {
-  token: PropTypes.string,
   pathname: PropTypes.string.isRequired,
   actualPathName: PropTypes.string.isRequired,
   leadImage: PropTypes.object,
   content: PropTypes.object,
-  location: PropTypes.object,
 };
 
-export default connect(
-  (state) => ({
-    token: state.userSession.token,
-    leadImage: state?.content?.data?.image,
-    content: state.content.data,
-    location: state.router.location,
-  }),
-  {},
-)(Header);
+export default connect((state) => ({
+  leadImage: state?.content?.data?.image,
+  content: state.content.data,
+}))(Header);
