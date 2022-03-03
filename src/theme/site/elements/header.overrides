@@ -6,6 +6,14 @@
   padding: 0;
 }
 
-.ui.basic.segment .header .logo-nav-wrapper .logo {
-  display: flex;
+.ui.basic.segment .header {
+  .logo-nav-wrapper {
+    .logo {
+      display: flex;
+    }
+
+    .navigation::-webkit-scrollbar-thumb {
+      background: #204d74;
+    }
+  }
 }

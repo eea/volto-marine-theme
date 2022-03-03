@@ -177,7 +177,21 @@
     position: absolute;
     top: 8px;
     right: 1em;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 5px;
     font-size: 20px;
+
+    &:before {
+      position: absolute;
+      top: 1px;
+      left: 6px;
+    }
+
+    &:hover {
+      background-color: #0a467a !important;
+    }
   }
 
   .item.firstLevel {
@@ -204,16 +218,33 @@
     border: none !important;
   }
 
-  .item.firstLevel .menu {
-    position: relative;
-    border: none !important;
-    background: transparent;
-    box-shadow: none !important;
-
-    .item {
-      padding-right: 0;
-      padding-left: 0;
+  .item.firstLevel {
+    .menu {
+      position: relative;
+      border: none !important;
+      background: transparent;
+      box-shadow: none !important;
     }
+  }
+
+  .item.firstLevel {
+    > a {
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    > .menu.visible {
+      border-bottom: 1px solid @white !important;
+
+      > .item:last-child {
+        padding-bottom: 10px !important;
+      }
+    }
+  }
+
+  .item.secondLevel {
+    padding: 0.8em 0;
+    font-weight: 400;
   }
 }
 

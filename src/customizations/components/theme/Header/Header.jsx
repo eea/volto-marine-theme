@@ -3,7 +3,7 @@
  * @module components/theme/Header/Header
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -11,6 +11,7 @@ import {
   Navigation,
   SearchWidget,
   Anontools,
+  Icon,
 } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 import { Container, Segment } from 'semantic-ui-react';
@@ -18,9 +19,9 @@ import {
   HeroSection,
   StickyHeader,
 } from '@eeacms/volto-marine-theme/components';
+import { useOutsideClick } from '@eeacms/volto-marine-theme/helpers';
 import clearLogoSVG from '@eeacms/volto-marine-theme/static/marine_logo_white.svg';
 import zoomSVG from '@eeacms/volto-marine-theme/icons/search.svg';
-import { Icon } from '@plone/volto/components';
 
 const Header = (props) => {
   const {
@@ -54,21 +55,9 @@ const Header = (props) => {
     setShowMobileSearch(!showMobileSearch);
   };
 
-  useEffect(() => {
-    const handleClickOutsideSearch = (event) => {
-      if (
-        searchRef?.current &&
-        showMobileSearch &&
-        !searchRef.current?.contains(event.target)
-      ) {
-        setShowMobileSearch(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutsideSearch);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideSearch);
-    };
-  }, [showMobileSearch, searchRef]);
+  useOutsideClick(searchRef, () => {
+    setShowMobileSearch(false);
+  });
 
   return (
     <div className="portal-top">
