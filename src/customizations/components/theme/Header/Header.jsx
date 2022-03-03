@@ -81,8 +81,8 @@ const Header = (props) => {
         }`}
         role="banner"
       >
-        <div className="header">
-          <StickyHeader stickyBreakpoint={1024}>
+        <StickyHeader stickyBreakpoint={1024}>
+          <div className="header">
             <Container>
               {homePageView ? (
                 <div className="home-header">
@@ -159,8 +159,8 @@ const Header = (props) => {
             ) : (
               ''
             )}
-          </StickyHeader>
-        </div>
+          </div>
+        </StickyHeader>
       </Segment>
 
       {!cmsView && !isHomePage && (

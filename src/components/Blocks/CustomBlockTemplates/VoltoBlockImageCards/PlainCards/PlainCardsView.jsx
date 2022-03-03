@@ -40,6 +40,7 @@ const PlainCardsView = (props) => {
               >
                 {(cards || []).map((card, i) => (
                   <Card
+                    key={i}
                     className="plain-card"
                     {...(card.link && !props.editable
                       ? { href: flattenToAppURL(card.link) }

@@ -58,6 +58,7 @@ const PresentationCardsView = (props) => {
               >
                 {(cards || []).map((card, i) => (
                   <Card
+                    key={i}
                     className="presentation-card"
                     {...(card.link ? { href: flattenToAppURL(card.link) } : {})}
                   >

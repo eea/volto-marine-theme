@@ -64,7 +64,7 @@ const PublicationCardsView = (props) => {
                   : {})}
               >
                 {(cards || []).map((card, i) => (
-                  <Card className="publication-card">
+                  <Card key={i} className="publication-card">
                     <div
                       className="publication-card-image"
                       style={{
