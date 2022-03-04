@@ -68,6 +68,10 @@ const applyConfig = (config) => {
       match: '/marine',
       GET_CONTENT: ['object_provides'],
     },
+    {
+      match: '/marine-new',
+      GET_CONTENT: ['object_provides'],
+    },
   ];
 
   config.settings.navDepth = 3;
