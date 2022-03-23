@@ -8,7 +8,10 @@ import {
   PresentationCardsView,
   PresentationCardsSchemaExtender,
 } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoBlockImageCards';
-import { TableauView } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
+import {
+  TableauView,
+  TableauEdit,
+} from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
 import { ColoredTabsView } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTabsBlock';
 
 const customBlockTemplates = (config) => ({
@@ -47,6 +50,7 @@ const customBlockTemplates = (config) => ({
   tableau_block: {
     ...config.blocks.blocksConfig.tableau_block,
     view: TableauView,
+    edit: TableauEdit,
   },
 
   tabs_block: {

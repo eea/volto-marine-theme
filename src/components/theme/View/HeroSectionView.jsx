@@ -39,6 +39,18 @@ const HeroSectionView = ({ content, intl, location }) => {
 
   return hasBlocksData(content) ? (
     <div id="page-document" className="ui container">
+      {content.description && (
+        <p className="documentDescription">{content.description}</p>
+      )}
+
+      {content.text && (
+        <div
+          dangerouslySetInnerHTML={{
+            __html: content.text.data,
+          }}
+        />
+      )}
+
       {map(content[blocksLayoutFieldName].items, (block) => {
         const block_data = content[blocksFieldName]?.[block];
         const block_type = block_data?.['@type'];
@@ -63,18 +75,6 @@ const HeroSectionView = ({ content, intl, location }) => {
           </div>
         );
       })}
-
-      {content.description && (
-        <p className="documentDescription">{content.description}</p>
-      )}
-
-      {content.text && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: content.text.data,
-          }}
-        />
-      )}
     </div>
   ) : (
     <Container id="page-document">

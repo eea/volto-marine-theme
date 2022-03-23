@@ -8,6 +8,7 @@
 @import 'header';
 @import 'menu';
 @import 'fonts';
+@import 'print';
 @import 'blocks.overrides';
 @import 'contextnavigation';
 @import 'segment.overrides';
@@ -18,8 +19,7 @@
 
 
 .stagingBanner {
-  padding-top: 18px !important;
-  padding-bottom: 18px !important;
+  padding: 18px 0 !important;
 }
 
 .ui.divider {
@@ -38,4 +38,13 @@ body.fullwidth-view {
 
 .ui.basic.segment.content-area main {
   min-height: 300px;
+}
+
+#main .ui.basic.segment.content-area .ui.container#page-document {
+  padding: 0 40px !important;
+  margin: 0 auto !important;
+
+  @media only screen and (max-width: 600px) {
+    padding: 0 20px !important;
+  }
 }

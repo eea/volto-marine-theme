@@ -117,13 +117,28 @@
 
 .ui.basic.button.close-button {
   display: none;
-  margin: 1em 8px !important;
+  margin: 1em 0.9em 2em 0 !important;
   float: right;
 }
 
 .mobile-menu-open {
   .ui.basic.button.close-button {
     display: block;
+    color: @white !important;
+
+    &:hover {
+      background: #0a467a !important;
+    }
+  }
+}
+
+/* Countries submenu */
+.navigation .countries-submenu {
+  column-count: 2;
+  column-gap: 0.5rem;
+
+  > .item.thirdLevel {
+    padding: 0.3rem 1rem !important;
   }
 }
 
@@ -136,28 +151,53 @@
   width: 100%;
   max-width: 400px;
   height: 100%;
-  background-color: #f1fdff;
+  background-color: @primaryColor;
   box-shadow: -5px 5px 17px -7px rgba(0, 0, 0, 0.3);
+  color: @white;
   overflow-x: auto;
   overflow-y: auto;
   transform: translateX(0) !important;
   transition: all 0.5s ease;
   visibility: visible;
 
+  @media only screen and (max-width: @tabletBreakpoint) {
+    max-width: 100%;
+  }
+
   .nav-items {
     display: block;
   }
 
+  .nav-items .item,
+  .nav-items .item a {
+    color: @white;
+  }
+
   .ui.dropdown > .dropdown.icon {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 8px;
+    right: 1em;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    border-radius: 5px;
     font-size: 20px;
+
+    &:before {
+      position: absolute;
+      top: 1px;
+      left: 6px;
+    }
+
+    &:hover {
+      background-color: #0a467a !important;
+    }
   }
 
   .item.firstLevel {
     position: relative;
     display: block;
+    padding: 0.8em 0.9em;
     clear: both;
   }
 
@@ -169,21 +209,57 @@
     display: none;
   }
 
-  .active.item.firstLevel:hover {
-    background-color: #e4f9fc !important;
+  .active.item.firstLevel:hover,
+  .item.firstLevel:hover {
+    background-color: transparent !important;
   }
 
-  .item.firstLevel .menu {
-    position: relative;
+  .nav-items .firstLevel > .menu > .item[role='option']:not(:last-child) {
     border: none !important;
-    background: transparent;
-    box-shadow: none !important;
+  }
 
-    .item {
-      padding-right: 0;
-      padding-left: 0;
+  .item.firstLevel {
+    .menu {
+      position: relative;
+      border: none !important;
+      background: transparent;
+      box-shadow: none !important;
     }
   }
+
+  .item.firstLevel {
+    > a {
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    > .menu.visible {
+      border-bottom: 1px solid @white !important;
+
+      > .item:last-child {
+        padding-bottom: 10px !important;
+      }
+    }
+  }
+
+  .item.secondLevel {
+    padding: 0.8em 0;
+    font-weight: 400;
+  }
+}
+
+.hamburger {
+  padding-right: 0;
+
+  .hamburger-box {
+    display: flex;
+  }
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  background-color: @primaryColor;
 }
 
 @media only screen and (max-width: @mobileMenuBreakpoint) {

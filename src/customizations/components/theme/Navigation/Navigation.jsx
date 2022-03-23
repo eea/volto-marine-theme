@@ -220,57 +220,114 @@ class Navigation extends Component {
                     const subDraftItem = subitem.review_state === 'draft';
                     return (
                       <Dropdown.Item key={flatSubUrl}>
-                        <>
-                          <div className="secondLevel-wrapper">
-                            <Link
-                              to={flatSubUrl === '' ? '/' : flatSubUrl}
-                              key={flatSubUrl}
-                              className={cx('item secondLevel', {
-                                menuActive: this.isActive(flatSubUrl),
-                                disabled: subDraftItem,
-                              })}
-                              onClick={(e) => {
-                                if (subDraftItem) e.preventDefault();
-                              }}
-                            >
-                              {subitem.title}
-                            </Link>
-                          </div>
-
-                          {subitem.items && subitem.items.length > 0 && (
-                            <div className="submenu-wrapper">
-                              <div className="submenu">
-                                {subitem.items.map((subsubitem) => {
-                                  const flatSubSubUrl = flattenToAppURL(
-                                    subsubitem.url,
-                                  );
-                                  const subSubDraftItem =
-                                    subsubitem.review_state === 'draft';
-                                  return (
-                                    <Link
-                                      to={
-                                        flatSubSubUrl === ''
-                                          ? '/'
-                                          : flatSubSubUrl
-                                      }
-                                      title={subsubitem.title}
-                                      key={flatSubSubUrl}
-                                      className={cx('item thirdLevel', {
-                                        menuActive: this.isActive(flatSubUrl),
-                                        disabled: subSubDraftItem,
-                                      })}
-                                      onClick={(e) => {
-                                        if (subSubDraftItem) e.preventDefault();
-                                      }}
-                                    >
-                                      {subsubitem.title}
-                                    </Link>
-                                  );
+                        {subitem.title
+                          .toLowerCase()
+                          .includes('country profiles') ? (
+                          <>
+                            <div className="secondLevel-wrapper">
+                              <Link
+                                to={flatSubUrl === '' ? '/' : flatSubUrl}
+                                key={flatSubUrl}
+                                className={cx('item secondLevel', {
+                                  menuActive: this.isActive(flatSubUrl),
+                                  disabled: subDraftItem,
                                 })}
-                              </div>
+                                onClick={(e) => {
+                                  if (subDraftItem) e.preventDefault();
+                                }}
+                              >
+                                {subitem.title}
+                              </Link>
                             </div>
-                          )}
-                        </>
+                            {subitem.items && subitem.items.length > 0 && (
+                              <div className="submenu-wrapper">
+                                <div className="submenu countries-submenu">
+                                  {subitem.items.map((subsubitem) => {
+                                    const flatSubSubUrl = flattenToAppURL(
+                                      subsubitem.url,
+                                    );
+                                    const subSubDraftItem =
+                                      subsubitem.review_state === 'draft';
+                                    return (
+                                      <Link
+                                        to={
+                                          flatSubSubUrl === ''
+                                            ? '/'
+                                            : flatSubSubUrl
+                                        }
+                                        title={subsubitem.title}
+                                        key={flatSubSubUrl}
+                                        className={cx('item thirdLevel', {
+                                          menuActive: this.isActive(flatSubUrl),
+                                          disabled: subSubDraftItem,
+                                        })}
+                                        onClick={(e) => {
+                                          if (subSubDraftItem)
+                                            e.preventDefault();
+                                        }}
+                                      >
+                                        {subsubitem.title}
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        ) : (
+                          <>
+                            <div className="secondLevel-wrapper">
+                              <Link
+                                to={flatSubUrl === '' ? '/' : flatSubUrl}
+                                key={flatSubUrl}
+                                className={cx('item secondLevel', {
+                                  menuActive: this.isActive(flatSubUrl),
+                                  disabled: subDraftItem,
+                                })}
+                                onClick={(e) => {
+                                  if (subDraftItem) e.preventDefault();
+                                }}
+                              >
+                                {subitem.title}
+                              </Link>
+                            </div>
+
+                            {subitem.items && subitem.items.length > 0 && (
+                              <div className="submenu-wrapper">
+                                <div className="submenu">
+                                  {subitem.items.map((subsubitem) => {
+                                    const flatSubSubUrl = flattenToAppURL(
+                                      subsubitem.url,
+                                    );
+                                    const subSubDraftItem =
+                                      subsubitem.review_state === 'draft';
+                                    return (
+                                      <Link
+                                        to={
+                                          flatSubSubUrl === ''
+                                            ? '/'
+                                            : flatSubSubUrl
+                                        }
+                                        title={subsubitem.title}
+                                        key={flatSubSubUrl}
+                                        className={cx('item thirdLevel', {
+                                          menuActive: this.isActive(flatSubUrl),
+                                          disabled: subSubDraftItem,
+                                        })}
+                                        onClick={(e) => {
+                                          if (subSubDraftItem)
+                                            e.preventDefault();
+                                        }}
+                                      >
+                                        {subsubitem.title}
+                                      </Link>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
                       </Dropdown.Item>
                     );
                   })}
