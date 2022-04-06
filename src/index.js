@@ -97,6 +97,30 @@ const applyConfig = (config) => {
       : []),
   ];
 
+  config.settings.externalRoutes.push(
+    {
+      match: {
+        path: '/(.*)marine(-new)?/assessment-module(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+    {
+      match: {
+        path:
+          '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+  );
+
   config.settings.pluggableStyles = [
     ...(config.settings.pluggableStyles || []),
     {
