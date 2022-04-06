@@ -15,6 +15,7 @@ import {
 } from '@plone/volto/components';
 import { BodyClass, isCmsUi } from '@plone/volto/helpers';
 import { Container, Segment } from 'semantic-ui-react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {
   HeroSection,
   StickyHeader,
@@ -77,7 +78,7 @@ const Header = (props) => {
                 <div className="home-header">
                   <div className="logo-nav-wrapper home-nav">
                     <div className="logo">
-                      <img
+                      <LazyLoadImage
                         className="home-logo"
                         src={clearLogoSVG}
                         alt="WISE Marine Logo"
