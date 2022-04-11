@@ -48,3 +48,12 @@ body.fullwidth-view {
     padding: 0 20px !important;
   }
 }
+
+body:not(.view-editview):not(.document_wide_view):not(.is-anonymous) main {
+  overflow: unset !important;
+}
+
+.pastanagalogo,
+.minipastanaga {
+  display: none !important;
+}
