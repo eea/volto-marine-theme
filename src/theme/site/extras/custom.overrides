@@ -9,6 +9,7 @@
 @import 'menu';
 @import 'fonts';
 @import 'print';
+@import 'slots';
 @import 'blocks.overrides';
 @import 'contextnavigation';
 @import 'segment.overrides';
@@ -53,7 +54,22 @@ body:not(.view-editview):not(.document_wide_view):not(.is-anonymous) main {
   overflow: unset !important;
 }
 
+.content-body > #page-document.ui.container {
+  width: 100% !important;
+}
+
+.nine.wide.column.content-body > #page-document.ui.container {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .pastanagalogo,
 .minipastanaga {
   display: none !important;
+}
+
+#geonetwork-datasets {
+  .block.align.center iframe {
+    height: 1550px !important;
+  }
 }
