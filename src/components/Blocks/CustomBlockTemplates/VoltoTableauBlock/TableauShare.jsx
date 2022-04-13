@@ -12,8 +12,8 @@ import cx from 'classnames';
 const TableauShare = (props) => {
   const { url } = props.data;
 
-  const embedCode = (url) => {
-    const tableauUrlPath = url.split('/');
+  const embedCode = (embed_url) => {
+    const tableauUrlPath = embed_url.split('/');
     const tableauSiteRoot = '/' + tableauUrlPath[3] + '/' + tableauUrlPath[4];
     const tableauName =
       tableauUrlPath[6] + '/' + tableauUrlPath[7].split('?')[0];

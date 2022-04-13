@@ -1,9 +1,8 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
-import { UniversalLink } from '@plone/volto/components';
+import { UniversalLink, Icon } from '@plone/volto/components';
 import { serializeNodes } from 'volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
-import { Icon } from '@plone/volto/components';
 import arrowSVG from '@eeacms/volto-marine-theme/icons/arrow.svg';
 
 const CardItem = (props) => {

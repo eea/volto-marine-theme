@@ -184,6 +184,12 @@
 }
 
 .homepage {
+  .search-icon {
+    svg {
+      color: @white;
+    }
+  }
+
   .hamburger-inner,
   .hamburger-inner::before,
   .hamburger-inner::after {
@@ -199,14 +205,6 @@
   .login-wrapper {
     svg.icon {
       color: @white !important;
-    }
-  }
-}
-
-.homepage {
-  .search-icon {
-    svg {
-      color: @white;
     }
   }
 }
@@ -274,16 +272,6 @@
     position: relative;
     display: flex;
     align-items: center;
-  }
-
-  #main .navigation:before {
-    background: none !important;
-  }
-}
-
-body.has-toolbar.has-sidebar {
-  #main .right-section-wrapper {
-    display: none !important;
   }
 
   #main .navigation:before {

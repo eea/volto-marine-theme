@@ -25,10 +25,6 @@ const available_colors = [
 ];
 
 const applyConfig = (config) => {
-  // config.views.contentTypesViews = {
-  //   ...config.views.contentTypesViews,
-  // };
-
   config.views.layoutViews = {
     ...config.views.layoutViews,
     document_view: HeroSectionView,

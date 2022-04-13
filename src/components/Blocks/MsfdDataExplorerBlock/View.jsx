@@ -22,8 +22,8 @@ const MsfdDataExplorerBlockView = (props) => {
         .then((res) => {
           const el = document.createElement('div');
           el.innerHTML = res.data;
-          const content = el.querySelector('.msfd-search-wrapper');
-          setContent(content);
+          const msfdContent = el.querySelector('.msfd-search-wrapper');
+          setContent(msfdContent);
         })
         .catch((err) => {
           setContent({ data: <div>Something went wrong.</div> });
