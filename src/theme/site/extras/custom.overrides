@@ -58,7 +58,8 @@ body:not(.view-editview):not(.document_wide_view):not(.is-anonymous) main {
   width: 100% !important;
 }
 
-.nine.wide.column.content-body > #page-document.ui.container {
+// fix padding when slots are enabled
+#main .nine.wide.column.content-body > #page-document.ui.container {
   padding-right: 0 !important;
   padding-left: 0 !important;
 }

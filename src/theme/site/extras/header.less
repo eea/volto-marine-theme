@@ -56,7 +56,6 @@
 
   .home-nav {
     position: relative;
-    top: -6px;
 
     .searchbox {
       .ui.input input {
@@ -124,6 +123,8 @@
   }
 
   .login-wrapper {
+    display: flex;
+
     .item {
       display: inline-block;
       display: flex;
@@ -186,7 +187,7 @@
 .homepage {
   .search-icon {
     svg {
-      color: @white;
+      color: @white !important;
     }
   }
 
@@ -217,7 +218,14 @@
     display: flex;
 
     svg {
+      color: @linkColor;
       cursor: pointer;
+    }
+  }
+
+  .login-wrapper {
+    svg {
+      height: 34px !important;
     }
   }
 }
@@ -242,7 +250,7 @@
 @media only screen and (max-width: @largestMobileScreen) {
   .mobile-search,
   .mobile-search-popup {
-    display: block;
+    display: flex;
   }
 
   #main .right-section-wrapper {
