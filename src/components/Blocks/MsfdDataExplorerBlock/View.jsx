@@ -18,7 +18,7 @@ const MsfdDataExplorerBlockView = (props) => {
   useEffect(() => {
     if (article_select) {
       axios
-        .get(`/marine-new/++api++/${article_select}`)
+        .get(`/marine/++api++/${article_select}`)
         .then((res) => {
           const el = document.createElement('div');
           el.innerHTML = res.data;
@@ -43,9 +43,9 @@ const MsfdDataExplorerBlockView = (props) => {
 
     const scripts = [
       'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js',
-      '/marine-new/++api++/++resource++msfd/js/jquery-ui.js',
-      '/marine-new/++api++/++resource++msfd/js/tabs.js',
-      '/marine-new/++api++/++resource++msfd/js/msfd_search.js',
+      '/marine/++api++/++resource++msfd/js/jquery-ui.js',
+      '/marine/++api++/++resource++msfd/js/tabs.js',
+      '/marine/++api++/++resource++msfd/js/msfd_search.js',
     ];
 
     if (!loading) {
