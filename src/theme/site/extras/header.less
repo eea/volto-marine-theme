@@ -56,7 +56,6 @@
 
   .home-nav {
     position: relative;
-    top: -6px;
 
     .searchbox {
       .ui.input input {
@@ -124,6 +123,8 @@
   }
 
   .login-wrapper {
+    display: flex;
+
     .item {
       display: inline-block;
       display: flex;
@@ -184,6 +185,12 @@
 }
 
 .homepage {
+  .search-icon {
+    svg {
+      color: @white !important;
+    }
+  }
+
   .hamburger-inner,
   .hamburger-inner::before,
   .hamburger-inner::after {
@@ -203,14 +210,6 @@
   }
 }
 
-.homepage {
-  .search-icon {
-    svg {
-      color: @white;
-    }
-  }
-}
-
 .mobile-search {
   position: relative;
   display: none;
@@ -219,7 +218,14 @@
     display: flex;
 
     svg {
+      color: @linkColor;
       cursor: pointer;
+    }
+  }
+
+  .login-wrapper {
+    svg {
+      height: 34px !important;
     }
   }
 }
@@ -244,7 +250,7 @@
 @media only screen and (max-width: @largestMobileScreen) {
   .mobile-search,
   .mobile-search-popup {
-    display: block;
+    display: flex;
   }
 
   #main .right-section-wrapper {
@@ -274,16 +280,6 @@
     position: relative;
     display: flex;
     align-items: center;
-  }
-
-  #main .navigation:before {
-    background: none !important;
-  }
-}
-
-body.has-toolbar.has-sidebar {
-  #main .right-section-wrapper {
-    display: none !important;
   }
 
   #main .navigation:before {

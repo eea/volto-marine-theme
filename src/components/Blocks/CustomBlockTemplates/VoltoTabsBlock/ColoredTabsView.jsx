@@ -5,43 +5,8 @@ import cx from 'classnames';
 
 import './less/coloredtabs.less';
 
-const MenuItem = (props) => {
-  const {
-    activeTab = null,
-    tabs = {},
-    setActiveTab = () => {},
-    tab,
-    index,
-  } = props;
-  const title = tabs[tab].title;
-  const tabIndex = index + 1;
-  const defaultTitle = `Tab ${tabIndex}`;
-
-  return (
-    <Menu.Item
-      className={`tab-menu-item-${tabIndex}`}
-      name={defaultTitle}
-      active={tab === activeTab}
-      onClick={() => {
-        if (activeTab !== tab) {
-          setActiveTab(tab);
-        }
-      }}
-    >
-      <span className="menu-item-dot"></span>
-      <p className="menu-item-text">{title || defaultTitle}</p>
-    </Menu.Item>
-  );
-};
-
 const ColoredTabsView = (props) => {
-  const {
-    metadata = {},
-    data = {},
-    tabsList = [],
-    tabs = {},
-    activeTabIndex = 0,
-  } = props;
+  const { metadata = {}, data = {}, tabsList = [], tabs = {} } = props;
 
   const uiContainer = data.align === 'full' ? 'ui container' : '';
   const menuAlign = data.menuAlign || 'left';
@@ -50,15 +15,22 @@ const ColoredTabsView = (props) => {
 
   const panes = tabsList.map((tab, index) => {
     const tabIndex = index + 1;
+    const title = tabs[tab].title;
+    const defaultTitle = `Tab ${tabIndex}`;
 
     return {
       id: tab,
-      menuItem: () => {
-        return (
-          <React.Fragment key={`tab-${tab}`}>
-            <MenuItem {...props} tab={tab} index={index} />
-          </React.Fragment>
-        );
+      menuItem: {
+        key: tabIndex,
+        content: (
+          <Menu.Item
+            className={`tab-menu-item-${tabIndex}`}
+            name={defaultTitle}
+          >
+            <span className="menu-item-dot"></span>
+            <p className="menu-item-text">{title || defaultTitle}</p>
+          </Menu.Item>
+        ),
       },
       render: () => {
         return (
@@ -76,7 +48,6 @@ const ColoredTabsView = (props) => {
         {tabsTitle && <h3 className="colored-tabs-title">{tabsTitle}</h3>}
       </div>
       <Tab
-        activeIndex={activeTabIndex}
         className={cx('default tabs colored-tabs', menuPosition, uiContainer)}
         menu={{
           className: cx(menuAlign),

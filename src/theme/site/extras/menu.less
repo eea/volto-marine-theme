@@ -107,8 +107,19 @@
   }
 }
 
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+  background-color: @primaryColor;
+}
+
 .hamburger {
   display: none;
+  padding-right: 0;
+
+  .hamburger-box {
+    display: flex;
+  }
 
   @media only screen and (max-width: @mobileMenuBreakpoint) {
     display: block;
@@ -119,17 +130,6 @@
   display: none;
   margin: 1em 0.9em 2em 0 !important;
   float: right;
-}
-
-.mobile-menu-open {
-  .ui.basic.button.close-button {
-    display: block;
-    color: @white !important;
-
-    &:hover {
-      background: #0a467a !important;
-    }
-  }
 }
 
 /* Countries submenu */
@@ -164,6 +164,15 @@
     max-width: 100%;
   }
 
+  .ui.basic.button.close-button {
+    display: block;
+    color: @white !important;
+
+    &:hover {
+      background: #0a467a !important;
+    }
+  }
+
   .nav-items {
     display: block;
   }
@@ -194,13 +203,6 @@
     }
   }
 
-  .item.firstLevel {
-    position: relative;
-    display: block;
-    padding: 0.8em 0.9em;
-    clear: both;
-  }
-
   .item.firstLevel.active > .menu {
     display: block !important;
   }
@@ -219,6 +221,11 @@
   }
 
   .item.firstLevel {
+    position: relative;
+    display: block;
+    padding: 0.8em 0.9em;
+    clear: both;
+
     .menu {
       position: relative;
       border: none !important;
@@ -246,20 +253,6 @@
     padding: 0.8em 0;
     font-weight: 400;
   }
-}
-
-.hamburger {
-  padding-right: 0;
-
-  .hamburger-box {
-    display: flex;
-  }
-}
-
-.hamburger-inner,
-.hamburger-inner::before,
-.hamburger-inner::after {
-  background-color: @primaryColor;
 }
 
 @media only screen and (max-width: @mobileMenuBreakpoint) {

@@ -8,4 +8,4 @@ export PresentationCardsView from './PresentationCards/PresentationCardsView';
 export PresentationCardsSchemaExtender from './PresentationCards/schema';
 export CarouselCardsView from './ColoredCards/CarouselCardsView';
 export GroupCardsView from './ColoredCards/GroupCardsView';
-export Card from './ColoredCards/Card';
+export CardItem from './ColoredCards/CardItem';

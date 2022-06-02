@@ -6,18 +6,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { BodyClass } from '@plone/volto/helpers';
 import { Container } from 'semantic-ui-react';
 import { map } from 'lodash';
-
-import config from '@plone/volto/registry';
-
 import {
+  BodyClass,
   getBlocksFieldname,
   getBlocksLayoutFieldname,
   hasBlocksData,
   getBaseUrl,
 } from '@plone/volto/helpers';
+import config from '@plone/volto/registry';
 
 const messages = defineMessages({
   unknownBlock: {

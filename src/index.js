@@ -25,10 +25,6 @@ const available_colors = [
 ];
 
 const applyConfig = (config) => {
-  // config.views.contentTypesViews = {
-  //   ...config.views.contentTypesViews,
-  // };
-
   config.views.layoutViews = {
     ...config.views.layoutViews,
     document_view: HeroSectionView,
@@ -112,6 +108,50 @@ const applyConfig = (config) => {
       match: {
         path:
           '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+    {
+      match: {
+        path:
+          '/(.*)marine(-new)?/policy-and-reporting/msfd-reports-and-assessments(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+    {
+      match: {
+        path:
+          '/(.*)marine(-new)?/policy-and-reporting/reports-and-assessments(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+    {
+      match: {
+        path:
+          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-country(.*)',
+        exact: false,
+        strict: false,
+      },
+      url(payload) {
+        return payload.location.pathname;
+      },
+    },
+    {
+      match: {
+        path:
+          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-region(.*)',
         exact: false,
         strict: false,
       },

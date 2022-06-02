@@ -102,6 +102,7 @@ const Header = (props) => {
                         size="39px"
                       />
                     </div>
+                    <Anontools />
                   </div>
                   <Navigation
                     pathname={pathname}
@@ -129,6 +130,7 @@ const Header = (props) => {
                             size="39px"
                           />
                         </div>
+                        <Anontools />
                       </div>
                       <Navigation
                         pathname={pathname}
