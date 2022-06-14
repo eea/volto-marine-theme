@@ -12,8 +12,8 @@ const MsfdDataExplorerBlockSchema = {
     article_select: {
       title: 'Select article',
       choices: [
-        ['msfd-mru', 'Article 4'],
-        ['msfd-ca', 'Article 7'],
+        ['msfd-marine-units', 'Article 4'],
+        ['msfd-competent-authorities', 'Article 7'],
         ['msfd-a8', 'Article 8'],
         ['msfd-a9', 'Article 9'],
         ['msfd-a10', 'Article 10'],
