@@ -144,9 +144,7 @@ const Header = (props) => {
 
             {showMobileSearch ? (
               <div ref={searchRef} className="mobile-search-popup">
-                <div>
-                  <SearchWidget pathname={pathname} />
-                </div>
+                <SearchWidget pathname={pathname} />
               </div>
             ) : (
               ''
