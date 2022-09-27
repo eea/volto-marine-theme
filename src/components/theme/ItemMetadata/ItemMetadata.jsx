@@ -91,20 +91,7 @@ const ItemMetadata = (props) => {
                     </Table.Cell>
                   </Table.Row>
                 )}
-                {topics && (
-                  <Table.Row>
-                    <Table.Cell>Topics</Table.Cell>
-                    <Table.Cell>
-                      <div className="tag-types">
-                        {topics.map((item, i) => (
-                          <div key={i}>
-                            <p>{item.title}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </Table.Cell>
-                  </Table.Row>
-                )}
+
                 {temporal_coverage &&
                   Object.keys(temporal_coverage).length > 0 && (
                     <Table.Row>
