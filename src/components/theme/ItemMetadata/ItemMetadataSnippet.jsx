@@ -5,7 +5,7 @@ const ItemMetadataSnippet = (props) => {
   const { item } = props;
   const source = item?.source?.[0] || item;
   const type = item?.source?.[0]['@type'] || item['@type'];
-  const { category, publication_year, legislative_reference } = source;
+  const { topics, publication_year, legislative_reference } = source;
 
   return (
     <>
@@ -17,20 +17,20 @@ const ItemMetadataSnippet = (props) => {
           </div>
         )}
 
-        {category && category.length > 0 && (
+        {topics && topics.length > 0 && (
           <div className="metadata-tab-section">
             <span className="metadata-tab-title">Topics: </span>
-            {Array.isArray(category) ? (
+            {Array.isArray(topics) ? (
               <>
-                {category.map((topic, i) => (
+                {topics.map((topic, i) => (
                   <span key={i}>
-                    {topic}
-                    {i < category.length - 1 ? ', ' : ''}
+                    {topic.title}
+                    {i < topics.length - 1 ? ', ' : ''}
                   </span>
                 ))}
               </>
             ) : (
-              <span>{category}</span>
+              <span>{topics.title}</span>
             )}
           </div>
         )}

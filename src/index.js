@@ -43,7 +43,7 @@ const applyConfig = (config) => {
     dashboard: DatabaseItemView,
     dataset: DatabaseItemView,
     database: DatabaseItemView,
-    report_publication: DatabaseItemView,
+    publication_report: DatabaseItemView,
     indicator: DatabaseItemView,
     briefing: DatabaseItemView,
     map_interactive: DatabaseItemView,

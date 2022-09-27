@@ -19,11 +19,6 @@ const DatabaseItemView = (props) => {
 
       <div id="page-document" className="ui container">
         <div>
-          <Link to="/data-maps-and-tools/metadata" className="resources-link">
-            <Icon name="folder open outline" size="small" />
-            Resource catalogue
-          </Link>
-
           <div className="metadata-header">
             {content['@type'] && (
               <h3 className="item-type">{formatItemType(content['@type'])}</h3>

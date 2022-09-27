@@ -224,7 +224,7 @@ class ArrayWidget extends Component {
       this.props.vocabBaseUrl
     ) {
       this.props.getVocabulary({
-        vocabNameOrURL: this.props.vocabBaseUrl,
+        vocabNameOrURL: this.props.vocabBaseUrl || [],
         size: -1,
         subrequest: this.props.lang,
       });
@@ -239,7 +239,7 @@ class ArrayWidget extends Component {
       !this.props.vocabLoaded
     ) {
       this.props.getVocabulary({
-        vocabNameOrURL: this.props.vocabBaseUrl,
+        vocabNameOrURL: this.props.vocabBaseUrl || [],
         size: -1,
         subrequest: this.props.lang,
       });
