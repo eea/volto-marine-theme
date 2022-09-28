@@ -19,8 +19,7 @@
   "addons": [
     "@eeacms/volto-tabs-block",
     "@eeacms/volto-tableau",
-    "@eeacms/volto-embed",
-    "volto-slate"
+    "@eeacms/volto-embed"
   ],
   "dependencies": {
     "@eeacms/volto-tabs-block": "1.2.11",
@@ -29,7 +28,6 @@
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1",
-    "volto-slate": "5.3.3",
     "axios": "0.25.0",
     "jquery": "3.6.0",
     "@plone/scripts": "*"

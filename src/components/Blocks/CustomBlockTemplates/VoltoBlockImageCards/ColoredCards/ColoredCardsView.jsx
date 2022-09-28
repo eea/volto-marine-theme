@@ -1,6 +1,6 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
-import { serializeNodes } from 'volto-slate/editor/render';
+import { serializeNodes } from '@plone/volto-slate/editor/render';
 import {
   CarouselCardsView,
   GroupCardsView,

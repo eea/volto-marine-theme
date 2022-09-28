@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import { UniversalLink, Icon } from '@plone/volto/components';
-import { serializeNodes } from 'volto-slate/editor/render';
+import { serializeNodes } from '@plone/volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import arrowSVG from '@eeacms/volto-marine-theme/icons/arrow.svg';
 
