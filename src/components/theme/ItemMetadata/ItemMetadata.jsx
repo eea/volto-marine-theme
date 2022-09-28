@@ -20,7 +20,6 @@ const ItemMetadata = (props) => {
   const source = item?.source?.[0] || item;
 
   const {
-    topics,
     description,
     lineage,
     embed_url,
