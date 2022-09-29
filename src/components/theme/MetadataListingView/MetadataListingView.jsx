@@ -5,7 +5,6 @@ import { compose } from 'redux';
 import {
   ItemMetadataSnippet,
   MetadataHeader,
-  FavButton,
 } from '@eeacms/volto-marine-theme/components';
 import './style.less';
 
@@ -16,7 +15,6 @@ const MetadataListingView = ({ items, isEditMode, token }) => {
         <div className="listing-item" key={item['@id']}>
           <div className="listing-body">
             <MetadataHeader item={item} />
-            {token && <FavButton item={item} iconSize="20" />}
             <ItemMetadataSnippet item={item} />
             <p>{item.description}</p>
           </div>

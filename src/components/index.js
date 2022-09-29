@@ -12,8 +12,3 @@ export TableauDownload from './theme/Tableau/TableauDownload';
 export TableauShare from './theme/Tableau/TableauShare';
 export TableauFullscreen from './theme/Tableau/TableauFullscreen';
 export ItemMetadataSnippet from './theme/ItemMetadata/ItemMetadataSnippet';
-export FavBoardListingView from './theme/FavBoard/FavBoardListingView';
-export FavBoardComments from './theme/FavBoard/FavBoardComments';
-export FavItemToolbar from './theme/FavBoard/FavItemToolbar';
-export FavBoardView from './theme/FavBoard/FavBoardView';
-export FavButton from './theme/FavBoard/FavButton';
