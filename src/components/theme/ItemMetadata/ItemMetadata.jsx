@@ -27,6 +27,7 @@ const ItemMetadata = (props) => {
     license_copyright,
     publisher,
     dpsir_type,
+    theme,
     report_type,
     original_source,
     temporal_coverage,
@@ -113,6 +114,20 @@ const ItemMetadata = (props) => {
                         {geo_coverage.geolocation.map((geo, i) => (
                           <div key={i}>
                             <p>{geo.label}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </Table.Cell>
+                  </Table.Row>
+                )}
+                {theme && (
+                  <Table.Row>
+                    <Table.Cell>Theme</Table.Cell>
+                    <Table.Cell>
+                      <div className="tag-types">
+                        {theme.map((item, i) => (
+                          <div key={i}>
+                            <p>{item}</p>
                           </div>
                         ))}
                       </div>
