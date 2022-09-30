@@ -38,7 +38,6 @@ const ItemMetadata = (props) => {
   const share_url = settings.publicURL + item_path;
   const copyright =
     license_copyright === 'EEA' ? EEA_LICENSE : license_copyright;
-  console.log(source);
   const [copyUrlStatus, copyUrl] = useCopyToClipboard(share_url);
   const [confirmationText, setConfirmationText] = React.useState(false);
 
