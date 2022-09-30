@@ -33,7 +33,6 @@ const ItemMetadata = (props) => {
     geo_coverage,
   } = source;
   const subject = source.Subject || source.subjects;
-
   const item_path = shareItem ? getPath(source.getURL).replace('/api', '') : '';
   const share_url = settings.publicURL + item_path;
   const copyright =
