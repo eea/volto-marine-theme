@@ -12,3 +12,4 @@ export TableauDownload from './theme/Tableau/TableauDownload';
 export TableauShare from './theme/Tableau/TableauShare';
 export TableauFullscreen from './theme/Tableau/TableauFullscreen';
 export ItemMetadataSnippet from './theme/ItemMetadata/ItemMetadataSnippet';
+export MapPreview from './theme/MetadataListingView/MapPreview';

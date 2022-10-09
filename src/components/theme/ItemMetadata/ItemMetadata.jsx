@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '@plone/volto/components';
 import { Table, Button } from 'semantic-ui-react';
-import MapPreview from './MapPreview';
+import { MapPreview } from '@eeacms/volto-marine-theme/components';
 import { getPath } from '@eeacms/volto-marine-theme/utils';
 import { useCopyToClipboard } from '@eeacms/volto-marine-theme/helpers';
 import config from '@plone/volto/registry';
@@ -24,7 +24,7 @@ const ItemMetadata = (props) => {
     lineage,
     embed_url,
     webmap_url,
-    license_copyright,
+    rights,
     publisher,
     dpsir_type,
     theme,
@@ -33,11 +33,11 @@ const ItemMetadata = (props) => {
     temporal_coverage,
     geo_coverage,
   } = source;
+
   const subject = source.Subject || source.subjects;
   const item_path = shareItem ? getPath(source.getURL).replace('/api', '') : '';
   const share_url = settings.publicURL + item_path;
-  const copyright =
-    license_copyright === 'EEA' ? EEA_LICENSE : license_copyright;
+  const copyright = rights === 'EEA' ? EEA_LICENSE : rights;
   const [copyUrlStatus, copyUrl] = useCopyToClipboard(share_url);
   const [confirmationText, setConfirmationText] = React.useState(false);
 
@@ -163,7 +163,7 @@ const ItemMetadata = (props) => {
                   </Table.Row>
                 )}
 
-                {license_copyright && (
+                {rights && (
                   <Table.Row>
                     <Table.Cell>Rights</Table.Cell>
                     <Table.Cell>{copyright}</Table.Cell>

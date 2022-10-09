@@ -14,7 +14,6 @@ const DatabaseItemView = (props) => {
   return (
     <>
       <BodyClass className="database-item-view" />
-
       <div id="page-document" className="ui container">
         <div>
           <div className="metadata-header">
@@ -26,7 +25,6 @@ const DatabaseItemView = (props) => {
             <ItemMetadataSnippet {...props} item={content} />
           </div>
         </div>
-
         <ItemMetadata
           {...props}
           item={content}
