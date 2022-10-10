@@ -6,6 +6,11 @@
   "author": "European Environment Agency: IDM2 A-Team",
   "license": "MIT",
   "homepage": "https://github.com/eea/volto-marine-theme",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "keywords": [
     "volto-addon",
     "volto",
