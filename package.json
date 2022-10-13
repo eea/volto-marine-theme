@@ -32,7 +32,8 @@
     "volto-slate": "5.3.3",
     "axios": "0.25.0",
     "jquery": "3.6.0",
-    "@plone/scripts": "*"
+    "@plone/scripts": "*",
+    "classnames": "2.2.6"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
