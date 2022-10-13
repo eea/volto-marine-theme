@@ -6,6 +6,8 @@ function applyDefault(api) {
     '@babel/plugin-transform-modules-commonjs',
     'transform-class-properties',
     'istanbul',
+  );
+  voltoBabel.plugins.push(
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-optional-chaining',
   );
