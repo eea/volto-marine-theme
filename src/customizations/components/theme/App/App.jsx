@@ -42,7 +42,7 @@ import {
   getNavigation,
   getTypes,
   getWorkflow,
-  getSlots,
+  // getSlots,
 } from '@plone/volto/actions';
 
 import clearSVG from '@plone/volto/icons/clear.svg';
