@@ -6,6 +6,7 @@ pipeline {
         NAMESPACE = "@eeacms"
         SONARQUBE_TAGS = "volto.eea.europa.eu,water.europa.eu-marine"
         DEPENDENCIES = ""
+        VOLTO = "plone/volto#slots_quanta_split_form_undo_prefix_path-v15.16.0"
     }
 
   stages {
@@ -77,7 +78,7 @@ pipeline {
               script {
                 try {
                   sh '''docker pull plone/volto-addon-ci'''
-                  sh '''docker run -i --name="$BUILD_TAG-volto" -e NAMESPACE="$NAMESPACE" -e GIT_NAME=$GIT_NAME -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" plone/volto-addon-ci'''
+                  sh '''docker run -i --name="$BUILD_TAG-volto" -e NAMESPACE="$NAMESPACE" -e VOLTO=$VOLTO -e GIT_NAME=$GIT_NAME -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" plone/volto-addon-ci'''
                   sh '''rm -rf xunit-reports'''
                   sh '''mkdir -p xunit-reports'''
                   sh '''docker cp $BUILD_TAG-volto:/opt/frontend/my-volto-project/coverage xunit-reports/'''
@@ -124,8 +125,8 @@ pipeline {
             node(label: 'docker') {
               script {
                 try {
-                  sh '''docker pull plone; docker run -d --name="$BUILD_TAG-plone" -e SITE="Plone" -e PROFILES="profile-plone.restapi:blocks" plone fg'''
-                  sh '''docker pull plone/volto-addon-ci; docker run -i --name="$BUILD_TAG-cypress" --link $BUILD_TAG-plone:plone -e VOLTO="plone/volto#slots_quanta_split_form_undo_prefix_path" -e NAMESPACE="$NAMESPACE" -e GIT_NAME=$GIT_NAME -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" -e DEPENDENCIES="$DEPENDENCIES" plone/volto-addon-ci cypress'''
+                  sh '''docker pull plone; docker run -d --rm --name="$BUILD_TAG-plone" -e SITE="Plone" -e PROFILES="profile-plone.restapi:blocks" plone fg'''
+                  sh '''docker pull plone/volto-addon-ci; docker run -i --name="$BUILD_TAG-cypress" --link $BUILD_TAG-plone:plone -e VOLTO=$VOLTO -e NAMESPACE="$NAMESPACE" -e GIT_NAME=$GIT_NAME -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" -e DEPENDENCIES="$DEPENDENCIES" -e NODE_ENV=test plone/volto-addon-ci cypress'''
                 } finally {
                   try {
                     sh '''rm -rf cypress-reports cypress-results cypress-coverage'''
@@ -142,7 +143,8 @@ pipeline {
                              reportName: 'CypressCoverage',
                              reportTitles: 'Integration Tests Code Coverage'])
                     }
-                    archiveArtifacts artifacts: 'cypress-reports/videos/*.mp4', fingerprint: true
+                    sh '''touch empty_file; for ok_test in $(grep -E 'file=.*failures="0"' $(grep 'testsuites .*failures="0"' $(find cypress-results -name *.xml) empty_file | awk -F: '{print $1}') empty_file | sed 's/.* file="\\(.*\\)" time.*/\\1/' | sed 's#^cypress/integration/##g' | sed 's#^../../../node_modules/@eeacms/##g'); do rm -f cypress-reports/videos/$ok_test.mp4; rm -f cypress-reports/$ok_test.mp4; done'''
+                    archiveArtifacts artifacts: 'cypress-reports/**/*.mp4', fingerprint: true, allowEmptyArchive: true
                     stash name: "cypress-coverage", includes: "cypress-coverage/**", allowEmpty: true
                   }
                   finally {
