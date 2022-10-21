@@ -27,7 +27,7 @@ coverage-end */
 export const setupBeforeEach = () => {
   cy.autologin();
   cy.createContent({
-    contentType: 'Document',
+    contentType: 'Folder',
     contentId: 'cypress',
     contentTitle: 'Cypress',
   });
@@ -44,7 +44,7 @@ export const setupBeforeEach = () => {
   cy.waitForResourceToLoad('@types');
   cy.waitForResourceToLoad('my-page');
   cy.navigate('/cypress/my-page/edit');
-  cy.get(`.block.title h1`);
+  cy.get(`.block.title [data-contents]`);
 };
 
 export const tearDownAfterEach = () => {
