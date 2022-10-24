@@ -175,6 +175,7 @@ class ArrayWidget extends Component {
     value: PropTypes.arrayOf(
       PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     ),
+    placeholder: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     wrapped: PropTypes.bool,
     creatable: PropTypes.bool, //if widget has no vocab and you want to be creatable
@@ -224,7 +225,7 @@ class ArrayWidget extends Component {
       this.props.vocabBaseUrl
     ) {
       this.props.getVocabulary({
-        vocabNameOrURL: this.props.vocabBaseUrl,
+        vocabNameOrURL: this.props.vocabBaseUrl || [],
         size: -1,
         subrequest: this.props.lang,
       });
@@ -239,7 +240,7 @@ class ArrayWidget extends Component {
       !this.props.vocabLoaded
     ) {
       this.props.getVocabulary({
-        vocabNameOrURL: this.props.vocabBaseUrl,
+        vocabNameOrURL: this.props.vocabBaseUrl || [],
         size: -1,
         subrequest: this.props.lang,
       });
@@ -351,7 +352,10 @@ class ArrayWidget extends Component {
             Option,
           }}
           value={selectedOption || []}
-          placeholder={this.props.intl.formatMessage(messages.select)}
+          placeholder={
+            this.props.placeholder ??
+            this.props.intl.formatMessage(messages.select)
+          }
           onChange={this.handleChange}
           isValidNewOption={(
             inputValue,
