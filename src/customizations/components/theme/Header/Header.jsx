@@ -45,7 +45,9 @@ const Header = (props) => {
         'plone.app.layout.navigation.interfaces.INavigationRoot',
       ) > -1) ||
     false;
-  const isHomePage = content?.['@type'] === 'Plone Site' || isNavRoot;
+  const isActualPathNameMarine = actualPathName === '/marine';
+  const isHomePage =
+    content?.['@type'] === 'Plone Site' || isNavRoot || isActualPathNameMarine;
   const cmsView = isCmsUi(actualPathName);
   const homePageView = isHomePage && !cmsView;
 

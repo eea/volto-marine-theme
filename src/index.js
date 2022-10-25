@@ -1,5 +1,11 @@
 import React from 'react';
-import { HeroSectionView, FullwidthView } from './components';
+import {
+  HeroSectionView,
+  FullwidthView,
+  DatabaseItemView,
+  MetadataListingView,
+  SimpleListingView,
+} from './components';
 import installAppExtras from './components/theme/AppExtras';
 import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
@@ -31,6 +37,17 @@ const applyConfig = (config) => {
     herosection_view: HeroSectionView,
     fullwidth_view: FullwidthView,
   };
+  config.views.contentTypesViews = {
+    ...config.views.contentTypesViews,
+    Document: HeroSectionView,
+    dashboard: DatabaseItemView,
+    dataset: DatabaseItemView,
+    database: DatabaseItemView,
+    publication_report: DatabaseItemView,
+    indicator: DatabaseItemView,
+    briefing: DatabaseItemView,
+    map_interactive: DatabaseItemView,
+  };
 
   config.addonReducers = {
     ...(config.addonReducers || {}),
@@ -56,6 +73,24 @@ const applyConfig = (config) => {
     blockHasValue: (data) => {
       return data.pathname !== '/';
     },
+  };
+  config.blocks.blocksConfig.listing = {
+    ...config.blocks.blocksConfig.listing,
+    variations: [
+      ...config.blocks.blocksConfig.listing.variations,
+      {
+        id: 'metadata',
+        title: 'Metadata Listing',
+        template: MetadataListingView,
+        isDefault: false,
+      },
+      {
+        id: 'simple',
+        title: 'Simple Listing',
+        template: SimpleListingView,
+        isDefault: false,
+      },
+    ],
   };
 
   config.settings.apiExpanders = [
