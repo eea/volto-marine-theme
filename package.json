@@ -25,6 +25,7 @@
   "dependencies": {
     "@eeacms/volto-tabs-block": "1.2.11",
     "@eeacms/volto-tableau": "1.2.4",
+    "@eeacms/volto-slots": "*",
     "@eeacms/volto-embed": "4.0.0",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
@@ -35,8 +36,7 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "@plone/scripts": "2.1.1",
-    "postcss-less": "6.0.0"
+    "@plone/scripts": "2.1.1"
   },
   "resolutions": {
     "**/@plone/scripts": "^2.0.0"
