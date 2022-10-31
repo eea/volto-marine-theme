@@ -4,7 +4,7 @@ pipeline {
   environment {
         GIT_NAME = "volto-marine-theme"
         NAMESPACE = "@eeacms"
-        SONARQUBE_TAGS = "volto.eea.europa.eu"
+        SONARQUBE_TAGS = "volto.eea.europa.eu,water.europa.eu-marine"
         DEPENDENCIES = ""
         VOLTO = "alpha"
     }
@@ -143,7 +143,8 @@ pipeline {
                              reportName: 'CypressCoverage',
                              reportTitles: 'Integration Tests Code Coverage'])
                     }
-                    archiveArtifacts artifacts: 'cypress-reports/videos/*.mp4', fingerprint: true
+                    sh '''touch empty_file; for ok_test in $(grep -E 'file=.*failures="0"' $(grep 'testsuites .*failures="0"' $(find cypress-results -name *.xml) empty_file | awk -F: '{print $1}') empty_file | sed 's/.* file="\\(.*\\)" time.*/\\1/' | sed 's#^cypress/integration/##g' | sed 's#^../../../node_modules/@eeacms/##g'); do rm -f cypress-reports/videos/$ok_test.mp4; rm -f cypress-reports/$ok_test.mp4; done'''
+                    archiveArtifacts artifacts: 'cypress-reports/**/*.mp4', fingerprint: true, allowEmptyArchive: true
                     stash name: "cypress-coverage", includes: "cypress-coverage/**", allowEmpty: true
                   }
                   finally {
