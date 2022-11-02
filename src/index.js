@@ -13,6 +13,8 @@ import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/C
 import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
 
+import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
+
 const available_colors = [
   '#ffffff',
   '#f7f3ef',
@@ -56,6 +58,7 @@ const applyConfig = (config) => {
   };
 
   config.widgets.widget.text_align = TextAlignWidget;
+  config.widgets.id.theme = TokenWidget;
 
   config.blocks.groupBlocksOrder = [
     ...config.blocks.groupBlocksOrder,
