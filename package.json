@@ -23,21 +23,21 @@
     "volto-slate"
   ],
   "dependencies": {
-    "@eeacms/volto-tabs-block": "1.2.11",
-    "@eeacms/volto-tableau": "1.2.4",
     "@eeacms/volto-embed": "4.0.0",
+    "@eeacms/volto-tableau": "1.2.4",
+    "@eeacms/volto-tabs-block": "1.2.11",
+    "@plone/scripts": "*",
+    "axios": "0.25.0",
+    "jquery": "3.6.0",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1",
-    "volto-slate": "5.3.3",
-    "axios": "0.25.0",
-    "jquery": "3.6.0",
-    "@plone/scripts": "*"
+    "volto-slate": "5.3.3"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6",
     "@cypress/code-coverage": "^3.9.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6"
+    "babel-plugin-transform-class-properties": "^6.24.1"
   },
   "scripts": {
     "release": "release-it",
