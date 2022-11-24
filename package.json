@@ -19,8 +19,7 @@
   "addons": [
     "@eeacms/volto-tabs-block",
     "@eeacms/volto-tableau",
-    "@eeacms/volto-embed",
-    "volto-slate"
+    "@eeacms/volto-embed"
   ],
   "dependencies": {
     "@eeacms/volto-embed": "4.0.0",
@@ -31,8 +30,7 @@
     "jquery": "3.6.0",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
-    "slick-carousel": "^1.8.1",
-    "volto-slate": "5.3.3"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6",
