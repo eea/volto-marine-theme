@@ -28,10 +28,12 @@ const Header = (props) => {
   const {
     content,
     leadImage,
-    actualPathName,
+    actualPathName = '',
     pathname,
     navigationItems,
   } = props;
+
+  console.log(actualPathName);
 
   const leadImageUrl = leadImage?.scales?.huge?.download;
   const contentTitle = content?.title;
