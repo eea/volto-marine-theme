@@ -1,5 +1,3 @@
-import { tableauVersions, getLatestTableauVersion } from 'tableau-api-js';
-
 const urlParametersSchema = {
   title: 'Parameter',
   fieldsets: [
@@ -72,9 +70,19 @@ export default (config) => ({
       title: 'Version',
       type: 'array',
       choices: [
-        ...tableauVersions.map((version) => [version, `tableau-${version}`]),
+        ...[
+          '2.8.0',
+          '2.7.0',
+          '2.6.0',
+          '2.5.0',
+          '2.4.0',
+          '2.3.0',
+          '2.2.2',
+          '2.1.2',
+          '2.0.3',
+        ].map((version) => [version, `tableau-${version}`]),
       ],
-      default: config.settings.tableauVersion || getLatestTableauVersion(),
+      default: config.settings.tableauVersion || '2.8.0',
     },
     url: {
       title: 'Url',
@@ -100,7 +108,7 @@ export default (config) => ({
     hideToolbar: {
       title: 'Hide toolbar',
       type: 'boolean',
-      default: false,
+      default: true,
     },
     autoScale: {
       title: 'Auto scale',

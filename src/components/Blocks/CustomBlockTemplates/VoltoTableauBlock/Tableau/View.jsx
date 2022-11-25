@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
-import { getLatestTableauVersion } from 'tableau-api-js';
 import { setTableauApi } from '@eeacms/volto-tableau/actions';
 import cx from 'classnames';
+import {
+  isMyScriptLoaded,
+  loadTableauScript,
+} from '@eeacms/volto-tableau/helpers';
 import {
   TableauDownload,
   TableauShare,
@@ -14,6 +17,7 @@ import {
 
 const Tableau = (props) => {
   const ref = React.useRef(null);
+  const filters = React.useRef(props.data.filters || {});
   const mounted = React.useRef(false);
   const [viz, setViz] = React.useState(null);
   const {
@@ -27,32 +31,28 @@ const Tableau = (props) => {
     screen = {},
     setError = () => {},
     setLoaded = () => {},
-    version = getLatestTableauVersion(),
+    version = '2.8.0',
   } = props;
   const {
     autoScale = false,
-    filters = {},
     hideTabs = false,
-    hideToolbar = false,
+    hideToolbar = true,
     sheetname = '',
     toolbarPosition = 'Top',
   } = data;
   const defaultUrl = data.url;
   const url = props.url || defaultUrl;
-  const tableau = props.tableau[version];
+
+  //load tableau from script tag
+  const tableau = isMyScriptLoaded(version) && __CLIENT__ ? window.tableau : '';
 
   const onFilterChange = (filter) => {
-    const newFilters = { ...filters };
+    const newFilters = { ...filters.current };
     const fieldName = filter.getFieldName();
-    const allSelected = filter.getIsAllSelected();
     const values = filter
       .getAppliedValues()
       .map((appliedValue) => appliedValue.value);
-    if (allSelected) {
-      delete newFilters[fieldName];
-    } else {
-      newFilters[fieldName] = values;
-    }
+    newFilters[fieldName] = values;
     if (JSON.stringify(newFilters) !== JSON.stringify(filters)) {
       props.onChangeBlock(props.block, {
         ...data,
@@ -60,6 +60,7 @@ const Tableau = (props) => {
           ...newFilters,
         },
       });
+      filters.current = { ...newFilters };
     }
   };
 
@@ -83,7 +84,7 @@ const Tableau = (props) => {
         hideToolbar,
         sheetname,
         toolbarPosition,
-        ...filters,
+        ...data.filters,
         ...extraFilters,
         ...extraOptions,
         onFirstInteractive: () => {
@@ -168,6 +169,9 @@ const Tableau = (props) => {
     if (__CLIENT__ && !props.tableau[version]) {
       props.setTableauApi(version, props.mode);
     }
+    if (__CLIENT__) {
+      loadTableauScript(() => {}, version);
+    }
     /* eslint-disable-next-line */
   }, [version]);
 
@@ -206,22 +210,6 @@ const Tableau = (props) => {
     /* eslint-disable-next-line */
   }, [loaded, screen?.page?.width]);
 
-  // React.useEffect(() => {
-  //   if (mounted.current && loaded && viz) {
-  //     const workbook = viz.getWorkbook();
-  //     if (extraOptions.device === 'desktop') {
-  //       workbook.activateSheetAsync(0);
-  //     } else if (extraOptions.device === 'tablet') {
-  //       workbook.activateSheetAsync(1);
-  //     } else {
-  //       workbook.activateSheetAsync(2);
-  //     }
-  //     console.log('HERE', workbook.getPublishedSheetsInfo());
-  //     addExtraFilters(extraOptions);
-  //   }
-  //   /* eslint-disable-next-line */
-  // }, [JSON.stringify(extraOptions)]);
-
   return (
     <div id="tableau-wrap">
       <div className="tableau-toolbar">
@@ -229,7 +217,6 @@ const Tableau = (props) => {
         <TableauFullscreen {...props} />
         <TableauShare {...props} />
       </div>
-
       <div id="tableau-outer">
         <div
           className={cx('tableau', version, {
