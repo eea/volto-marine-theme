@@ -3,6 +3,7 @@
 .eslintrc.js
 project
 logs
+cache
 *.log
 npm-debug.log*
 .DS_Store

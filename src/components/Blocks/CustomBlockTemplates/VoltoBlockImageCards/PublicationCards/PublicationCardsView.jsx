@@ -2,7 +2,7 @@ import React from 'react';
 import config from '@plone/volto/registry';
 import { Card, Message } from 'semantic-ui-react';
 import { UniversalLink, Icon } from '@plone/volto/components';
-import { serializeNodes } from 'volto-slate/editor/render';
+import { serializeNodes } from '@plone/volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import newspaperSVG from '@eeacms/volto-marine-theme/icons/newspaper.svg';
 import cx from 'classnames';

@@ -19,13 +19,14 @@
   "addons": [
     "@eeacms/volto-tabs-block",
     "@eeacms/volto-tableau",
-    "@eeacms/volto-embed"
+    "@eeacms/volto-embed",
+    "@eeacms/volto-slots"
   ],
   "dependencies": {
-    "@eeacms/volto-embed": "4.0.0",
-    "@eeacms/volto-tableau": "1.2.4",
-    "@eeacms/volto-tabs-block": "1.2.11",
-    "@plone/scripts": "*",
+    "@eeacms/volto-embed": "*",
+    "@eeacms/volto-slots": "*",
+    "@eeacms/volto-tableau": "*",
+    "@eeacms/volto-tabs-block": "*",
     "axios": "0.25.0",
     "jquery": "3.6.0",
     "react-lazy-load-image-component": "^1.4.0",
@@ -35,6 +36,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "7.18.6",
     "@cypress/code-coverage": "^3.9.5",
+    "@plone/scripts": "2.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1"
   },
   "scripts": {
