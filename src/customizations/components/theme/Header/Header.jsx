@@ -33,8 +33,6 @@ const Header = (props) => {
     navigationItems,
   } = props;
 
-  console.log(actualPathName);
-
   const leadImageUrl = leadImage?.scales?.huge?.download;
   const contentTitle = content?.title;
   const contentImageCaption = content?.image_caption;
