@@ -28,7 +28,7 @@ const Header = (props) => {
   const {
     content,
     leadImage,
-    actualPathName,
+    actualPathName = '',
     pathname,
     navigationItems,
   } = props;

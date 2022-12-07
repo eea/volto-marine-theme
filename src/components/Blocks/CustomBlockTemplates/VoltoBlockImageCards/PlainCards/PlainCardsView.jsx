@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Message } from 'semantic-ui-react';
-import { serializeNodes } from 'volto-slate/editor/render';
+import { serializeNodes } from '@plone/volto-slate/editor/render';
 import { getScaleUrl, getPath } from '@eeacms/volto-marine-theme/utils';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import cx from 'classnames';

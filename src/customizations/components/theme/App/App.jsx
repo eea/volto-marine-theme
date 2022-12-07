@@ -42,14 +42,12 @@ import {
   getNavigation,
   getTypes,
   getWorkflow,
-  getSlots,
 } from '@plone/volto/actions';
+import { getSlots } from '@eeacms/volto-slots/actions';
 
 import clearSVG from '@plone/volto/icons/clear.svg';
 import MultilingualRedirector from '@plone/volto/components/theme/MultilingualRedirector/MultilingualRedirector';
 import WorkingCopyToastsFactory from '@plone/volto/components/manage/WorkingCopyToastsFactory/WorkingCopyToastsFactory';
-
-import * as Sentry from '@sentry/browser';
 
 /**
  * @export
@@ -94,11 +92,7 @@ class App extends Component {
    */
   componentDidCatch(error, info) {
     this.setState({ hasError: true, error, errorInfo: info });
-    if (__CLIENT__) {
-      if (window?.env?.RAZZLE_SENTRY_DSN || __SENTRY__?.SENTRY_DSN) {
-        Sentry.captureException(error);
-      }
-    }
+    config.settings.errorHandlers.forEach((handler) => handler(error));
   }
 
   /**

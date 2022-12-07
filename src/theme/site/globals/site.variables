@@ -61,7 +61,7 @@
 @secondaryColor      : #59d3ff;
 
 @lightPrimaryColor   : #0077bc;
-@lightSecondaryColor : @lightBlack;
+@lightSecondaryColor : #545454;
 
 /*--------------
   Page Heading

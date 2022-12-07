@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router';
+import Tableau from './Tableau/View';
 import config from '@plone/volto/registry';
 import qs from 'querystring';
-import { getLatestTableauVersion } from 'tableau-api-js';
-import Tableau from './Tableau/View';
 import { TableauPlaceholder } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
 import '@eeacms/volto-tableau/less/tableau.less';
 import './less/tableaublock.less';
@@ -37,11 +36,8 @@ const View = (props) => {
     description = null,
     autoScale = false,
   } = data;
-
   const version =
-    props.data.version ||
-    config.settings.tableauVersion ||
-    getLatestTableauVersion();
+    props.data.version || config.settings.tableauVersion || '2.8.0';
   const device = getDevice(config, screen.page?.width || Infinity);
   const breakpointUrl = breakpointUrls.filter(
     (breakpoint) => breakpoint.device === device,
@@ -83,7 +79,6 @@ const View = (props) => {
       ) : (
         ''
       )}
-
       <Tableau
         {...props}
         // canUpdateUrl={!breakpointUrl}
@@ -95,12 +90,7 @@ const View = (props) => {
         setLoaded={setLoaded}
         version={version}
         url={url}
-        data={{
-          hideToolbar: true,
-          ...props.data,
-        }}
       />
-
       <TableauPlaceholder {...props} />
     </div>
   ) : (
