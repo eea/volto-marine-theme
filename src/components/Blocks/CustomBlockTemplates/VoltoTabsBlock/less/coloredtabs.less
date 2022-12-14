@@ -6,27 +6,69 @@
 .tabs-block.colored_tabs {
   padding: 2.5em 0;
   background-color: #f7f3ef;
-}
 
-.colored-tabs-title {
-  margin-bottom: 2em;
-  font-size: 27px;
-}
-
-.ui.container.colored-tabs {
-  margin-top: 1.5rem !important;
+  .colored-tabs-title {
+    color: @primaryColor;
+    font-size: 27px;
+  }
 }
 
 .colored-tabs {
-  .ui.menu {
-    margin-bottom: 2rem;
-  }
+  color: @primaryColor;
 
-  .ui.menu .item {
-    position: relative;
-    flex-direction: column;
-    align-items: end;
-    padding: 1rem;
+  .ui.menu {
+    box-shadow: none;
+
+    > .item {
+      padding: 0 !important;
+    }
+
+    .item {
+      position: relative;
+      flex-direction: column;
+      align-items: end;
+      padding: 1rem;
+
+      &:hover {
+        background: none;
+      }
+
+      &:before {
+        width: 0;
+        background: transparent;
+      }
+    }
+
+    .active.item {
+      background: none;
+
+      &:hover {
+        background: none;
+      }
+
+      .menu-item-text {
+        border-bottom: 2px solid @primaryColor;
+        font-weight: 600;
+      }
+    }
+
+    .tab-menu-item-1 {
+      .menu-item-dot {
+        background-color: #59d3ff;
+      }
+    }
+
+    .tab-menu-item-2 {
+      .menu-item-dot {
+        background-color: #2dd2b7;
+      }
+    }
+
+    .tab-menu-item-3 {
+      .menu-item-dot {
+        background-color: #1271e1;
+      }
+    }
   }
 
   .menu-item-text {
@@ -46,28 +88,7 @@
     border-radius: 50%;
   }
 
-  .ui.menu .tab-menu-item-1 {
-    .menu-item-dot {
-      background-color: #59d3ff;
-    }
-  }
-
-  .ui.menu .tab-menu-item-2 {
-    .menu-item-dot {
-      background-color: #2dd2b7;
-    }
-  }
-
-  .ui.menu .tab-menu-item-3 {
-    .menu-item-dot {
-      background-color: #1271e1;
-    }
-  }
-
-  .ui.menu .active.item {
-    .menu-item-text {
-      border-bottom: 2px solid @primaryColor;
-      font-weight: 600;
-    }
+  .ui.segment.tab {
+    background-color: transparent;
   }
 }
