@@ -14,7 +14,15 @@ import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
 
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
+import linkSVG from '@plone/volto/icons/link.svg';
+import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
+import { LINK } from '@plone/volto-slate/constants';
+import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/render';
+import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
+import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
+import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
 
+import { defineMessages } from 'react-intl'; // , defineMessages
 const available_colors = [
   '#ffffff',
   '#f7f3ef',
@@ -31,6 +39,17 @@ const available_colors = [
   '#BED3F3',
   '#000000',
 ];
+
+const messages = defineMessages({
+  edit: {
+    id: 'Edit link',
+    defaultMessage: 'Edit link',
+  },
+  delete: {
+    id: 'Remove link',
+    defaultMessage: 'Remove link',
+  },
+});
 
 const applyConfig = (config) => {
   config.views.layoutViews = {
@@ -223,6 +242,33 @@ const applyConfig = (config) => {
     { cssClass: 'poppins-light', label: 'Poppins Light' },
     { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
+
+  //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
+  const { slate } = config.settings;
+
+  slate.toolbarButtons = [...(slate.toolbarButtons || []), LINK];
+  slate.expandedToolbarButtons = [
+    ...(slate.expandedToolbarButtons || []),
+    LINK,
+  ];
+
+  slate.htmlTagsToSlate.A = linkDeserializer;
+
+  const opts = {
+    title: 'Link',
+    pluginId: LINK,
+    elementType: LINK,
+    element: LinkElement,
+    isInlineElement: true,
+    editSchema: LinkEditSchema,
+    extensions: [withLink],
+    hasValue: (formData) => !!formData.link,
+    toolbarButtonIcon: linkSVG,
+    messages,
+  };
+
+  const [installLinkEditor] = makeInlineElementPlugin(opts);
+  config = installLinkEditor(config);
 
   const final = [installAppExtras, installMsfdDataExplorerBlock].reduce(
     (acc, apply) => apply(acc),
