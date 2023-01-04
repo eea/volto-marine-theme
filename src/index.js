@@ -49,6 +49,18 @@ const messages = defineMessages({
     id: 'Remove link',
     defaultMessage: 'Remove link',
   },
+  document_view: {
+    id: 'Document View',
+    defaultMessage: 'Document View',
+  },
+  herosection_view: {
+    id: 'Hero Section View',
+    defaultMessage: 'Hero Section View',
+  },
+  fullwidth_view: {
+    id: 'Full Width View',
+    defaultMessage: 'Full Width View',
+  },
 });
 
 const applyConfig = (config) => {
@@ -57,6 +69,12 @@ const applyConfig = (config) => {
     document_view: HeroSectionView,
     herosection_view: HeroSectionView,
     fullwidth_view: FullwidthView,
+  };
+  config.views.layoutViewsNamesMapping = {
+    ...(config.views.layoutViewsNamesMapping || {}),
+    document_view: 'Document View',
+    herosection_view: 'Hero Section View',
+    fullwidth_view: 'Full Width View',
   };
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
