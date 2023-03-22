@@ -56,6 +56,7 @@ export default (config) => ({
         'hideTabs',
         'hideToolbar',
         'autoScale',
+        'height',
         'toolbarPosition',
       ],
     },
@@ -109,6 +110,18 @@ export default (config) => ({
       title: 'Hide toolbar',
       type: 'boolean',
       default: true,
+    },
+    height: {
+      title: (
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
+        >
+          Height
+        </a>
+      ),
+      default: '650px',
     },
     autoScale: {
       title: 'Auto scale',

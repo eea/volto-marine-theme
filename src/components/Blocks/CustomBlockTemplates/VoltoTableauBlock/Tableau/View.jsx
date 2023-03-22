@@ -37,6 +37,7 @@ const Tableau = (props) => {
     autoScale = false,
     hideTabs = false,
     hideToolbar = true,
+    height = '650px',
     sheetname = '',
     toolbarPosition = 'Top',
   } = data;
@@ -82,6 +83,7 @@ const Tableau = (props) => {
       const newViz = new tableau.Viz(ref.current, url || defaultUrl, {
         hideTabs,
         hideToolbar,
+        height: height,
         sheetname,
         toolbarPosition,
         ...data.filters,
@@ -189,6 +191,7 @@ const Tableau = (props) => {
   }, [
     hideTabs,
     hideToolbar,
+    height,
     autoScale,
     sheetname,
     tableau,
