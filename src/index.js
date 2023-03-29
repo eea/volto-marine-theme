@@ -6,7 +6,7 @@ import {
   MetadataListingView,
   SimpleListingView,
 } from './components';
-import installAppExtras from './components/theme/AppExtras';
+// import installAppExtras from './components/theme/AppExtras';
 import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
@@ -23,6 +23,11 @@ import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
 
 import { defineMessages } from 'react-intl'; // , defineMessages
+
+import marineLogo from '@eeacms/volto-marine-theme/static/marine_logo.svg';
+import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
+import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
+
 const available_colors = [
   '#ffffff',
   '#f7f3ef',
@@ -261,6 +266,73 @@ const applyConfig = (config) => {
     { cssClass: 'poppins-bold', label: 'Poppins Bold' },
   ];
 
+  // EEA customizations
+  config.settings.eea = {
+    ...(config.settings.eea || {}),
+    headerOpts: {
+      ...(config.settings.eea?.headerOpts || {}),
+      logo: marineLogo,
+    },
+    footerOpts: {
+      ...(config.settings.eea?.footerOpts || {}),
+      description:
+        'WISE - Marine is a gateway to information on European marine issues in support of ecosystem based management and ocean governance',
+      managedBy: [
+        {
+          link: 'https://www.eea.europa.eu/',
+          src: eeaWhiteLogo,
+          alt: 'EEA Logo',
+          className: 'site logo',
+          columnSize: {
+            mobile: 6,
+            tablet: 12,
+            computer: 4,
+          },
+        },
+        {
+          link: 'https://commission.europa.eu/',
+          src: europeanComissionLogo,
+          alt: 'European Commission Logo',
+          className: 'ec logo',
+          columnSize: {
+            mobile: 6,
+            tablet: 12,
+            computer: 4,
+          },
+        },
+      ],
+      social: [],
+      actions: [
+        {
+          link: '/sitemap',
+          title: 'Sitemap',
+        },
+        {
+          link: '/#legal-notice',
+          title: 'Privacy',
+        },
+        {
+          link: '/marine/login',
+          title: 'CMS Login',
+        },
+      ],
+
+      contacts: [
+        {
+          icon: 'comment outline',
+          text: 'About',
+          link: '/marine/wise-marine',
+          children: [],
+        },
+        {
+          icon: 'comment outline',
+          text: 'Contact',
+          link: 'mailto:WISE@eea.europa.eu',
+        },
+      ],
+    },
+  };
+
   //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
   const { slate } = config.settings;
 
@@ -288,7 +360,7 @@ const applyConfig = (config) => {
   const [installLinkEditor] = makeInlineElementPlugin(opts);
   config = installLinkEditor(config);
 
-  const final = [installAppExtras, installMsfdDataExplorerBlock].reduce(
+  const final = [installMsfdDataExplorerBlock].reduce(
     (acc, apply) => apply(acc),
     config,
   );

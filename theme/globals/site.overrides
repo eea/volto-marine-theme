@@ -4,46 +4,13 @@
 
 @subsiteBackgroundGradient: linear-gradient(
   248.86deg,
-  @green-1 24.22%,
-  @green-2 97.12%
+  @lightPrimaryColor 24.22%,
+  @primaryColor 97.12%
 );
 
 p.has--clear--both:empty {
   margin-top: 0;
   margin-bottom: 0;
-}
-
-// Adaptation option view styles
-div.adaptation-option-view,
-div.case-study-view {
-  div.section {
-    h5.section-title {
-      font-size: 1em;
-      font-style: italic;
-    }
-
-    margin-top: 2em;
-  }
-}
-
-// Case study view styles
-div.case-study-view {
-  .case-studies-review-image-wrapper {
-    position: relative;
-    margin: 0 1em 1em 0;
-    float: left;
-  }
-}
-
-// Video view styles
-div.video-view {
-  video {
-    margin-top: 1.5em;
-  }
-
-  div.external-video {
-    margin-top: 1.5em;
-  }
 }
 
 // General styles
@@ -75,20 +42,7 @@ div.content-metadata {
 }
 
 // Mission subsites
-body.subsite-mkh {
-  &.subsite-root {
-    .segment.content-area {
-      padding-top: 0;
-      margin-top: 0;
-    }
-
-    #page-document {
-      > div.styled-group:nth-child(2) {
-        margin-top: 0;
-      }
-    }
-  }
-
+body {
   .eea.header .eea-logo {
     max-width: 252px;
   }
@@ -101,11 +55,20 @@ body.subsite-mkh {
       font-size: 1.125rem;
     }
   }
+  .ui.basic.segment.content-area {
+    margin: 0;
+    padding: 0;
+  }
+
+  ui.container .ui.grid metadata {
+    display: flex;
+    gap: 1em;
+  }
 
   .ui.menu .green.active.item,
   .ui.green.menu .active.item {
-    border-color: @green-1 !important;
-    color: @green-1 !important;
+    border-color: @primaryColor !important;
+    color: @primaryColor !important;
   }
 
   .main-menu {
@@ -116,21 +79,21 @@ body.subsite-mkh {
     }
 
     .item a {
-      color: @blue-1;
+      color: @primaryColor;
     }
 
     .item a:hover {
-      border-color: @green-1;
+      border-color: @primaryColor;
     }
 
     .item.active a {
-      border-color: @green-1;
-      color: @green-1;
+      border-color: @primaryColor;
+      color: @primaryColor;
     }
   }
 
   .search-action {
-    background-color: @green-1;
+    background-color: @primaryColor;
   }
 
   .eea.header .subsite-logo {
@@ -152,7 +115,7 @@ body.subsite-mkh {
   }
 
   .eea.banner {
-    background: @green-1;
+    background: @primaryColor;
   }
 
   footer,
@@ -185,11 +148,11 @@ body.view-viewview .full {
   }
 }
 
-body.view-viewview.has-toolbar:not(.has-sidebar):not(.has-sidebar-collapsed) {
-  .full > div {
-    width: calc(100% - @toolbarWidth) !important;
-  }
-}
+//body.view-viewview.has-toolbar:not(.has-sidebar):not(.has-sidebar-collapsed) {
+//  .full > div {
+//    width: calc(100% - @toolbarWidth) !important;
+//  }
+//}
 
 @media screen and (min-width: @largestMobileScreen) {
   body.view-viewview.has-toolbar.has-sidebar {
