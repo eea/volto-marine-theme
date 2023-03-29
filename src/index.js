@@ -267,6 +267,7 @@ const applyConfig = (config) => {
   ];
 
   // EEA customizations
+  config.settings.eea.websiteTitle = "Wise - Marine";
   config.settings.eea = {
     ...(config.settings.eea || {}),
     headerOpts: {
