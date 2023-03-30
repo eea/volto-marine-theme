@@ -120,7 +120,7 @@ const ItemMetadata = (props) => {
                     </Table.Cell>
                   </Table.Row>
                 )}
-                {theme && (
+                {theme && Array.isArray(theme) ? (
                   <Table.Row>
                     <Table.Cell>Theme</Table.Cell>
                     <Table.Cell>
@@ -132,6 +132,11 @@ const ItemMetadata = (props) => {
                         ))}
                       </div>
                     </Table.Cell>
+                  </Table.Row>
+                ) : (
+                  <Table.Row>
+                    <Table.Cell>Theme</Table.Cell>
+                    <Table.Cell>{theme}</Table.Cell>
                   </Table.Row>
                 )}
                 {publisher && (
