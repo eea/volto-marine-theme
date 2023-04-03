@@ -8,39 +8,6 @@
   @primaryColor 97.12%
 );
 
-// p.has--clear--both:empty {
-//   margin-top: 0;
-//   margin-bottom: 0;
-// }
-
-// General styles
-// div.share-info {
-//   margin-top: 1em;
-//   text-align: right;
-// }
-
-// h4.reference-title {
-//   padding-top: 1.5em;
-//   border-top: 1px solid #ddd;
-//   margin-top: 1.5em;
-// }
-
-// div.published-modified-info {
-//   margin-top: 2em;
-//   font-size: 0.75rem;
-// }
-
-// div.content-metadata {
-//   ul.related-case-studies {
-//     padding-left: 0px;
-//     list-style: none;
-
-//     li {
-//       margin-bottom: 0.5em;
-//     }
-//   }
-// }
-
 body {
   .minipastanaga,
   .pastanagalogo {
@@ -68,12 +35,6 @@ body {
     gap: 1em;
   }
 
-  // .ui.menu .green.active.item,
-  // .ui.green.menu .active.item {
-  //   border-color: @primaryColor !important;
-  //   color: @primaryColor !important;
-  // }
-
   .main-menu {
     .ui.text.menu {
       position: absolute;
@@ -99,24 +60,6 @@ body {
     background-color: @primaryColor;
   }
 
-  // .eea.header .subsite-logo {
-  //   z-index: unset;
-  //   height: 100%;
-
-  //   .logo {
-  //     display: inline-block;
-  //     height: 100%;
-
-  //     img {
-  //       max-width: 320px;
-  //     }
-  //   }
-
-  //   &:before {
-  //     background-color: transparent;
-  //   }
-  // }
-
   .eea.banner {
     background: @primaryColor;
   }
@@ -128,11 +71,10 @@ body {
   }
 }
 
-// @media only screen and (min-width: @largestSmallMonitor) {
-//   .eea.header .subsite-logo {
-//     left: 280px !important;
-//   }
-// }
+body.view-viewview .imagecards-block.full {
+  right: 0px;
+  left: 0px;
+}
 
 body.view-viewview .full {
   position: relative !important;
@@ -150,12 +92,6 @@ body.view-viewview .full {
     margin-left: auto !important;
   }
 }
-
-//body.view-viewview.has-toolbar:not(.has-sidebar):not(.has-sidebar-collapsed) {
-//  .full > div {
-//    width: calc(100% - @toolbarWidth) !important;
-//  }
-//}
 
 @media screen and (min-width: @largestMobileScreen) {
   body.view-viewview.has-toolbar.has-sidebar {
