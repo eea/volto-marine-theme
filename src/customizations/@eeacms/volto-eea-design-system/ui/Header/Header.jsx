@@ -13,8 +13,8 @@ import closeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/asset
 import searchIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/search-line.svg';
 import burgerIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/menu-line.svg';
 
-import HeaderSearchPopUp from './HeaderSearchPopUp';
-import HeaderMenuPopUp from './HeaderMenuPopUp';
+import HeaderSearchPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderSearchPopUp';
+import HeaderMenuPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderMenuPopUp';
 import PropTypes from 'prop-types';
 
 Header.propTypes = {
