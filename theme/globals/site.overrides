@@ -16,6 +16,9 @@ body {
   .eea.header .eea-logo {
     max-width: 252px;
   }
+  .eea.header .top.bar {
+    line-height: 1em;
+  }
 
   .subfooter .footer-description {
     margin-top: 3em;
