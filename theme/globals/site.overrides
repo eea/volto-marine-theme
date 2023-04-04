@@ -9,6 +9,9 @@
 );
 
 body {
+  .tableau-image-placeholder {
+    display: none;
+  }
   .minipastanaga,
   .pastanagalogo {
     display: none;
