@@ -8,8 +8,6 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useSelector } from 'react-redux';
 
-import LogoImage from './marine_logo.svg';
-
 /**
  * Logo component class.
  * @function Logo
@@ -29,7 +27,7 @@ const Logo = ({ src, invertedSrc, id, url, alt, title, inverted }) => {
         id={id}
       />
     </Link>
-  )
+  );
 };
 
 export default Logo;

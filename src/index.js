@@ -1,14 +1,14 @@
 import React from 'react';
 import {
-  HeroSectionView,
-  FullwidthView,
+  // HeroSectionView,
+  // FullwidthView,
   DatabaseItemView,
   MetadataListingView,
   SimpleListingView,
 } from './components';
 // import installAppExtras from './components/theme/AppExtras';
-import HomePageView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageView';
-import HomePageInverseView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageInverseView';
+// import HomePageView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageView';
+// import HomePageInverseView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageInverseView';
 
 import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
