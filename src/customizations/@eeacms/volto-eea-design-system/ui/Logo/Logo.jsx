@@ -16,20 +16,20 @@ import LogoImage from './marine_logo.svg';
  * @param {Object} intl Intl object
  * @returns {string} Markup of the component.
  */
-const Logo = (props) => {
+const Logo = ({ src, invertedSrc, id, url, alt, title, inverted }) => {
   const root = useSelector((state) => state.breadcrumbs.root);
 
   return (
-    <Link to={root || '/'} title="WISE Marine">
+    <Link to={root || '/'} title={title} className={'logo'}>
       <LazyLoadImage
-        src={LogoImage}
-        alt="WISE Marine Logo"
-        title="Go to home page"
+        src={inverted ? invertedSrc : src}
+        alt={alt}
+        title={title}
         className="eea-logo"
-        height="60"
+        id={id}
       />
     </Link>
-  );
+  )
 };
 
 export default Logo;

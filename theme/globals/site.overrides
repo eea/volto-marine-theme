@@ -2,22 +2,24 @@
         Global Overrides
 *******************************/
 
-@backgroundGradient: linear-gradient(
-  248.86deg,
-  @lightPrimaryColor 24.22%,
-  @primaryColor 97.12%
-);
+#page-document > blockquote {
+  margin-left: revert !important;
+  margin-right: revert !important;
+}
 
 body {
+  .hero-block-text p {
+    line-height: 2em;
+  }
+  .content-area {
+    font-weight: @fontWeight;
+  }
   .tableau-image-placeholder {
     display: none;
   }
   .minipastanaga,
   .pastanagalogo {
     display: none;
-  }
-  .eea.header .eea-logo {
-    max-width: 252px;
   }
   .eea.header .top.bar {
     line-height: 1em;
@@ -31,35 +33,10 @@ body {
       font-size: 1.125rem;
     }
   }
-  .ui.basic.segment.content-area {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
+ 
   .eea.banner .gradient .content .metadata {
     display: flex;
     gap: 1em;
-  }
-
-  .main-menu {
-    .ui.text.menu {
-      position: absolute;
-      right: 80px;
-      width: 120% !important;
-    }
-
-    .item a {
-      color: @primaryColor;
-    }
-
-    .item a:hover {
-      border-color: @primaryColor;
-    }
-
-    .item.active a {
-      border-color: @primaryColor;
-      color: @primaryColor;
-    }
   }
 
   .search-action {
@@ -70,10 +47,25 @@ body {
     background: @primaryColor;
   }
 
-  footer,
-  #mega-menu,
+  #mega-menu {
+    background: @primaryColor;
+  }
+
   #search-box {
-    background: @backgroundGradient;
+    background: linear-gradient(
+      13.69deg,
+      @darkPrimaryColor 1.17%,
+      @primaryColor 80%
+    );
+  }
+
+  footer {
+    background: linear-gradient(
+      212.33deg,
+      @primaryColor 6.78%,
+      @darkPrimaryColor 69.54%,
+      @darkPrimaryColor 98.23%
+    );
   }
 }
 
@@ -99,6 +91,11 @@ body.view-viewview .full {
   }
 }
 
+@media only screen and (min-width: @largeMonitorBreakpoint) {
+  .ui.container {
+    width: @largeMonitorWidth !important;
+  }
+}
 @media screen and (min-width: @largestMobileScreen) {
   body.view-viewview.has-toolbar.has-sidebar {
     .full > div {

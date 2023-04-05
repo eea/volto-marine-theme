@@ -7,6 +7,9 @@ import {
   SimpleListingView,
 } from './components';
 // import installAppExtras from './components/theme/AppExtras';
+import HomePageView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageView';
+import HomePageInverseView from '@eeacms/volto-eea-website-theme/components/theme/Homepage/HomePageInverseView';
+
 import installMsfdDataExplorerBlock from './components/Blocks/MsfdDataExplorerBlock';
 import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
@@ -25,6 +28,7 @@ import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schem
 import { defineMessages } from 'react-intl'; // , defineMessages
 
 import marineLogo from '@eeacms/volto-marine-theme/static/marine_logo.svg';
+import marineLogoWhite from '@eeacms/volto-marine-theme/static/marine_logo_white.svg';
 import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
 import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
 
@@ -71,19 +75,20 @@ const messages = defineMessages({
 const applyConfig = (config) => {
   config.views.layoutViews = {
     ...config.views.layoutViews,
-    document_view: HeroSectionView,
-    herosection_view: HeroSectionView,
-    fullwidth_view: FullwidthView,
+    // document_view: HeroSectionView,
+    // herosection_view: HeroSectionView,
+    // fullwidth_view: FullwidthView,
   };
   config.views.layoutViewsNamesMapping = {
     ...(config.views.layoutViewsNamesMapping || {}),
     document_view: 'Document View',
-    herosection_view: 'Hero Section View',
-    fullwidth_view: 'Full Width View',
+    // herosection_view: 'Hero Section View',
+    // fullwidth_view: 'Full Width View',
   };
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
-    Document: HeroSectionView,
+    // Folder: HomePageInverseView,
+    // Document: HeroSectionView,
     dashboard: DatabaseItemView,
     dataset: DatabaseItemView,
     database: DatabaseItemView,
@@ -273,6 +278,7 @@ const applyConfig = (config) => {
     headerOpts: {
       ...(config.settings.eea?.headerOpts || {}),
       logo: marineLogo,
+      logoWhite: marineLogoWhite,
     },
     footerOpts: {
       ...(config.settings.eea?.footerOpts || {}),

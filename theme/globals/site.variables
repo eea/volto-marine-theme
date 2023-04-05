@@ -12,7 +12,7 @@
 @themeFontPath     : "../assets/fonts";
 @headerFont        : @headerFontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-
+@fontWeight        : 300;
 @googleFontSizes   : '300,400,500,700,400italic,700italic';
 @importGoogleFonts : true;
 
@@ -58,12 +58,19 @@
 /*-------------------
     Brand Colors
 --------------------*/
+// @contentAreaColor    : #003159;
+// @primaryColor        : #002d54;
+// @secondaryColor      : #59d3ff;
+@contentAreaColor    : #3D5265;
 
-@primaryColor        : #002d54;
-@secondaryColor      : #59d3ff;
+@primaryColor        : #004B7F;
+@darkPrimaryColor    : #003052;
+@lightPrimaryColor   : #0A99FF;
 
-@lightPrimaryColor   : #0077bc;
-@lightSecondaryColor : #545454;
+@secondaryColor      : #0083E0;
+@darkSecondaryColor  : #006BB8;
+@lightSecondaryColor : #47B3FF;
+@lightestColor: #A0D7FF;
 
 /*--------------
   Page Heading
@@ -118,7 +125,7 @@
 @miniSize        : (11 / 14);
 @tinySize        : (12 / 14);
 @smallSize       : (13 / 14);
-@mediumSize      : (14 / 14);
+@mediumSize      : (16 / 14);
 @largeSize       : (16 / 14);
 @bigSize         : (18 / 14);
 @hugeSize        : (20 / 14);
