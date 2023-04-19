@@ -27,8 +27,8 @@ import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schem
 
 import { defineMessages } from 'react-intl'; // , defineMessages
 
-import marineLogo from '@eeacms/volto-marine-theme/static/marine_logo.svg';
-import marineLogoWhite from '@eeacms/volto-marine-theme/static/marine_logo_white.svg';
+import marineLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/sites/wise-marine-logo.svg';
+import marineLogoWhite from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/sites/wise-marine-logo-white.svg';
 import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
 import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
 
@@ -255,6 +255,20 @@ const applyConfig = (config) => {
         return <div className="ui container">{props.children}</div>;
       },
     },
+    {
+      id: 'primary-table',
+      title: 'Primary table',
+      // previewComponent: () => (
+      //   <Icon name={contentBoxSVG} size="88px" className="primary" />
+      // ),
+      viewComponent: (props) => {
+        return (
+          <div className="content-box primary-table">
+            <div className="content-box-inner">{props.children}</div>
+          </div>
+        );
+      },
+    },
   ];
 
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
@@ -282,8 +296,8 @@ const applyConfig = (config) => {
     },
     footerOpts: {
       ...(config.settings.eea?.footerOpts || {}),
-      description:
-        'WISE - Marine is a gateway to information on European marine issues in support of ecosystem based management and ocean governance',
+      // description:
+      //   'WISE - Marine is a gateway to information on European marine issues in support of ecosystem based management and ocean governance',
       managedBy: [
         {
           link: 'https://www.eea.europa.eu/',
@@ -325,12 +339,12 @@ const applyConfig = (config) => {
       ],
 
       contacts: [
-        {
-          icon: 'comment outline',
-          text: 'About',
-          link: '/marine/wise-marine',
-          children: [],
-        },
+        // {
+        //   icon: 'comment outline',
+        //   text: 'About',
+        //   link: '/marine/wise-marine',
+        //   children: [],
+        // },
         {
           icon: 'comment outline',
           text: 'Contact',
