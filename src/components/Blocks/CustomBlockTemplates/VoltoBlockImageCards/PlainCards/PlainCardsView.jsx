@@ -73,7 +73,7 @@ const PlainCardsView = (props) => {
                   </Card>
                 ))}
 
-                <Card className="memory-card">
+                {/* <Card className="memory-card">
                   <Card.Content>
                     <div className="content-wrapper">
                       <p>
@@ -86,7 +86,7 @@ const PlainCardsView = (props) => {
                       </p>
                     </div>
                   </Card.Content>
-                </Card>
+                </Card> */}
               </Card.Group>
             </div>
           </div>
