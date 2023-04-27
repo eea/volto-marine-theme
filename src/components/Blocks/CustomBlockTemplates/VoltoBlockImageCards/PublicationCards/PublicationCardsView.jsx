@@ -88,7 +88,7 @@ const PublicationCardsView = (props) => {
                       {card.title && (
                         <UniversalLink
                           className="publication-card-link"
-                          href={card.link}
+                          href={card.link || ''}
                         >
                           <Card.Header>
                             <h3 className="publication-card-title">
@@ -111,7 +111,7 @@ const PublicationCardsView = (props) => {
                       <div className="card-bottom">
                         {card.publication_link && (
                           <UniversalLink
-                            href={card.publication_link}
+                            href={card.publication_link || ''}
                             className="card-bottom-link"
                           >
                             <Icon name={newspaperSVG} size="30px" />
