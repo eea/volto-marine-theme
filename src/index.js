@@ -334,7 +334,7 @@ const applyConfig = (config) => {
         },
         {
           link: '/marine/login',
-          title: 'CMS Login',
+          title: 'Login',
         },
       ],
 

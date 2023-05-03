@@ -62,9 +62,6 @@ body {
   .hero-block-text p {
     line-height: 2em;
   }
-  .content-area {
-    font-weight: @fontWeight;
-  }
   .tableau-image-placeholder {
     display: none;
   }
