@@ -1,23 +1,23 @@
 /*******************************
          Site Settings
 *******************************/
-// @import '../extras/mixins';
+@import '../extras/mixins';
 
 /*-------------------
        Fonts
 --------------------*/
 
-// @fontName          : 'Roboto';
-// @headerFontName    : 'Poppins';
-// @themeFontPath     : "../assets/fonts";
-// @headerFont        : @headerFontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-// @pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@fontName          : 'Roboto';
+@headerFontName    : 'Poppins';
+@themeFontPath     : "../assets/fonts";
+@headerFont        : @headerFontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 // @fontWeight        : 300;
-// @googleFontSizes   : '300,400,500,700,400italic,700italic';
-// @importGoogleFonts : true;
+@googleFontSizes   : '300,400,500,700,400italic,700italic';
+@importGoogleFonts : true;
 
 
-// @bold              : bold;
+@bold              : bold;
 @normal            : normal;
 
 /*-------------------
@@ -76,14 +76,14 @@
   Page Heading
 ---------------*/
 
-// @headerFontWeight : 600;
-// @headerLineHeight : 1.4em;
+@headerFontWeight : 600;
+@headerLineHeight : 1.4em;
 
-// @h1 : unit((32 / 14), rem);
-// @h2 : unit((28 / 14), rem);
-// @h3 : unit((23 / 14), rem);
-// @h4 : unit((16 / 14), rem);
-// @h5 : unit((15 / 14), rem);
+@h1 : unit((32 / 14), rem);
+@h2 : unit((28 / 14), rem);
+@h3 : unit((23 / 14), rem);
+@h4 : unit((16 / 14), rem);
+@h5 : unit((15 / 14), rem);
 
 /*--------------
    Form Input
@@ -139,7 +139,7 @@
 @pageBackground      : #FFFFFF;
 @pageOverflowX       : hidden;
 
-// @lineHeight          : 1.4em;
+@lineHeight          : 1.4em;
 @textColor           : #003159;
 
 /*-------------------
