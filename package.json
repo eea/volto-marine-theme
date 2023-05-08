@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git@github.com:eea/volto-marine-theme.git"
   },
+  "resolutions": {
+    "react-countup/countup.js": "2.5.0"
+  },
   "addons": [
     "@eeacms/volto-tabs-block",
     "@eeacms/volto-tableau",
