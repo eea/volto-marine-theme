@@ -63,7 +63,7 @@ const ColoredCardsView = (props) => {
           </div>
         </div>
       ) : (
-        <>{editable ? <Message>No image cards</Message> : ''}</>
+        <>{editable && <Message>No image cards</Message>}</>
       )}
     </>
   );

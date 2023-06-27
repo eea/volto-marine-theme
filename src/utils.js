@@ -9,18 +9,18 @@ export const getScaleUrl = (url, size) =>
     ? `${flattenToAppURL(url?.replace('/api', ''))}/@@images/image/${size}`
     : `${url?.replace('/api', '')}/@@images/image/${size}`;
 export const formatItemType = (item) => {
-  const type =
+  return (
     item
       .replace('_', ' / ')
       .split(' ')
       .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-      .join(' ') || '';
-  return type;
+      .join(' ') || ''
+  );
 };
 export const doStringifySearchquery = (querystring) => {
   const params = new URLSearchParams(querystring);
   let obj = {};
-  for (var key of params.keys()) {
+  for (let key of params.keys()) {
     obj[key] = params.getAll(key);
   }
   return JSON.stringify(obj);

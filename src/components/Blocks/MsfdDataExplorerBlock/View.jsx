@@ -25,7 +25,7 @@ const MsfdDataExplorerBlockView = (props) => {
           const msfdContent = el.querySelector('.msfd-search-wrapper');
           setContent(msfdContent);
         })
-        .catch((err) => {
+        .catch(() => {
           setContent({ data: <div>Something went wrong.</div> });
         })
         .finally(() => {
@@ -85,7 +85,7 @@ const MsfdDataExplorerBlockView = (props) => {
           )}
         </div>
       ) : (
-        <>{editable ? <Message>Select article</Message> : ''}</>
+        <>{editable && <Message>Select article</Message>}</>
       )}
     </>
   );

@@ -64,20 +64,16 @@ const View = (props) => {
 
   return mounted ? (
     <div className="tableau-block marine-tableau">
-      {props.mode === 'edit' ? (
+      {props.mode === 'edit' && (
         <div className="tableau-info">
           <h3 className="tableau-version">== Tableau {version} ==</h3>
           {!props.data.url ? <p className="tableau-error">URL required</p> : ''}
           {error ? <p className="tableau-error">{error}</p> : ''}
         </div>
-      ) : (
-        ''
       )}
-      {loaded && title ? <h3 className="tableau-title">{title}</h3> : ''}
-      {loaded && description ? (
+      {loaded && title && <h3 className="tableau-title">{title}</h3>}
+      {loaded && description && (
         <p className="tableau-description">{description}</p>
-      ) : (
-        ''
       )}
       <Tableau
         {...props}

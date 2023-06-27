@@ -16,8 +16,9 @@ const TableauShare = (props) => {
     const tableauUrlPath = embed_url.split('/');
     const tableauSiteRoot = '/' + tableauUrlPath[3] + '/' + tableauUrlPath[4];
     const tableauName =
-      tableauUrlPath[6] + '/' + tableauUrlPath[7].split('?')[0];
-    const tableauEmbedCode =
+      tableauUrlPath[6] + '/' + tableauUrlPath[7]?.split('?')[0];
+
+    return (
       "<script type='text/javascript'" +
       "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'>" +
       '</script>' +
@@ -33,8 +34,8 @@ const TableauShare = (props) => {
       "<param name='tabs' value='yes' />" +
       "<param name='toolbar' value='no' />" +
       '</object>' +
-      '</div>';
-    return tableauEmbedCode;
+      '</div>'
+    );
   };
 
   const CopyUrlButton = ({ content, buttonText }) => {

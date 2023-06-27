@@ -288,12 +288,10 @@ const applyConfig = (config) => {
   const [installLinkEditor] = makeInlineElementPlugin(opts);
   config = installLinkEditor(config);
 
-  const final = [installAppExtras, installMsfdDataExplorerBlock].reduce(
+  return [installAppExtras, installMsfdDataExplorerBlock].reduce(
     (acc, apply) => apply(acc),
     config,
   );
-
-  return final;
 };
 
 export default applyConfig;
