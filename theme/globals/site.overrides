@@ -42,33 +42,38 @@ body {
       max-width: 252px;
     }
   }
+
   @media only screen and (min-width: 992px) {
-    .ui.grid > .row > [class*='four wide computer'].column,
-    .ui.grid > .column.row > [class*='four wide computer'].column,
-    .ui.grid > [class*='four wide computer'].column,
-    .ui.column.grid > [class*='four wide computer'].column {
-      width: 25% !important;
-    }
-  }
-  @media only screen and (min-width: 992px) {
-    .ui.grid > .row > [class*='eight wide computer'].column,
-    .ui.grid > .column.row > [class*='eight wide computer'].column,
-    .ui.grid > [class*='eight wide computer'].column,
-    .ui.column.grid > [class*='eight wide computer'].column {
-      width: 75% !important;
+    .eea.header {
+      .ui.grid > .row > [class*='four wide computer'].column,
+      .ui.grid > .column.row > [class*='four wide computer'].column,
+      .ui.grid > [class*='four wide computer'].column,
+      .ui.column.grid > [class*='four wide computer'].column {
+        width: 25% !important;
+      }
+
+      .ui.grid > .row > [class*='eight wide computer'].column,
+      .ui.grid > .column.row > [class*='eight wide computer'].column,
+      .ui.grid > [class*='eight wide computer'].column,
+      .ui.column.grid > [class*='eight wide computer'].column {
+        width: 75% !important;
+      }
     }
   }
 
   .hero-block-text p {
     line-height: 2em;
   }
+
   .tableau-image-placeholder {
     display: none;
   }
+
   .minipastanaga,
   .pastanagalogo {
     display: none;
   }
+
   .eea.header .top.bar {
     line-height: 1em;
   }

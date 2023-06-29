@@ -296,6 +296,7 @@ const applyConfig = (config) => {
     },
     footerOpts: {
       ...(config.settings.eea?.footerOpts || {}),
+      managedByDescription: 'Managed by',
       // description:
       //   'WISE - Marine is a gateway to information on European marine issues in support of ecosystem based management and ocean governance',
       managedBy: [
@@ -330,7 +331,7 @@ const applyConfig = (config) => {
         },
         {
           link: '/#legal-notice',
-          title: 'Privacy',
+          title: 'Privacy statement',
         },
         {
           link: '/marine/login',
@@ -345,11 +346,11 @@ const applyConfig = (config) => {
         //   link: '/marine/wise-marine',
         //   children: [],
         // },
-        {
-          icon: 'comment outline',
-          text: 'Contact',
-          link: 'mailto:WISE@eea.europa.eu',
-        },
+        // {
+        //   icon: 'comment outline',
+        //   text: 'Contact',
+        //   link: 'mailto:WISE@eea.europa.eu',
+        // },
       ],
     },
   };
