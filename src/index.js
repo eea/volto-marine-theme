@@ -296,7 +296,7 @@ const applyConfig = (config) => {
     },
     footerOpts: {
       ...(config.settings.eea?.footerOpts || {}),
-      managedByDescription: 'Managed by',
+      logosHeader: 'Managed by',
       // description:
       //   'WISE - Marine is a gateway to information on European marine issues in support of ecosystem based management and ocean governance',
       managedBy: [
