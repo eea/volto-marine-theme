@@ -29,6 +29,7 @@
     "@eeacms/volto-tabs-block": "*",
     "axios": "0.25.0",
     "jquery": "3.6.0",
+    "razzle-plugin-scss": "^4.2.18",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
