@@ -20,7 +20,7 @@ const MetadataHeader = (props) => {
     }
   }, [location, item.id]);
 
-  const closeModal = (item) => {
+  const closeModal = () => {
     history.replace({}, document.title, window.location.pathname);
     setOpenModal(false);
   };

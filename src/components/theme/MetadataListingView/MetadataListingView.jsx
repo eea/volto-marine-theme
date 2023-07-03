@@ -11,7 +11,7 @@ import './style.less';
 const MetadataListingView = ({ items, isEditMode, token }) => {
   return (
     <div className="items">
-      {items.map((item, index) => (
+      {items.map((item) => (
         <div className="listing-item" key={item['@id']}>
           <div className="listing-body">
             <MetadataHeader item={item} />

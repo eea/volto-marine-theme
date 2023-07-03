@@ -23,7 +23,7 @@ const PresentationCardsView = (props) => {
 
   React.useEffect(() => {
     if (cards && cards.length > 0) {
-      cards.forEach((card, index) => {
+      cards.forEach((card) => {
         if (card.source?.length && !card.title) {
           card.title = card.source[0].title;
           card.link = card.source[0].getURL;
@@ -104,7 +104,7 @@ const PresentationCardsView = (props) => {
           </div>
         </div>
       ) : (
-        <>{editable ? <Message>No image cards</Message> : ''}</>
+        <>{editable && <Message>No image cards</Message>}</>
       )}
     </>
   );
