@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
-import { setTableauApi } from '@eeacms/volto-tableau/actions';
+// import { setTableauApi } from '@eeacms/volto-tableau/actions';
 import cx from 'classnames';
 import {
-  isMyScriptLoaded,
+  // isMyScriptLoaded,
   loadTableauScript,
 } from '@eeacms/volto-tableau/helpers';
 import {
@@ -45,7 +45,8 @@ const Tableau = (props) => {
   const url = props.url || defaultUrl;
 
   //load tableau from script tag
-  const tableau = isMyScriptLoaded(version) && __CLIENT__ ? window.tableau : '';
+  const tableau = '';
+  // const tableau = isMyScriptLoaded(version) && __CLIENT__ ? window.tableau : '';
 
   const onFilterChange = (filter) => {
     const newFilters = { ...filters.current };
@@ -168,9 +169,9 @@ const Tableau = (props) => {
 
   React.useEffect(() => {
     // Load new tableau api
-    if (__CLIENT__ && !props.tableau[version]) {
-      props.setTableauApi(version, props.mode);
-    }
+    // if (__CLIENT__ && !props.tableau[version]) {
+    //   props.setTableauApi(version, props.mode);
+    // }
     if (__CLIENT__) {
       loadTableauScript(() => {}, version);
     }
@@ -238,6 +239,6 @@ export default compose(
       tableau: state.tableau,
       screen: state.screen,
     }),
-    { setTableauApi },
+    // { setTableauApi },
   ),
 )(Tableau);
