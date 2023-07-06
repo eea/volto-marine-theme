@@ -326,15 +326,15 @@ const applyConfig = (config) => {
       social: [],
       actions: [
         {
-          link: '/sitemap',
+          url: '/sitemap',
           title: 'Sitemap',
         },
         {
-          link: '/#legal-notice',
+          url: '/#legal-notice',
           title: 'Privacy statement',
         },
         {
-          link: '/marine/login',
+          url: '/marine/login',
           title: 'Login',
         },
       ],
