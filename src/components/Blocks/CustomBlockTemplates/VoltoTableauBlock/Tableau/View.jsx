@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
-// import { setTableauApi } from '@eeacms/volto-tableau/actions';
+import { setTableauApi } from '@eeacms/volto-tableau/actions';
 import cx from 'classnames';
-// import {
-//   isMyScriptLoaded,
-//   loadTableauScript,
-// } from '@eeacms/volto-tableau/helpers';
+import {
+  isMyScriptLoaded,
+  loadTableauScript,
+} from '@eeacms/volto-tableau/helpers';
 import {
   TableauDownload,
   TableauShare,
@@ -169,10 +169,10 @@ const Tableau = (props) => {
   React.useEffect(() => {
     // Load new tableau api
     if (__CLIENT__ && !props.tableau[version]) {
-      // props.setTableauApi(version, props.mode);
+      props.setTableauApi(version, props.mode);
     }
     if (__CLIENT__) {
-      // loadTableauScript(() => {}, version);
+      loadTableauScript(() => {}, version);
     }
     /* eslint-disable-next-line */
   }, [version]);
@@ -238,6 +238,6 @@ export default compose(
       tableau: state.tableau,
       screen: state.screen,
     }),
-    {},
+    { setTableauApi },
   ),
 )(Tableau);
