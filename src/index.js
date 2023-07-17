@@ -105,7 +105,7 @@ const applyConfig = (config) => {
   };
 
   config.widgets.widget.text_align = TextAlignWidget;
-  config.widgets.id.theme = TokenWidget;
+  // config.widgets.id.theme = TokenWidget;
 
   config.blocks.groupBlocksOrder = [
     ...config.blocks.groupBlocksOrder,

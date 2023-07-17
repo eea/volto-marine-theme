@@ -58,17 +58,17 @@ const customBlockTemplates = (config) => ({
     edit: TableauEdit,
   },
 
-  tabs_block: {
-    ...(config.blocks.blocksConfig.tabs_block || {}),
-    templates: {
-      ...(config.blocks.blocksConfig.tabs_block?.templates || {}),
-      colored_tabs: {
-        ...config.blocks.blocksConfig.tabs_block.templates.default,
-        title: 'Colored tabs',
-        view: ColoredTabsView,
-      },
-    },
-  },
+  // tabs_block: {
+  //   ...(config.blocks.blocksConfig.tabs_block || {}),
+  //   templates: {
+  //     ...(config.blocks.blocksConfig.tabs_block?.templates || {}),
+  //     colored_tabs: {
+  //       ...config.blocks.blocksConfig.tabs_block.templates.default,
+  //       title: 'Colored tabs',
+  //       view: ColoredTabsView,
+  //     },
+  //   },
+  // },
 
   maps: {
     ...config.blocks.blocksConfig.maps,
