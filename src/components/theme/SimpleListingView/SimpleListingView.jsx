@@ -25,7 +25,7 @@ const SimpleListingView = ({ items, isEditMode }) => {
     }
   }, [location, modalHash]);
 
-  const closeModal = (item) => {
+  const closeModal = () => {
     setOpenModal(false);
     setSelectedItem(null);
     history.push({

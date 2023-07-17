@@ -13,13 +13,13 @@ const TableauShare = (props) => {
   const tableau_url = props.data.url;
 
   const embedContent = () => {
-    var pathArray = tableau_url.split('/');
-    var t_siteRoot = '/' + pathArray[3] + '/' + pathArray[4];
-    var t_name = pathArray[6] + '/' + pathArray[7].split('?')[0];
-    var t_filter = pathArray[7].split('?')[1];
-    t_filter = t_filter.split('&:')[0];
+    const pathArray = tableau_url.split('/');
+    const t_siteRoot = '/' + pathArray[3] + '/' + pathArray[4];
+    const t_name = pathArray[6] + '/' + pathArray[7]?.split('?')[0];
+    let t_filter = pathArray[7]?.split('?')[1];
+    t_filter = t_filter?.split('&:')[0];
 
-    var embed =
+    return (
       "<script type='text/javascript'" +
       "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'></script>" +
       "<div class='tableauPlaceholder' style='width: 100%; height: 850px;'>" +
@@ -37,9 +37,8 @@ const TableauShare = (props) => {
       "<param name='toolbar' value='no' />" +
       "<param name='isGuestRedirectFromVizportal' value='y' />" +
       '</object>' +
-      '</div>';
-
-    return embed;
+      '</div>'
+    );
   };
 
   const CopyUrlButton = ({ url, buttonText }) => {
