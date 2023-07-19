@@ -12,7 +12,7 @@ import {
   TableauView,
   TableauEdit,
 } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTableauBlock';
-import { ColoredTabsView } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTabsBlock';
+// import { ColoredTabsView } from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/VoltoTabsBlock';
 import {
   BlockStyleWrapperEdit,
   BlockStyleWrapperView,
