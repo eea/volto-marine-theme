@@ -1,5 +1,5 @@
 import ScrollToTop from './ScrollToTop';
-import PrintPage from './PrintPage';
+// import PrintPage from './PrintPage';
 
 export default (config) => {
   config.settings.appExtras = [
@@ -8,10 +8,10 @@ export default (config) => {
       match: '',
       component: ScrollToTop,
     },
-    {
-      match: '',
-      component: PrintPage,
-    },
+    // {
+    //   match: '',
+    //   component: PrintPage,
+    // },
   ];
 
   return config;

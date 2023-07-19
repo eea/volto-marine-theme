@@ -16,7 +16,7 @@ import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/C
 import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
 
-import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
+// import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import linkSVG from '@plone/volto/icons/link.svg';
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';

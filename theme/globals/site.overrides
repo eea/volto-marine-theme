@@ -3,15 +3,20 @@
 *******************************/
 
 #page-document > blockquote {
-  margin-left: revert !important;
   margin-right: revert !important;
+  margin-left: revert !important;
 }
 
 body {
+  .default.tabs .ui.text.container {
+    max-width: 100% !important;
+  }
+
   // Content box primary table
   .content-box:before {
     width: 110vw;
   }
+
   .content-box.primary-table {
     background-color: @primaryColor;
 
@@ -20,16 +25,19 @@ body {
 
       th,
       td {
-        color: white !important;
         border-left: 1px solid white !important;
+        color: white !important;
       }
+
       td:first-of-type,
       th:first-of-type {
         border-left: none !important;
       }
+
       th {
         border-bottom: 1px solid white !important;
       }
+
       td {
         border-top: 1px solid white !important;
       }
