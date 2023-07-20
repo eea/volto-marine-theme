@@ -8,8 +8,14 @@
 }
 
 body {
-  .default.tabs .ui.text.container {
-    max-width: 100% !important;
+  .default.tabs {
+    .ui.text.container {
+      max-width: 100% !important;
+    }
+
+    .ui.segment {
+      background: initial;
+    }
   }
 
   // Content box primary table
