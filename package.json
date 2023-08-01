@@ -25,7 +25,7 @@
   "dependencies": {
     "@eeacms/volto-embed": "*",
     "@eeacms/volto-slots": "*",
-    "@eeacms/volto-tableau": "*",
+    "@eeacms/volto-tableau": "github:eea/volto-tableau#3.0.8",
     "@eeacms/volto-tabs-block": "*",
     "axios": "0.25.0",
     "jquery": "3.6.0",
