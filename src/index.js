@@ -31,6 +31,7 @@ import marineLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/asse
 import marineLogoWhite from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/sites/wise-marine-logo-white.svg';
 import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
 import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
+import MeasureView from '@eeacms/volto-marine-theme/components/Widgets/MeasureViewWidget';
 
 const available_colors = [
   '#ffffff',
@@ -356,6 +357,9 @@ const applyConfig = (config) => {
       ],
     },
   };
+
+  // SPMeasure View widget
+  config.views.contentTypesViews.spmeasure = MeasureView;
 
   //advancedlink is currently not working properly/not recognized in fise, so we add it to config manually
   const { slate } = config.settings;
