@@ -70,7 +70,11 @@ const MeasureView = (props) => {
   const getConditionalFields = () => {
     // If origin has no value, display all available fields
     if (!origin || origin.length === 0) {
-      return fields;
+      const fieldsNames = unconditionalFields.reduce(
+        (acc, field) => [...acc, field.field],
+        [],
+      );
+      return fields.filter((field) => !fieldsNames.includes(field.field));
     }
 
     // Filter fields based on origin(s)
