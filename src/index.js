@@ -146,6 +146,8 @@ const applyConfig = (config) => {
     ],
   };
 
+  config.settings.useQuantaToolbar = false;
+
   config.settings.apiExpanders = [
     ...config.settings.apiExpanders,
     {
