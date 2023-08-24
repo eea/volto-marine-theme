@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { fields } from '@eeacms/volto-marine-theme/constants/measureFields';
 import String from './String';
+import { Accordion } from 'semantic-ui-react';
+import { Icon } from '@plone/volto/components';
+import downSVG from '@plone/volto/icons/down-key.svg';
+import upSVG from '@plone/volto/icons/up-key.svg';
 import './measure.css';
 
 const MeasureView = (props) => {
@@ -88,9 +92,12 @@ const MeasureView = (props) => {
     });
   };
 
-  const renderField = (field) => (
+  const renderField = (field, fieldLocation) => (
     <div className="measure-field">
-      <div className="measure-field-label">{field.title}</div>
+      <div className="measure-field-label">
+        {field.title}
+        {fieldLocation === 'header' && ':'}
+      </div>
       <div className="measure-field-value">
         {props.content[field.field] ? (
           <String val={props?.content[field.field]} />
@@ -102,18 +109,82 @@ const MeasureView = (props) => {
     </div>
   );
 
-  return (
-    <div id="page-document" className="view-view-spmeasure">
-      <h1>
-        <String val={props?.content?.title} />
-      </h1>
-      <div className="measure-form">
-        {unconditionalFields.map(renderField)}
-
-        {/* Further Information Section */}
+  const renderFieldTable = () => (
+    <Accordion fluid styled>
+      <Accordion.Title
+        active={isActiveAccordion}
+        index={0}
+        onClick={handleAccordionClick}
+      >
         <div className="further-information-section">
           <h3>Further information</h3>
-          {getConditionalFields().map(renderField)}
+        </div>
+        <Icon size="30px" name={isActiveAccordion ? upSVG : downSVG} />
+      </Accordion.Title>
+      <Accordion.Content active={isActiveAccordion}>
+        <div className="measure__items">
+          <div className="measure__item">
+            <div className="table-responsive">
+              <table>
+                <tbody>
+                  {getConditionalFields().map((field, index) => (
+                    <tr
+                      key={`row-measure-${index}`}
+                      id={`row-measure-${index}`}
+                    >
+                      <td className="measure-field-label">{field.title}</td>
+                      <td className="measure-field-value">
+                        {props.content[field.field] ? (
+                          <String val={props?.content[field.field]} />
+                        ) : (
+                          'No value'
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </Accordion.Content>
+    </Accordion>
+  );
+
+  const [isActiveAccordion, setIsAccordionActive] = useState(true);
+
+  const handleAccordionClick = () => {
+    setIsAccordionActive(!isActiveAccordion);
+  };
+
+  return (
+    <div id="page-document" className="view-view-spmeasure ui container">
+      <div>
+        <div className="measure-header content-box">
+          <div className="measure-header-content">
+            <h1 className="measure-title">
+              <String val={props?.content?.title} />
+            </h1>
+            {unconditionalFields
+              .slice(0, 2)
+              .map((field) => renderField(field, 'header'))}
+          </div>
+        </div>
+
+        <div className="measure-form">
+          <div className="measure-field measure-name">
+            <div className="measure-field-label">Measure name</div>
+            <div className="measure-field-value">
+              <String val={props?.content?.title} />
+            </div>
+          </div>
+
+          <div className="unconditional-fields">
+            {unconditionalFields.slice(2).map(renderField)}
+          </div>
+
+          {/* Further Information Section */}
+          {renderFieldTable()}
         </div>
       </div>
     </div>

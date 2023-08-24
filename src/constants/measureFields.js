@@ -1,7 +1,7 @@
 const fields = [
   { field: 'sector', title: 'Sector' },
-  { field: 'use', title: 'Use or activity' },
   { field: 'origin', title: 'Origin of the measure' },
+  { field: 'use', title: 'Use or activity' },
   { field: 'nature', title: 'Nature of the measure' },
   { field: 'status', title: 'Status' },
   { field: 'impacts', title: 'Measure impacts to' },
