@@ -163,8 +163,15 @@ const MeasureView = (props) => {
         <div className="measure-header content-box">
           <div className="measure-header-content">
             <h1 className="measure-title">
-              <String val={props?.content?.title} />
+              <String val={props?.content?.title?.substring(0, 90)} />
+              {props?.content?.title?.length > 90 && '...'}
             </h1>
+            <div className="measure-field">
+              <div className="measure-field-label">Code:</div>
+              <div className="measure-field-value">
+                <String val={props?.content?.code} />
+              </div>
+            </div>
             {unconditionalFields
               .slice(0, 2)
               .map((field) => renderField(field, 'header'))}
