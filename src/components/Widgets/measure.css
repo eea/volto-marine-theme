@@ -1,6 +1,6 @@
 .contenttype-spmeasure .breadcrumbs {
-  background-color: #004b7f !important;
   border-bottom: 2px solid white !important;
+  background-color: #004b7f !important;
 }
 
 .contenttype-spmeasure .breadcrumbs .section,
@@ -10,8 +10,8 @@
 }
 
 .contenttype-spmeasure .content-area {
-  margin-top: 0 !important;
   padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .view-view-spmeasure,
