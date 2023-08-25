@@ -151,6 +151,21 @@ const MeasureView = (props) => {
     </Accordion>
   );
 
+  const truncateTitle = () => {
+    const maxLength = 90;
+    if (props?.content?.title?.length > maxLength) {
+      const trimmedTitle = props?.content?.title?.substr(0, maxLength);
+
+      return (
+        trimmedTitle.substr(
+          0,
+          Math.min(trimmedTitle.length, trimmedTitle.lastIndexOf(' ')),
+        ) + '...'
+      );
+    }
+    return props?.content?.title;
+  };
+
   const [isActiveAccordion, setIsAccordionActive] = useState(true);
 
   const handleAccordionClick = () => {
@@ -163,8 +178,7 @@ const MeasureView = (props) => {
         <div className="measure-header content-box">
           <div className="measure-header-content">
             <h1 className="measure-title">
-              <String val={props?.content?.title?.substring(0, 90)} />
-              {props?.content?.title?.length > 90 && '...'}
+              <String val={truncateTitle()} />
             </h1>
             <div className="measure-field">
               <div className="measure-field-label">Code:</div>
