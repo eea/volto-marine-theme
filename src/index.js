@@ -299,6 +299,17 @@ const applyConfig = (config) => {
       logo: marineLogo,
       logoWhite: marineLogoWhite,
     },
+    headerSearchBox: [
+      {
+        isDefault: true,
+        path: '/marine/advanced-search',
+        placeholder: 'Search Marine...',
+        description:
+          'Looking for more information? Try searching the full EEA website content',
+        buttonTitle: 'Go to advanced search',
+        buttonUrl: 'https://www.eea.europa.eu/en/advanced-search',
+      },
+    ],
     footerOpts: {
       ...(config.settings.eea?.footerOpts || {}),
       logosHeader: 'Managed by',
