@@ -15,6 +15,7 @@ import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
 import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
+import MarineMeasureItem from './components/Result/MarineMeasureItem';
 
 // import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import linkSVG from '@plone/volto/icons/link.svg';
@@ -32,6 +33,7 @@ import marineLogoWhite from '@eeacms/volto-eea-design-system/../theme/themes/eea
 import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
 import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
 import MeasureView from '@eeacms/volto-marine-theme/components/Widgets/MeasureViewWidget';
+import installMarineMeasureSearch from './config/index';
 
 const available_colors = [
   '#ffffff',
@@ -104,6 +106,20 @@ const applyConfig = (config) => {
     breadcrumb,
     localnavigation,
   };
+
+  config.settings.searchlib = installMarineMeasureSearch(
+    config.settings.searchlib,
+  );
+
+  const {
+    resolve,
+    searchui: { marinemeasure },
+  } = config.settings.searchlib;
+
+  resolve.MarineMeasureItem = { component: MarineMeasureItem };
+
+  marinemeasure.elastic_index = '_es/globalsearch';
+  marinemeasure.index_name = 'wisetest_searchui';
 
   config.widgets.widget.text_align = TextAlignWidget;
   // Disabled TokenWidget for 'theme', it breaks the 'theme' field in volto-tabs-block in the 'horizontal carousel' layout

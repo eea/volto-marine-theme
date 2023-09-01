@@ -20,6 +20,11 @@ Object.keys(pathsConfig).forEach((pkg) => {
 const AddonConfigurationRegistry = require(`${voltoPath}/addon-registry.js`);
 const reg = new AddonConfigurationRegistry(projectRootPath);
 
+const voltoSearchlibPath = path.dirname(
+  reg.packages['@eeacms/volto-searchlib'].modulePath,
+);
+const searchlibPath = path.resolve(`${voltoSearchlibPath}/searchlib`);
+
 // Extends ESlint configuration for adding the aliases to `src` directories in Volto addons
 const addonAliases = Object.keys(reg.packages).map((o) => [
   o,
@@ -34,6 +39,7 @@ module.exports = {
         map: [
           ['@plone/volto', '@plone/volto/src'],
           ...addonAliases,
+          ['@eeacms/search', searchlibPath],
           ['@package', `${__dirname}/src`],
           ['~', `${__dirname}/src`],
         ],
