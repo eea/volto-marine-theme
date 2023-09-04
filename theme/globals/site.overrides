@@ -158,6 +158,15 @@ body.view-viewview .full {
   }
 }
 
+// hide +More filters
+.searchlib-block .searchapp-marinemeasure .ui.button.sui-button.basic {
+  display: none;
+}
+
+.searchlib-block .sui-search-box {
+  max-width: 100% !important;
+}
+
 @media only screen and (min-width: @largeMonitorBreakpoint) {
   .ui.container {
     width: @largeMonitorWidth !important;
