@@ -292,6 +292,17 @@ const applyConfig = (config) => {
     },
   ];
 
+  // mega menu layout settings
+  config.settings.menuItemsLayouts = {
+    ...config.settings.menuItemsLayouts,
+    '/marine/countries-and-regional-seas': {
+      menuItemColumns: ['eight wide column', 'four wide column'],
+      menuItemChildrenListColumns: [5, 1],
+      appendExtraMenuItemsToLastColumn: true,
+      hideChildrenFromNavigation: false,
+    },
+  };
+
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
