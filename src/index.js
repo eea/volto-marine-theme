@@ -301,7 +301,7 @@ const applyConfig = (config) => {
       appendExtraMenuItemsToLastColumn: true,
       hideChildrenFromNavigation: false,
     },
-    '/marine/europes-seas': {
+    '/marine/europe-seas': {
       // menuItemColumns: [
       //   'three wide column',
       //   'three wide column',
