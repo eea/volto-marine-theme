@@ -136,6 +136,17 @@ body {
   }
 }
 
+body.view-viewview.has-toolbar:not(.homepage) #mega-menu {
+  @media only screen and (min-width: @tabletBreakpoint) {
+    width: calc(100% - @toolbarWidth);
+  }
+
+  @media only screen and (min-width: @computerBreakpoint) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
 body.view-viewview .imagecards-block.full {
   right: 0px;
   left: 0px;
