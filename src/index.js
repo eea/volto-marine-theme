@@ -301,6 +301,30 @@ const applyConfig = (config) => {
       appendExtraMenuItemsToLastColumn: true,
       hideChildrenFromNavigation: false,
     },
+    '/marine/europes-seas': {
+      // menuItemColumns: [
+      //   'three wide column',
+      //   'three wide column',
+      //   'three wide column',
+      //   // 'three wide column',
+      //   // 'three wide column',
+      // ],
+      menuItemChildrenListColumns: [1, 1, 1],
+      appendExtraMenuItemsToLastColumn: false,
+      hideChildrenFromNavigation: false,
+    },
+    '/marine/resources': {
+      // menuItemColumns: [
+      //   'three wide column',
+      //   'three wide column',
+      //   'three wide column',
+      //   // 'three wide column',
+      //   // 'three wide column',
+      // ],
+      menuItemChildrenListColumns: [1, 1, 1],
+      appendExtraMenuItemsToLastColumn: false,
+      hideChildrenFromNavigation: false,
+    },
   };
 
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
