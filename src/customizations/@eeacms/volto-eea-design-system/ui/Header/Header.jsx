@@ -16,6 +16,8 @@ import burgerIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/asse
 import HeaderSearchPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderSearchPopUp';
 import HeaderMenuPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderMenuPopUp';
 import PropTypes from 'prop-types';
+
+import { isInternalURL } from '@plone/volto/helpers';
 import config from '@plone/volto/registry';
 
 Header.propTypes = {
