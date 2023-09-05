@@ -6,7 +6,7 @@
 import React from 'react'; // , { Component }
 import { useHistory } from 'react-router-dom';
 import cx from 'classnames';
-import { Container, Image, Menu, Grid, Dropdown } from 'semantic-ui-react'; // Dropdown,
+import { Container, Menu, Grid, Dropdown } from 'semantic-ui-react'; // Dropdown,
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import closeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/close-line.svg';
@@ -16,6 +16,7 @@ import burgerIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/asse
 import HeaderSearchPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderSearchPopUp';
 import HeaderMenuPopUp from '@eeacms/volto-marine-theme/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderMenuPopUp';
 import PropTypes from 'prop-types';
+import config from '@plone/volto/registry';
 
 Header.propTypes = {
   transparency: PropTypes.bool,
@@ -107,6 +108,7 @@ const TopDropdownMenu = ({
 const Main = ({
   logo,
   menuItems,
+  menuItemsLayouts,
   renderMenuItem,
   renderGlobalMenuItem,
   headerSearchBox,
@@ -114,6 +116,7 @@ const Main = ({
   transparency,
   inverted,
   hideSearch,
+  isMultilingual,
 }) => {
   const history = useHistory();
   const [activeItem, setActiveItem] = React.useState(pathname);
@@ -121,16 +124,25 @@ const Main = ({
   const [searchIsActive, setSearchIsActive] = React.useState(false);
   const [burger, setBurger] = React.useState('');
   const searchInputRef = React.useRef(null);
+  const [isClient, setIsClient] = React.useState();
+  const itemsLayouts = menuItemsLayouts || config.settings?.menuItemsLayouts;
+
+  React.useEffect(() => setIsClient(true), []);
 
   React.useEffect(() => {
     setMenuIsActive(false);
     setSearchIsActive(false);
     setBurger('');
     // remove active menu when we have no pathname which means we hit logo to go home
-    if (!pathname) {
+    //remove the lang route in order to check if empty
+    //setActiveItem as pathname when pathname changed
+    if (
+      !pathname ||
+      (isMultilingual === true && !pathname?.split('/')?.slice(2)?.join('/'))
+    ) {
       setActiveItem('');
-    }
-  }, [pathname]);
+    } else setActiveItem(pathname);
+  }, [isMultilingual, pathname]);
 
   React.useEffect(() => {
     if (searchIsActive) {
@@ -181,7 +193,11 @@ const Main = ({
     if (item.items.length) {
       setMenuIsActive(true);
     } else {
-      history.push(item.url);
+      if (isInternalURL(item.url)) {
+        history.push(item.url);
+      } else if (isClient) {
+        window.location.replace(item.url);
+      }
     }
   };
 
@@ -244,7 +260,7 @@ const Main = ({
           <Grid.Column mobile={4} tablet={4} computer={8}>
             <div className={inverted ? 'main-menu inverted' : 'main-menu'}>
               {menuItems && (
-                <div
+                <ul
                   className="ui text eea-main-menu tablet or lower hidden menu"
                   ref={desktopMenuRef}
                   id={'navigation'}
@@ -253,6 +269,7 @@ const Main = ({
                     <Menu.Item
                       name={item['@id'] || item.url}
                       key={item['@id'] || item.url}
+                      as={'li'}
                       active={
                         activeItem.indexOf(item['@id']) !== -1 ||
                         activeItem.indexOf(item.url) !== -1
@@ -263,7 +280,7 @@ const Main = ({
                       })}
                     </Menu.Item>
                   ))}
-                </div>
+                </ul>
               )}
               {!hideSearch && (
                 <button
@@ -286,7 +303,7 @@ const Main = ({
                 onClick={mobileBurgerOnClick}
                 ref={mobileMenuBurgerRef}
               >
-                <Image
+                <LazyLoadImage
                   src={burger === 'open' ? `${closeIcon}` : `${burgerIcon}`}
                   alt="menu icon open/close"
                 />
@@ -307,6 +324,7 @@ const Main = ({
         renderMenuItem={renderMenuItem}
         activeItem={activeItem}
         menuItems={menuItems}
+        menuItemsLayouts={itemsLayouts}
         pathName={pathname}
         onClose={menuOnClickOutside}
         triggerRefs={[mobileMenuBurgerRef, desktopMenuRef]}

@@ -1,142 +1,152 @@
-import React from 'react';
-import { Transition } from 'semantic-ui-react';
-import { Container, Grid, List, Icon, Accordion } from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import {
+  Accordion,
+  Container,
+  Grid,
+  Icon,
+  List,
+  Transition,
+} from 'semantic-ui-react';
 
 import { cloneDeep } from 'lodash';
 
 import { useClickOutside } from '@eeacms/volto-eea-design-system/helpers';
 
-const createColumns = (item, length, renderMenuItem) => {
-  let subArrays = [];
-  let size = length;
-  for (let i = 0; i < item.items.length; i += size) {
-    subArrays.push(item.items.slice(i, i + size));
-  }
-
-  const column = subArrays.map((subArray, index) => (
-    <Grid.Column key={index}>
-      <List>
-        {subArray.map((arrayItem, idx) => (
-          <React.Fragment key={idx}>
-            {renderMenuItem(arrayItem, {
-              className: 'item',
-              role: 'listitem',
-              key: idx,
-            })}
-          </React.Fragment>
-        ))}
-      </List>
-    </Grid.Column>
+const createColumns = (item, renderMenuItem, item_id) => {
+  return item.items.map((item, index) => (
+    <React.Fragment key={index}>
+      {renderMenuItem(item, {
+        className: 'item',
+        key: index,
+        id: item_id,
+      })}
+    </React.Fragment>
   ));
-
-  return column;
 };
 
-const ItemGrid = ({ item, columns, length, renderMenuItem }) => (
-  <>
-    {renderMenuItem(item, { className: 'sub-title' })}
-    {item.items.length ? (
-      <Grid columns={columns}>
-        {createColumns(item, length, renderMenuItem)}
-      </Grid>
-    ) : null}
-  </>
-);
+const ItemGrid = ({
+  item,
+  columns,
+  renderMenuItem,
+  hideChildrenFromNavigation,
+}) => {
+  const item_id = item.title.toLowerCase().replaceAll(' ', '-') + '-sub-title';
+  return (
+    <>
+      {renderMenuItem(item, { className: 'sub-title', id: item_id })}
+      {item.items.length && !hideChildrenFromNavigation ? (
+        <List
+          aria-labelledby={item_id}
+          className={columns && columns > 1 ? `has--${columns}--columns` : ''}
+        >
+          {createColumns(item, renderMenuItem, item_id)}
+        </List>
+      ) : null}
+    </>
+  );
+};
 
-const Item = ({ item, icon = false, iconName, renderMenuItem }) => (
-  <>
-    {renderMenuItem(item, { className: 'sub-title' })}
-    <List className="menu-list">
-      {item.items.map((listItem, index) => (
-        <React.Fragment key={index}>
-          {renderMenuItem(
-            listItem,
-            {
-              className: 'item',
-              key: index,
-              role: 'listitem',
-            },
-            { children: icon && <Icon className={iconName} /> },
-          )}
-        </React.Fragment>
+const Item = ({
+  item,
+  icon = false,
+  iconName,
+  renderMenuItem,
+  hideChildrenFromNavigation,
+}) => {
+  const item_id = item.title.toLowerCase().replaceAll(' ', '-') + '-sub-title';
+  return (
+    <>
+      {renderMenuItem(item, {
+        className: 'sub-title',
+        id: item_id,
+      })}
+      {!hideChildrenFromNavigation && (
+        <List className="menu-list" aria-labelledby={item_id}>
+          {item.items.map((listItem, index) => (
+            <React.Fragment key={index}>
+              {renderMenuItem(
+                listItem,
+                {
+                  className: 'item',
+                  key: index,
+                },
+                { children: icon && <Icon className={iconName} /> },
+              )}
+            </React.Fragment>
+          ))}
+        </List>
+      )}
+    </>
+  );
+};
+
+const RenderItem = ({ layout, section, renderMenuItem, index }) => {
+  const hideChildrenFromNavigation =
+    layout.hideChildrenFromNavigation === undefined
+      ? true
+      : layout.hideChildrenFromNavigation;
+  return !layout.menuItemChildrenListColumns ||
+    layout.menuItemChildrenListColumns[index] === 1 ? (
+    <Item
+      item={section}
+      renderMenuItem={renderMenuItem}
+      hideChildrenFromNavigation={hideChildrenFromNavigation}
+    />
+  ) : (
+    <ItemGrid
+      item={section}
+      columns={layout.menuItemChildrenListColumns[index]}
+      renderMenuItem={renderMenuItem}
+      hideChildrenFromNavigation={hideChildrenFromNavigation}
+    />
+  );
+};
+
+export const StandardMegaMenuGrid = ({ menuItem, renderMenuItem, layout }) => {
+  const menuItemColumns = layout && layout.menuItemColumns;
+  const menuItemColumnsLength =
+    (menuItemColumns && menuItemColumns.length - 1) || 0;
+
+  const renderColumnContent = (section, columnIndex) => (
+    <RenderItem
+      layout={layout}
+      section={section}
+      renderMenuItem={renderMenuItem}
+      index={columnIndex}
+    />
+  );
+
+  const renderColumns = () => (
+    <Grid>
+      {menuItemColumns.map((section, columnIndex) => (
+        <div className={layout.menuItemColumns[columnIndex]} key={columnIndex}>
+          {columnIndex !== menuItemColumnsLength
+            ? renderColumnContent(menuItem.items[columnIndex], columnIndex)
+            : menuItem.items
+                .slice(menuItemColumnsLength)
+                .map((section, _idx) =>
+                  renderColumnContent(section, columnIndex),
+                )}
+        </div>
       ))}
-    </List>
-  </>
-);
+    </Grid>
+  );
 
-const Topics = ({ menuItem, renderMenuItem }) => (
-  <Grid>
-    {menuItem.items.map((section, index) => (
-      <React.Fragment key={index}>
-        {section.title === 'At a glance' ? (
-          <Grid.Column width={3} id="at-a-glance">
-            <Item item={section} key={index} renderMenuItem={renderMenuItem} />
-          </Grid.Column>
-        ) : (
-          <Grid.Column width={9} key={index} id="topics-right-column">
-            <ItemGrid
-              item={section}
-              columns={4}
-              length={10}
-              key={index}
-              renderMenuItem={renderMenuItem}
-            />
-          </Grid.Column>
-        )}
-      </React.Fragment>
-    ))}
-  </Grid>
-);
-
-const Countries = ({ menuItem, renderMenuItem }) => (
-  <Grid>
-    <Grid.Column width={8}>
+  const renderDefaultColumns = () => (
+    <div className={layout?.gridContainerClass || 'ui four column grid'}>
       {menuItem.items.map((section, index) => (
-        <React.Fragment key={index}>
-          {section.title === 'EEA member countries' && (
-            <ItemGrid
-              item={section}
-              columns={5}
-              length={7}
-              renderMenuItem={renderMenuItem}
-            />
-          )}
-        </React.Fragment>
+        <Grid.Column key={index}>
+          {renderColumnContent(section, index)}
+        </Grid.Column>
       ))}
-    </Grid.Column>
-    <Grid.Column width={4}>
-      <Grid columns={1} className="nested-grid">
-        {menuItem.items.map((section, index) => (
-          <React.Fragment key={index}>
-            {section.title !== 'EEA member countries' && (
-              <Grid.Column>
-                <ItemGrid
-                  item={section}
-                  columns={2}
-                  length={3}
-                  renderMenuItem={renderMenuItem}
-                />
-              </Grid.Column>
-            )}
-          </React.Fragment>
-        ))}
-      </Grid>
-    </Grid.Column>
-  </Grid>
-);
+    </div>
+  );
 
-const StandardMegaMenuGrid = ({ menuItem, renderMenuItem }) => (
-  <Grid columns={4}>
-    {menuItem.items.map((section, index) => (
-      <Grid.Column key={index}>
-        <Item item={section} renderMenuItem={renderMenuItem} />
-      </Grid.Column>
-    ))}
-  </Grid>
-);
+  return menuItemColumns ? renderColumns() : renderDefaultColumns();
+};
 
 const FirstLevelContent = ({ element, renderMenuItem, pathName }) => {
-  const topics = element.title === 'Topics' ? true : false;
+  const topics = element.title === 'Topics';
   let defaultIndex = -1;
 
   return (
@@ -158,7 +168,17 @@ const FirstLevelContent = ({ element, renderMenuItem, pathName }) => {
               defaultIndex = index;
             }
             x.title = (
-              <Accordion.Title key={`title=${index}`} as="button">
+              <Accordion.Title
+                key={`title=${index}`}
+                as="button"
+                aria-expanded={false}
+                onClick={(e) => {
+                  e.currentTarget.setAttribute(
+                    'aria-expanded',
+                    e.currentTarget.className.indexOf('active') === -1,
+                  );
+                }}
+              >
                 {item.title}
                 <Icon className="ri-arrow-down-s-line" size="small" />
               </Accordion.Title>
@@ -213,7 +233,6 @@ const SecondLevelContent = ({ element, topics = false, renderMenuItem }) => {
             <React.Fragment key={index}>
               {renderMenuItem(item, {
                 key: index,
-                role: 'listitem',
                 className: 'item',
               })}
             </React.Fragment>
@@ -222,7 +241,6 @@ const SecondLevelContent = ({ element, topics = false, renderMenuItem }) => {
           <React.Fragment key={inDepth.url}>
             {renderMenuItem(inDepth, {
               key: inDepth.url,
-              role: 'listitem',
               className: 'item',
             })}
           </React.Fragment>
@@ -236,7 +254,6 @@ const SecondLevelContent = ({ element, topics = false, renderMenuItem }) => {
           <React.Fragment key={index}>
             {renderMenuItem(item, {
               key: index,
-              role: 'listitem',
               className: 'item',
             })}
           </React.Fragment>
@@ -249,17 +266,32 @@ const SecondLevelContent = ({ element, topics = false, renderMenuItem }) => {
 };
 
 const NestedAccordion = ({ menuItems, renderMenuItem, pathName }) => {
-  let defaultIndex = -1;
+  const [activeIndex, setActiveIndex] = useState(-1);
+
+  useEffect(() => {
+    let index = 0;
+    menuItems.forEach((menuItem) => {
+      if (pathName.includes(menuItem.url)) setActiveIndex(index);
+      ++index;
+    });
+  }, [menuItems, pathName]);
+
   const rootPanels = [];
   menuItems.forEach((element, index) => {
     let x = {};
     x.key = index;
-
-    if (pathName.indexOf(element.url) !== -1) {
-      defaultIndex = index;
-    }
     x.title = (
-      <Accordion.Title key={`title-${index}`} index={index} as="button">
+      <Accordion.Title
+        key={`title-${index}`}
+        index={index}
+        aria-expanded={activeIndex === index}
+        as="button"
+        onClick={() => {
+          if (activeIndex === index) {
+            setActiveIndex(-1);
+          } else setActiveIndex(index);
+        }}
+      >
         {element.title}
         <Icon className="ri-arrow-down-s-line" size="small" />
       </Accordion.Title>
@@ -294,11 +326,12 @@ const NestedAccordion = ({ menuItems, renderMenuItem, pathName }) => {
     rootPanels.push(x);
   });
 
-  return <Accordion defaultActiveIndex={defaultIndex} panels={rootPanels} />;
+  return <Accordion activeIndex={activeIndex} panels={rootPanels} />;
 };
 
 function HeaderMenuPopUp({
   menuItems,
+  menuItemsLayouts,
   renderMenuItem,
   pathName,
   onClose,
@@ -312,6 +345,11 @@ function HeaderMenuPopUp({
   const menuItem = menuItems.find(
     (current) => current.url === activeItem || current['@id'] === activeItem,
   );
+
+  const layout =
+    !!menuItemsLayouts &&
+    Object.keys(menuItemsLayouts).includes(menuItem?.url) &&
+    menuItemsLayouts[menuItem.url];
 
   return (
     <Transition visible={visible} animation="slide down" duration={300}>
@@ -342,19 +380,11 @@ function HeaderMenuPopUp({
                   )}
                 </div>
               )}
-              {menuItem.title === 'Topics' ? (
-                <Topics menuItem={menuItem} renderMenuItem={renderMenuItem} />
-              ) : menuItem.title === 'Countries' ? (
-                <Countries
-                  menuItem={menuItem}
-                  renderMenuItem={renderMenuItem}
-                />
-              ) : (
-                <StandardMegaMenuGrid
-                  menuItem={menuItem}
-                  renderMenuItem={renderMenuItem}
-                />
-              )}
+              <StandardMegaMenuGrid
+                menuItem={menuItem}
+                renderMenuItem={renderMenuItem}
+                layout={layout}
+              />
             </div>
           )}
           <div className="tablet only mobile only">
