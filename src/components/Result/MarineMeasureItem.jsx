@@ -10,7 +10,7 @@ import ExternalLink from '@eeacms/search/components/Result/ExternalLink';
 
 const ExtraContent = (props) => {
   const { result, vocab } = props;
-  const measureSector = result.measure_sector ? result.measure_sector.raw : '';
+  const measureSector = result.wm_spm_sector ? result.wm_spm_sector.raw : '';
 
   return (
     <div>
