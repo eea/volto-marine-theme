@@ -121,6 +121,41 @@ const applyConfig = (config) => {
   marinemeasure.elastic_index = '_es/globalsearch';
   marinemeasure.index_name = 'wisetest_searchui';
 
+  // fix the query
+  const marineMeasureConfig = config.settings.searchlib.searchui.marinemeasure;
+  const index = marineMeasureConfig.permanentFilters.findIndex(
+    (f) => f.id === 'constantScore',
+  );
+  const baseConstantScore = marineMeasureConfig.permanentFilters[index];
+
+  function updatedConstantScore() {
+    const base = baseConstantScore();
+    let filterBool = base.constant_score.filter.bool;
+
+    if (filterBool) {
+      if (!Array.isArray(filterBool.must_not)) {
+        if (
+          filterBool.must_not?.exists?.field === 'exclude_from_globalsearch'
+        ) {
+          delete filterBool.must_not;
+        }
+      } else {
+        filterBool.must_not = filterBool.must_not.filter((item) => {
+          if (item?.exists?.field === 'exclude_from_globalsearch') {
+            return false;
+          }
+          return true;
+        });
+      }
+    }
+
+    return base;
+  }
+
+  updatedConstantScore.id = 'constantScore';
+
+  marineMeasureConfig.permanentFilters[index] = updatedConstantScore;
+
   config.widgets.widget.text_align = TextAlignWidget;
   // Disabled TokenWidget for 'theme', it breaks the 'theme' field in volto-tabs-block in the 'horizontal carousel' layout
   // We have a 'theme' field in the wise catalogue metadata (CatalogueMetadata)
