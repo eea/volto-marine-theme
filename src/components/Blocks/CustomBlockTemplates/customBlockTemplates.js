@@ -2,7 +2,8 @@ import {
   BlockStyleWrapperEdit,
   BlockStyleWrapperView,
 } from '@eeacms/volto-block-style/BlockStyleWrapper';
-import { ViewIframe, EditIframe } from '@eeacms/volto-embed/Iframe';
+import EditIframe from '@eeacms/volto-embed/Blocks/Maps/Edit';
+import ViewIframe from '@eeacms/volto-embed/Blocks/Maps/View';
 
 const customBlockTemplates = (config) => ({
   ...config.blocks.blocksConfig,

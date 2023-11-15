@@ -52,6 +52,8 @@ const available_colors = [
   '#000000',
 ];
 
+const restrictedBlocks = ['imagecards'];
+
 const messages = defineMessages({
   edit: {
     id: 'Edit link',
@@ -326,6 +328,13 @@ const applyConfig = (config) => {
       },
     },
   ];
+
+  // restrict blocks
+  restrictedBlocks.forEach((block) => {
+    if (config.blocks.blocksConfig[block]) {
+      config.blocks.blocksConfig[block].restricted = true;
+    }
+  });
 
   // mega menu layout settings
   config.settings.menuItemsLayouts = {
