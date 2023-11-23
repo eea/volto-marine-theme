@@ -49,15 +49,13 @@ const MsfdDataExplorerBlockView = (props) => {
     ];
 
     if (!loading) {
-      setTimeout(() => {
-        scripts.forEach((element) => {
-          const script = document.createElement('script');
-          script.src = element;
-          script.setAttribute('type', 'text/javascript');
-          script.async = 'true';
+      scripts.forEach((element) => {
+        const script = document.createElement('script');
+        script.src = element;
+        script.setAttribute('type', 'text/javascript');
+        // script.async = 'true';
 
-          document.body.appendChild(script);
-        }, 1000);
+        document.body.appendChild(script);
       });
     }
   }, [loading]);
