@@ -35,11 +35,9 @@ const MsfdDataExplorerBlockView = (props) => {
   }, [article_select]);
 
   useEffect(() => {
-    if (window !== undefined) {
-      window.$ = $;
-      window.jQuery = $;
-      global.jQuery = $;
-    }
+    window.$ = $;
+    window.jQuery = $;
+    global.jQuery = $;
 
     const scripts = [
       'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js',
@@ -50,12 +48,13 @@ const MsfdDataExplorerBlockView = (props) => {
 
     if (!loading) {
       scripts.forEach((element) => {
-        const script = document.createElement('script');
-        script.src = element;
-        script.setAttribute('type', 'text/javascript');
+        $.getScript(element);
+        // const script = document.createElement('script');
+        // script.src = element;
+        // script.setAttribute('type', 'text/javascript');
         // script.async = 'true';
 
-        document.body.appendChild(script);
+        // document.body.appendChild(script);
       });
     }
   }, [loading]);
