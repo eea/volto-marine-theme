@@ -48,14 +48,17 @@ const MsfdDataExplorerBlockView = (props) => {
 
     if (!loading) {
       scripts.forEach((element) => {
-        $.getScript(element);
-        // const script = document.createElement('script');
-        // script.src = element;
-        // script.setAttribute('type', 'text/javascript');
+        // $.getScript(element);
+        const script = document.createElement('script');
+        script.src = element;
+        script.setAttribute('type', 'text/javascript');
         // script.async = 'true';
 
-        // document.body.appendChild(script);
+        document.body.appendChild(script);
       });
+      setTimeout(() => {
+        $.getScript('/marine/++api++/++resource++msfd/js/msfd_search.js');
+      }, 200);
     }
   }, [loading]);
 
