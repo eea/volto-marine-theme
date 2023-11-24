@@ -43,7 +43,7 @@ const MsfdDataExplorerBlockView = (props) => {
       'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js',
       '/marine/++api++/++resource++msfd/js/jquery-ui.js',
       '/marine/++api++/++resource++msfd/js/tabs.js',
-      '/marine/++api++/++resource++msfd/js/msfd_search.js',
+      // '/marine/++api++/++resource++msfd/js/msfd_search.js',
     ];
 
     if (!loading) {
