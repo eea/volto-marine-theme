@@ -120,7 +120,7 @@ const applyConfig = (config) => {
 
   resolve.MarineMeasureItem = { component: MarineMeasureItem };
 
-  marinemeasure.elastic_index = '_es/globalsearch';
+  marinemeasure.elastic_index = '_es/marinemeasure';
   marinemeasure.index_name = 'wisetest_searchui';
 
   // fix the query
