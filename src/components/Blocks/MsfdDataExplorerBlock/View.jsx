@@ -43,22 +43,31 @@ const MsfdDataExplorerBlockView = (props) => {
       'https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js',
       '/marine/++api++/++resource++msfd/js/jquery-ui.js',
       '/marine/++api++/++resource++msfd/js/tabs.js',
-      // '/marine/++api++/++resource++msfd/js/msfd_search.js',
+      '/marine/++api++/++resource++msfd/js/msfd_search.js',
     ];
 
     if (!loading) {
-      scripts.forEach((element) => {
-        // $.getScript(element);
-        const script = document.createElement('script');
-        script.src = element;
-        script.setAttribute('type', 'text/javascript');
-        // script.async = 'true';
-
-        document.body.appendChild(script);
+      $.getScript(scripts[0], () => {
+        $.getScript(scripts[1], () => {
+          $.getScript(scripts[2], () => {
+            $.getScript(scripts[3]);
+          });
+        });
       });
-      setTimeout(() => {
-        $.getScript('/marine/++api++/++resource++msfd/js/msfd_search.js');
-      }, 200);
+
+      // scripts.forEach((element) => {
+      //   // $.getScript(element);
+      //   const script = document.createElement('script');
+      //   script.src = element;
+      //   script.setAttribute('type', 'text/javascript');
+      //   script.async = false;
+      //   // script.defer = 'defer';
+
+      //   document.body.appendChild(script);
+      // });
+      // setTimeout(() => {
+      //   $.getScript('/++api++/++resource++msfd/js/msfd_search.js');
+      // }, 200);
     }
   }, [loading]);
 
