@@ -100,7 +100,7 @@ const applyConfig = (config) => {
     publication_report: DatabaseItemView,
     indicator: DatabaseItemView,
     briefing: DatabaseItemView,
-    map_interactive: DatabaseItemView,
+    // map_interactive: DatabaseItemView,
   };
 
   config.addonReducers = {
