@@ -142,8 +142,8 @@ body.view-viewview.has-toolbar:not(.homepage) #mega-menu {
   }
 
   @media only screen and (min-width: @computerBreakpoint) {
-    padding-left: 10px;
     padding-right: 10px;
+    padding-left: 10px;
   }
 }
 
@@ -236,7 +236,8 @@ body.view-viewview .full {
   }
 }
 
-.searchapp input:focus, .searchapp .sui-select__control--is-focused {
+.searchapp input:focus,
+.searchapp .sui-select__control--is-focused {
   border: none !important;
 }
 
@@ -296,4 +297,32 @@ section .searchlib-block .ui.button.sui-button.basic {
 
 .sui-search-box .search-input .input-controls .clear-button {
   border: 2px solid @secondaryColor !important;
+}
+
+// Style fixes on /countries-and-regional-seas/regional-conventions
+.section-ospar-convention,
+.section-helcom-convention,
+.section-barcelona-convention,
+.section-bucharest-convention {
+  .ui.basic.segment.content-area {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .breadcrumbs {
+    background-color: #f9f9f9 !important;
+  }
+
+  .block.image {
+    margin-bottom: 0;
+  }
+
+  .styled-group:first-of-type {
+    margin: 0;
+  }
+
+  .ui.grid > .row > .column-blocks-wrapper,
+  .column-blocks-wrapper {
+    margin-bottom: 0;
+  }
 }
