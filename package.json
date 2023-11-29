@@ -37,7 +37,6 @@
     "@eeacms/volto-globalsearch": "^1.0.20",
     "@eeacms/volto-searchlib": "^0.6.3",
     "@eeacms/volto-slots": "*",
-    "@eeacms/volto-tableau": "github:eea/volto-tableau#3.0.8",
     "@eeacms/volto-tabs-block": "*",
     "axios": "0.25.0",
     "jquery": "3.6.0",
