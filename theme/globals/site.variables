@@ -67,7 +67,7 @@
 @darkPrimaryColor    : #003052;
 @lightPrimaryColor   : #0A99FF;
 
-@secondaryColor      : #0083E0;
+@secondaryColor      : #0079CF;
 @darkSecondaryColor  : #006BB8;
 @lightSecondaryColor : #47B3FF;
 @lightestColor: #A0D7FF;
