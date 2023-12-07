@@ -3,6 +3,7 @@ import facets from './facets';
 import views from './views';
 import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 import { clusters } from '@eeacms/volto-globalsearch/config/clusters';
+
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
   url.pathname = '';
