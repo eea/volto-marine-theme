@@ -299,6 +299,28 @@ section .searchlib-block .ui.button.sui-button.basic {
   border: 2px solid @secondaryColor !important;
 }
 
+// Custom page header
+body.custom-page-header #page-header {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.custom-page-header.grey-breadcrumbs .breadcrumbs {
+  background-color: #e6e7e8 !important;
+
+  .ui.breadcrumb ol li {
+    vertical-align: middle;
+  }
+
+  .ui.breadcrumb a.section {
+    vertical-align: text-bottom;
+  }
+
+  .ui.breadcrumb .section.active {
+    vertical-align: text-bottom;
+  }
+}
+
 // Style fixes on /countries-and-regional-seas/regional-conventions
 .section-ospar-convention,
 .section-helcom-convention,
