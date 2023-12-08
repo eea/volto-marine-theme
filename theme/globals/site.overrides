@@ -300,12 +300,16 @@ section .searchlib-block .ui.button.sui-button.basic {
 }
 
 // Custom page header
+#page-header .content-box {
+  margin-bottom: 0px;
+}
+
 body.custom-page-header #page-header {
   margin-right: auto !important;
   margin-left: auto !important;
 }
 
-body.custom-page-header.grey-breadcrumbs .breadcrumbs {
+body.custom-page-header .breadcrumbs {
   background-color: #e6e7e8 !important;
 
   .ui.breadcrumb ol li {
