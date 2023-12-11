@@ -1,12 +1,13 @@
 .contenttype-spmeasure .breadcrumbs {
-  background-color: #004b7f !important;
+  /* background-color: #004b7f !important; */
+  margin-bottom: 1rem !important;
 }
 
-.contenttype-spmeasure .breadcrumbs .section,
+/* .contenttype-spmeasure .breadcrumbs .section,
 .contenttype-spmeasure .breadcrumbs .section.active,
 .contenttype-spmeasure .breadcrumbs i {
   color: white !important;
-}
+} */
 
 .contenttype-spmeasure .content-area {
   padding-top: 0 !important;

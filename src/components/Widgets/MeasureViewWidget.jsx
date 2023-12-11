@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import { Portal } from 'react-portal';
 import { fields } from '@eeacms/volto-marine-theme/constants/measureFields';
 import String from './String';
 import { Accordion } from 'semantic-ui-react';
 import { Icon } from '@plone/volto/components';
+import { BodyClass } from '@plone/volto/helpers';
 import downSVG from '@plone/volto/icons/down-key.svg';
 import upSVG from '@plone/volto/icons/up-key.svg';
 import './measure.css';
+
+function IsomorphicPortal({ children }) {
+  const [isClient, setIsClient] = React.useState();
+  React.useEffect(() => setIsClient(true), []);
+
+  return isClient ? (
+    <Portal node={document.getElementById('page-header')}>{children}</Portal>
+  ) : (
+    children
+  );
+}
 
 const MeasureView = (props) => {
   const { origin } = props?.content;
@@ -175,22 +188,27 @@ const MeasureView = (props) => {
   return (
     <div id="page-document" className="view-view-spmeasure ui container">
       <div>
-        <div className="measure-header content-box">
-          <div className="measure-header-content">
-            <h1 className="measure-title">
-              <String val={truncateTitle()} />
-            </h1>
-            <div className="measure-field">
-              <div className="measure-field-label">Code:</div>
-              <div className="measure-field-value">
-                <String val={props?.content?.code} />
+        <React.Fragment>
+          <BodyClass className="custom-page-header" />
+          <IsomorphicPortal>
+            <div className="measure-header content-box">
+              <div className="measure-header-content">
+                <h1 className="measure-title">
+                  <String val={truncateTitle()} />
+                </h1>
+                <div className="measure-field">
+                  <div className="measure-field-label">Code:</div>
+                  <div className="measure-field-value">
+                    <String val={props?.content?.code} />
+                  </div>
+                </div>
+                {unconditionalFields
+                  .slice(0, 2)
+                  .map((field) => renderField(field, 'header'))}
               </div>
             </div>
-            {unconditionalFields
-              .slice(0, 2)
-              .map((field) => renderField(field, 'header'))}
-          </div>
-        </div>
+          </IsomorphicPortal>
+        </React.Fragment>
 
         <div className="measure-form">
           <div className="measure-field measure-name">
