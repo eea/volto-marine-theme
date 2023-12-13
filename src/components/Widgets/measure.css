@@ -21,7 +21,8 @@
 
 .measure-header {
   z-index: 1;
-  background-color: #a0d7ff !important;
+  background-color: #004b7f !important;
+  color: #fff !important;
 }
 
 .measure-header:before {
