@@ -213,6 +213,14 @@ const applyConfig = (config) => {
     },
   ];
 
+  // do not expand breadcrumbs. This fixed the breadcrumbs in contents view. The hasApiExpander needs to be made
+  // generic to also look for nonContentRoutes.
+  (config.settings.apiExpanders || []).forEach((item) => {
+    if (item.GET_CONTENT.includes('breadcrumbs')) {
+      item.GET_CONTENT.splice(item.GET_CONTENT.indexOf('breadcrumbs', 1));
+    }
+  });
+
   config.settings.navDepth = 3;
 
   config.settings.available_colors = available_colors;
