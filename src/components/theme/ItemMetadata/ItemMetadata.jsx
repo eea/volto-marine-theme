@@ -160,7 +160,7 @@ const ItemMetadata = (props) => {
                       <a
                         href={original_source}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener"
                       >
                         {original_source}
                       </a>

@@ -114,7 +114,7 @@ export default (config) => ({
     height: {
       title: (
         <a
-          rel="noreferrer"
+          rel="noopener"
           target="_blank"
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"
         >
