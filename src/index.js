@@ -225,92 +225,92 @@ const applyConfig = (config) => {
 
   config.settings.available_colors = available_colors;
 
-  config.settings.externalRoutes = [
-    ...(config.settings.externalRoutes || []),
-    ...(config.settings.prefixPath
-      ? [
-          {
-            match: {
-              path: /\/$/,
-              exact: true,
-              strict: true,
-            },
+  // config.settings.externalRoutes = [
+  //   ...(config.settings.externalRoutes || []),
+  //   ...(config.settings.prefixPath
+  //     ? [
+  //         {
+  //           match: {
+  //             path: /\/$/,
+  //             exact: true,
+  //             strict: true,
+  //           },
 
-            url(payload) {
-              return payload.location.pathname;
-            },
-          },
-        ]
-      : []),
-  ];
+  //           url(payload) {
+  //             return payload.location.pathname;
+  //           },
+  //         },
+  //       ]
+  //     : []),
+  // ];
 
-  config.settings.externalRoutes.push(
-    {
-      match: {
-        path: '/(.*)marine(-new)?/assessment-module(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-    {
-      match: {
-        path:
-          '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-    {
-      match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/msfd-reports-and-assessments(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-    {
-      match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/reports-and-assessments(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-    {
-      match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-country(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-    {
-      match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-region(.*)',
-        exact: false,
-        strict: false,
-      },
-      url(payload) {
-        return payload.location.pathname;
-      },
-    },
-  );
+  // config.settings.externalRoutes.push(
+  //   {
+  //     match: {
+  //       path: '/(.*)marine(-new)?/assessment-module(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  //   {
+  //     match: {
+  //       path:
+  //         '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  //   {
+  //     match: {
+  //       path:
+  //         '/(.*)marine(-new)?/policy-and-reporting/msfd-reports-and-assessments(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  //   {
+  //     match: {
+  //       path:
+  //         '/(.*)marine(-new)?/policy-and-reporting/reports-and-assessments(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  //   {
+  //     match: {
+  //       path:
+  //         '/(.*)marine(-new)?/policy-and-reporting/assessment-by-country(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  //   {
+  //     match: {
+  //       path:
+  //         '/(.*)marine(-new)?/policy-and-reporting/assessment-by-region(.*)',
+  //       exact: false,
+  //       strict: false,
+  //     },
+  //     url(payload) {
+  //       return payload.location.pathname;
+  //     },
+  //   },
+  // );
 
   config.settings.pluggableStyles = [
     ...(config.settings.pluggableStyles || []),
