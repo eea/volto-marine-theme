@@ -15,7 +15,8 @@ import { breadcrumb, localnavigation } from './reducers';
 import customBlockTemplates from '@eeacms/volto-marine-theme/components/Blocks/CustomBlockTemplates/customBlockTemplates';
 import TextAlignWidget from './components/Widgets/TextAlign';
 import './slate-styles.less';
-import MarineMeasureItem from './components/Result/MarineMeasureItem';
+
+import installSearchEngine from './search';
 
 // import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import linkSVG from '@plone/volto/icons/link.svg';
@@ -33,7 +34,6 @@ import marineLogoWhite from '@eeacms/volto-marine-theme/../theme/assets/images/H
 import eeaWhiteLogo from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/logo/eea-logo-white.svg';
 import europeanComissionLogo from '@eeacms/volto-marine-theme/static/ec_logo_white.svg';
 import MeasureView from '@eeacms/volto-marine-theme/components/Widgets/MeasureViewWidget';
-import installMarineMeasureSearch from './config/index';
 
 const available_colors = [
   '#ffffff',
@@ -108,55 +108,6 @@ const applyConfig = (config) => {
     breadcrumb,
     localnavigation,
   };
-
-  config.settings.searchlib = installMarineMeasureSearch(
-    config.settings.searchlib,
-  );
-
-  const {
-    resolve,
-    searchui: { marinemeasure },
-  } = config.settings.searchlib;
-
-  resolve.MarineMeasureItem = { component: MarineMeasureItem };
-
-  marinemeasure.elastic_index = '_es/marinemeasure';
-  marinemeasure.index_name = 'wisetest_searchui';
-
-  // fix the query
-  const marineMeasureConfig = config.settings.searchlib.searchui.marinemeasure;
-  const index = marineMeasureConfig.permanentFilters.findIndex(
-    (f) => f.id === 'constantScore',
-  );
-  const baseConstantScore = marineMeasureConfig.permanentFilters[index];
-
-  function updatedConstantScore() {
-    const base = baseConstantScore();
-    let filterBool = base.constant_score.filter.bool;
-
-    if (filterBool) {
-      if (!Array.isArray(filterBool.must_not)) {
-        if (
-          filterBool.must_not?.exists?.field === 'exclude_from_globalsearch'
-        ) {
-          delete filterBool.must_not;
-        }
-      } else {
-        filterBool.must_not = filterBool.must_not.filter((item) => {
-          if (item?.exists?.field === 'exclude_from_globalsearch') {
-            return false;
-          }
-          return true;
-        });
-      }
-    }
-
-    return base;
-  }
-
-  updatedConstantScore.id = 'constantScore';
-
-  marineMeasureConfig.permanentFilters[index] = updatedConstantScore;
 
   config.widgets.widget.text_align = TextAlignWidget;
   // Disabled TokenWidget for 'theme', it breaks the 'theme' field in volto-tabs-block in the 'horizontal carousel' layout
@@ -504,7 +455,7 @@ const applyConfig = (config) => {
   const [installLinkEditor] = makeInlineElementPlugin(opts);
   config = installLinkEditor(config);
 
-  const final = [installMsfdDataExplorerBlock].reduce(
+  const final = [installMsfdDataExplorerBlock, installSearchEngine].reduce(
     (acc, apply) => apply(acc),
     config,
   );
