@@ -194,8 +194,8 @@ const applyConfig = (config) => {
         ]
       : []),
   ];
-
-  config.settings.externalRoutes.push(
+  config.settings.externalRoutes = [
+    ...(config.settings.externalRoutes || []),
     {
       match: {
         path: '/(.*)marine(-new)?/assessment-module(.*)',
@@ -261,7 +261,7 @@ const applyConfig = (config) => {
         return payload.location.pathname;
       },
     },
-  );
+  ];
 
   config.settings.pluggableStyles = [
     ...(config.settings.pluggableStyles || []),
