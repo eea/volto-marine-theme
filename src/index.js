@@ -423,6 +423,7 @@ const applyConfig = (config) => {
         // },
       ],
     },
+    organisationName: 'Marine Water Information System for Europe',
   };
 
   // SPMeasure View widget
