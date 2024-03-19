@@ -181,8 +181,7 @@ const applyConfig = (config) => {
     },
     {
       match: {
-        path:
-          '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
+        path: '/(.*)marine(-new)?/countries-and-regional-seas/country-profiles(.*)',
         exact: false,
         strict: false,
       },
@@ -192,8 +191,7 @@ const applyConfig = (config) => {
     },
     {
       match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/msfd-reports-and-assessments(.*)',
+        path: '/(.*)marine(-new)?/policy-and-reporting/msfd-reports-and-assessments(.*)',
         exact: false,
         strict: false,
       },
@@ -203,8 +201,7 @@ const applyConfig = (config) => {
     },
     {
       match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/reports-and-assessments(.*)',
+        path: '/(.*)marine(-new)?/policy-and-reporting/reports-and-assessments(.*)',
         exact: false,
         strict: false,
       },
@@ -214,8 +211,7 @@ const applyConfig = (config) => {
     },
     {
       match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-country(.*)',
+        path: '/(.*)marine(-new)?/policy-and-reporting/assessment-by-country(.*)',
         exact: false,
         strict: false,
       },
@@ -225,8 +221,7 @@ const applyConfig = (config) => {
     },
     {
       match: {
-        path:
-          '/(.*)marine(-new)?/policy-and-reporting/assessment-by-region(.*)',
+        path: '/(.*)marine(-new)?/policy-and-reporting/assessment-by-region(.*)',
         exact: false,
         strict: false,
       },
